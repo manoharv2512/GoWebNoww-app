@@ -10,7 +10,6 @@
     "dev": "npm run dev -w @gowebnow/web",
     "build": "npm run build -w @gowebnow/web",
     "lint": "npm run lint -w @gowebnow/web",
-    "preview": "npm run preview -w @gowebnow/web",
-    "deploy": "npm run deploy -w @gowebnow/web"
+    "preview": "npm run preview -w @gowebnow/web"
   }
 }

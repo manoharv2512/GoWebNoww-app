@@ -1,6 +1,6 @@
 # GoWebNow
 
-GoWebNow is now structured as an npm-workspaces monorepo. The current React/Vite website lives in `apps/web`, and the root package only coordinates workspace commands.
+GoWebNow is structured as an npm-workspaces monorepo. The current React/Vite website lives in `apps/web`, and the root package coordinates workspace commands.
 
 ## Structure
 
@@ -19,23 +19,33 @@ npm run lint
 npm run preview
 ```
 
-The root scripts forward to `@gowebnow/web`, so contributors do not need to `cd` into the app for normal work.
+The root scripts forward to `@gowebnow/web`, so you do not need to `cd` into the app for normal work.
 
-## Deploy
+## Local Development
 
-The web app is configured for GitHub Pages at:
-
-```text
-https://manoharv2512.github.io/GoWebNoww-app
-```
-
-Deploy with:
+Start the local dev server:
 
 ```bash
-npm run deploy
+npm run dev
 ```
 
-The deploy script builds the Vite app and publishes `apps/web/dist` through `gh-pages`.
+The homepage runs at:
+
+```text
+http://localhost:5173
+```
+
+The Vite `base` is `/`, which is the right setup for local development and for uploading the built files to the root of a Hostinger site.
+
+## Manual Hosting
+
+Build the app before uploading it:
+
+```bash
+npm run build
+```
+
+Then upload the contents of `apps/web/dist` to Hostinger. GitHub is used only for managing source code, not for live deployment.
 
 ## GitHub Push Checklist
 
@@ -44,7 +54,7 @@ If `git push` says everything is up to date but GitHub does not show your latest
 ```bash
 git status
 git add .
-git commit -m "Organize project as monorepo"
+git commit -m "Describe your change"
 git push origin main
 ```
 
