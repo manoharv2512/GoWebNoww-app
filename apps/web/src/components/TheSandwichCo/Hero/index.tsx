@@ -2,8 +2,17 @@ import { motion } from "framer-motion";
 import { Box, Typography, Button, Stack } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import heroVideo from "../../../assets/TheSandwichCo/HeroBgVideo.mp4";
+import { useEffect, useRef } from "react";
 
 const Hero = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5;
+    }
+  }, []);
+
   return (
     <Box
       sx={{
@@ -15,6 +24,7 @@ const Hero = () => {
     >
       <Box
         component="video"
+        ref={videoRef}
         src={heroVideo}
         autoPlay
         muted
@@ -25,7 +35,7 @@ const Hero = () => {
           inset: 0,
           width: "100%",
           height: "100%",
-          objectFit: "cover",
+          objectFit: "none",
         }}
       />
 

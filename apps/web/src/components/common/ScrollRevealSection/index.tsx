@@ -66,7 +66,7 @@ const ScrollRevealSection: React.FC<Props> = ({
         style={{
           position: "absolute",
           inset: 0,
-          background: "rgba(0,0,0,0.6)",
+          background: "rgba(0,0,0,0.4)",
           zIndex: 1,
         }}
       />
@@ -76,7 +76,7 @@ const ScrollRevealSection: React.FC<Props> = ({
         <Box
           style={{
             position: "relative",
-            zIndex: 2,
+            zIndex: 20,
             paddingTop: "40px",
           }}
         >
