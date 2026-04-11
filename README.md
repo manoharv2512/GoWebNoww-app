@@ -1,75 +1,51 @@
-# GoWebNoww-app
+# GoWebNow
 
-# React + TypeScript + Vite
+GoWebNow is now structured as an npm-workspaces monorepo. The current React/Vite website lives in `apps/web`, and the root package only coordinates workspace commands.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Structure
 
-Currently, two official plugins are available:
+- `apps/web` - main React, TypeScript, Vite app.
+- `packages` - reserved for shared code that can be reused by future apps.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Commands
 
-## React Compiler
+Run these from the repository root:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+```bash
+npm install
+npm run dev
+npm run build
+npm run lint
+npm run preview
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The root scripts forward to `@gowebnow/web`, so contributors do not need to `cd` into the app for normal work.
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+## Deploy
 
-export default defineConfig([
-  globalIgnores(["dist"]),
-  {
-    files: ["**/*.{ts,tsx}"],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs["recommended-typescript"],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-]);
+The web app is configured for GitHub Pages at:
+
+```text
+https://manoharv2512.github.io/GoWebNoww-app
 ```
+
+Deploy with:
+
+```bash
+npm run deploy
+```
+
+The deploy script builds the Vite app and publishes `apps/web/dist` through `gh-pages`.
+
+## GitHub Push Checklist
+
+If `git push` says everything is up to date but GitHub does not show your latest code, your changes are probably not committed yet:
+
+```bash
+git status
+git add .
+git commit -m "Organize project as monorepo"
+git push origin main
+```
+
+If Git asks for credentials, use a GitHub personal access token or GitHub CLI authentication instead of your account password.
