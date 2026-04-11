@@ -13,19 +13,6 @@ const Hero = () => {
         overflow: "hidden",
       }}
     >
-      {/* Background Image */}
-      {/* <Box
-        component="img"
-        src={heroImg}
-        alt="Artisan sandwich"
-        sx={{
-          position: "absolute",
-          inset: 0,
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-      /> */}
       <Box
         component="video"
         src={heroVideo}
@@ -85,16 +72,11 @@ const Hero = () => {
 
           {/* Heading */}
           <Typography
-            variant="h2"
+            variant="h4"
             sx={{
               color: "#fff",
               fontWeight: "bold",
               mb: 3,
-              fontSize: {
-                xs: "2.5rem",
-                md: "4rem",
-                lg: "5rem",
-              },
             }}
           >
             The Bunzaa Sandwich Company
