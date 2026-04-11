@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Box, Typography, Container, Grid, Paper } from "@mui/material";
 
-import shopImg from "../../../assets/TheSandwichCo/shop-interior.jpg";
+import shopImg from "../../../assets/TheSandwichCo/OurStoryImg.png";
 
 const stats = [
   { num: "1+", label: "Years Serving" },
@@ -14,29 +14,6 @@ const About = () => {
     <Box id="about" sx={{ py: 10, px: 2 }}>
       <Container maxWidth="lg">
         <Grid container spacing={6} alignItems="center">
-          {/* Image Section */}
-          <Grid size={{ xs: 12, md: 6 }}>
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <Box
-                component="img"
-                src={shopImg}
-                alt="Shop Interior"
-                sx={{
-                  width: "100%",
-                  height: "400px",
-                  objectFit: "cover",
-                  borderRadius: 4,
-                  boxShadow: 3,
-                }}
-              />
-            </motion.div>
-          </Grid>
-
           {/* Content Section */}
           <Grid size={{ xs: 12, md: 6 }}>
             <motion.div
@@ -98,6 +75,28 @@ Fresh, tasty & made to satisfy every craving.`}
                   </Grid>
                 ))}
               </Grid>
+            </motion.div>
+          </Grid>
+          {/* Image Section */}
+          <Grid size={{ xs: 12, md: 6 }}>
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <Box
+                component="img"
+                src={shopImg}
+                alt="Shop Interior"
+                sx={{
+                  width: "100%",
+                  height: "200px",
+                  objectFit: "cover",
+                  borderRadius: 4,
+                  boxShadow: 3,
+                }}
+              />
             </motion.div>
           </Grid>
         </Grid>

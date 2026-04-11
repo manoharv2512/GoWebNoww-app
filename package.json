@@ -11,5 +11,8 @@
     "build": "npm run build -w @gowebnow/web",
     "lint": "npm run lint -w @gowebnow/web",
     "preview": "npm run preview -w @gowebnow/web"
+  },
+  "dependencies": {
+    "framer-motion": "^12.38.0"
   }
 }

@@ -31,7 +31,7 @@ const contactData = [
 
 const Contact = () => {
   return (
-    <Box id="contact" sx={{ py: 10, px: 2 }}>
+    <Box id="contact" sx={{ py: 10, px: 2 }} bgcolor="White">
       <Container maxWidth="lg">
         {/* Heading */}
         <motion.div

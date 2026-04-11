@@ -30,7 +30,7 @@ const socialLinks = [
   {
     icon: <WhatsApp />,
     label: "Whatsapp",
-    href: "https://wa.me/919075172459?text=Hello%20I%20want%20to%20order%20from%20The%20Sandwich%20Co",
+    href: "https://wa.me/918878811666?text=Hello%20I%20want%20to%20order%20from%20The%20Sandwich%20Co",
   },
   {
     icon: <TwitterIcon />,
