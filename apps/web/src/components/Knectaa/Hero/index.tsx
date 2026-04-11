@@ -64,7 +64,7 @@ const Hero = () => {
           px: { xs: 2, sm: 4, md: 6 },
         }}
       >
-        <Stack spacing={3} alignItems="center">
+        <Stack gap={2} alignItems="center">
           {/* Heading */}
           <Box width="80%">
             <Text

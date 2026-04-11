@@ -20,7 +20,7 @@ const services = [
 
 const OurServices = () => {
   return (
-    <Box sx={{ py: { xs: 6, md: 10 }, background: "#f9fafb" }}>
+    <Box sx={{ background: "#f9fafb" }}>
       <Container maxWidth="lg">
         <Box
           sx={{
