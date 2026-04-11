@@ -40,7 +40,7 @@ const OurFlavors = () => {
   ];
 
   return (
-    <Container size="md" py="xl" bg="White">
+    <Container size="md" pb={30} bg="White">
       <Title ta="center" mb="sm">
         Our Flavors
       </Title>
