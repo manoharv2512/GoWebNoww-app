@@ -1,19 +1,18 @@
 import { motion } from "framer-motion";
 import { Box, Typography, Container, Grid, Paper } from "@mui/material";
-
 import shopImg from "../../../assets/TheSandwichCo/OurStoryImg.png";
-
+import trade from "../../../assets/TheSandwichCo/BunzaaTrade.png";
 const stats = [
-  { num: "1+", label: "Years Serving" },
-  { num: "10K+", label: "Sandwiches Sold" },
-  { num: "4.9★", label: "Avg Rating" },
+  { num: "20K+", label: "Sandwiches Served" },
+  { num: "13K+", label: "View on Google" },
+  { num: "200+", label: "5 Stars on Google" },
 ];
 
 const About = () => {
   return (
-    <Box id="about" sx={{ py: 10, px: 2 }}>
+    <Box id="about" sx={{ px: 2, py: 6, position: "relative" }}>
       <Container maxWidth="lg">
-        <Grid container spacing={6} alignItems="center">
+        <Grid container spacing={3} alignItems="center">
           {/* Content Section */}
           <Grid size={{ xs: 12, md: 6 }}>
             <motion.div
@@ -22,21 +21,7 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <Typography variant="h3" fontWeight="bold" mb={3}>
-                Our Story
-              </Typography>
-
-              <Typography
-                color="text.secondary"
-                fontSize="1.1rem"
-                lineHeight={1.7}
-                mb={2}
-              >
-                Founded in 2025, The Bunzaa Sandwich Company started as a small
-                corner deli with a big dream — to serve the most honest,
-                flavourful sandwiches in town using ingredients you can trust.
-              </Typography>
-
+              <img src={trade} width="100%" />
               <Typography
                 color="text.secondary"
                 fontSize="1.1rem"
@@ -56,15 +41,17 @@ Fresh, tasty & made to satisfy every craving.`}
                     <Paper
                       elevation={3}
                       sx={{
+                        bgcolor: "white",
                         textAlign: "center",
                         py: 2,
                         borderRadius: 3,
+                        border: "1px solid black",
                       }}
                     >
                       <Typography
                         variant="h6"
                         fontWeight="bold"
-                        color="primary"
+                        color="#2b8109"
                       >
                         {s.num}
                       </Typography>

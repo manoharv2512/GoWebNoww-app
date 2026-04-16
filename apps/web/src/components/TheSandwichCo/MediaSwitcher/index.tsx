@@ -31,7 +31,7 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
     clear();
 
     if (!isVideo) {
-      timeoutRef.current = setTimeout(next, 5000);
+      timeoutRef.current = setTimeout(next, 2000);
     }
 
     return clear;
@@ -65,12 +65,24 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
           transition={{ duration: 0.6 }}
         >
           {isVideo ? (
+            // <video
+            //   src={current}
+            //   autoPlay
+            //   muted
+            //   playsInline
+            //   onEnded={!paused ? next : undefined}
+            //   style={{
+            //     width: "100%",
+            //     height: "100%",
+            //     objectFit: "cover",
+            //   }}
+            // />
             <video
               src={current}
               autoPlay
               muted
               playsInline
-              onEnded={!paused ? next : undefined}
+              loop // optional (prevents freeze if timer delays)
               style={{
                 width: "100%",
                 height: "100%",

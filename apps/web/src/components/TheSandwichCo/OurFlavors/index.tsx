@@ -39,14 +39,22 @@ const OurFlavors = () => {
     [med6, med6A, med6B, med6C],
   ];
 
+  // const Bunzaa = [med6, med4C, med6D] //1
+  // const Sandwich = [med1A, med6A, med2C, med4D] // 2
+  // const Burger = [med2A, med4A, med3B, med5D] //3
+  // const Beverages = [med3A, med2D] //5
+  // const Maggi = [med5A, med2B]
+  // const pizza = [med3D]
+
   return (
-    <Container size="md" pb={30} bg="White">
+    <Container size="md" py={30}>
       <Title ta="center" mb="sm">
         Our Flavors
       </Title>
 
       <Text ta="center" c="dimmed" mb="xl">
-        A glimpse into Halima’s authentic cuisine and cozy ambiance.
+        A gallery of hand-crafted dishes celebrating bold flavors and artistic
+        presentation.
       </Text>
 
       <Grid gap="md">

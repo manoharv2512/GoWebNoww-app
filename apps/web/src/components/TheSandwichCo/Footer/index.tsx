@@ -55,7 +55,7 @@ const Footer = () => {
           {/* Brand */}
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="h5" fontWeight="bold" mb={2}>
-              The Bunzaa Sandwich Company
+              The Bunzaa! Sandwich Company
             </Typography>
 
             <Typography

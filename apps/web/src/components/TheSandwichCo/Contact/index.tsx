@@ -5,27 +5,37 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import EmailIcon from "@mui/icons-material/Email";
+import { WhatsApp } from "@mui/icons-material";
 
 const contactData = [
   {
     icon: <LocationOnIcon color="primary" />,
     label: "Address",
     value: "Shop no.1, Natraj Tower, Zenda Chowk, Mahal Nagpur",
+    href: "https://www.google.com/maps?q=Sandwich+Company+Uniqueness+Nagpur",
   },
   {
     icon: <PhoneIcon color="primary" />,
     label: "Phone",
     value: "+91 8878811666",
+    href: "tel:+918878811666",
+  },
+  {
+    icon: <WhatsApp color="primary" />,
+    label: "Whatsapp",
+    value: "+91 8878811666",
+    href: "https://wa.me/918878811666?text=Hello%20I%20want%20to%20order%20from%20The%20Sandwich%20Co",
   },
   {
     icon: <EmailIcon color="primary" />,
     label: "Email",
-    value: "hello@thesandwichco.com",
+    value: "sandwichcompanyuniqueness@gmail.com",
+    href: "mailto:sandwichcompanyuniqueness@gmail.com",
   },
   {
     icon: <AccessTimeIcon color="primary" />,
     label: "Hours",
-    value: "Mon–Fri: 7am – 8pm\nSat–Sun: 8am – 6pm",
+    value: "Mon–Sun: 12pm – 10:30pm",
   },
 ];
 
@@ -60,6 +70,18 @@ const Contact = () => {
                   display="flex"
                   gap={2}
                   alignItems="flex-start"
+                  component={item.href ? "a" : "div"}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{
+                    textDecoration: "none",
+                    color: "inherit",
+                    cursor: item.href ? "pointer" : "default",
+                    "&:hover": {
+                      transform: item.href ? "translateY(-2px)" : "none",
+                    },
+                  }}
                 >
                   {/* Icon Box */}
                   <Paper
