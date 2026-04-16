@@ -24,6 +24,35 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
     setIndex((prev) => (prev + 1) % items.length);
   };
 
+  useEffect(() => {
+    items.forEach((item) => {
+      if (item.endsWith(".mp4")) {
+        const video = document.createElement("video");
+        video.src = item;
+        video.preload = "auto";
+      } else {
+        const img = new Image();
+        img.src = item;
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    const nextIndex = (index + 1) % items.length;
+    const nextItem = items[nextIndex];
+
+    if (!nextItem) return;
+
+    if (nextItem.endsWith(".mp4")) {
+      const video = document.createElement("video");
+      video.src = nextItem;
+      video.preload = "auto";
+    } else {
+      const img = new Image();
+      img.src = nextItem;
+    }
+  }, [index, items]);
+
   // Image timing (5s)
   useEffect(() => {
     if (paused) return;
@@ -58,6 +87,7 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
             left: 0,
             width: "100%",
             height: "100%",
+            willChange: "opacity, transform",
           }}
           initial={{ opacity: 0, scale: 1.1 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -82,7 +112,7 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
               autoPlay
               muted
               playsInline
-              loop // optional (prevents freeze if timer delays)
+              onEnded={!paused ? next : undefined}
               style={{
                 width: "100%",
                 height: "100%",

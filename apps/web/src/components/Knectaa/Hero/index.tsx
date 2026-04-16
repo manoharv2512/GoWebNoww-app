@@ -3,6 +3,13 @@ import { Text } from "@mantine/core";
 import heroImg from "../../../assets/Knectaa/KnectaaHeroBg.jpg";
 
 const Hero = () => {
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+      window.scrollBy({ top: -80, behavior: "smooth" }); // adjust height
+    }
+  };
   return (
     <Box
       sx={{
@@ -96,6 +103,7 @@ const Hero = () => {
             <Button
               variant="contained"
               size="large"
+              onClick={() => scrollToSection("contact")}
               sx={{ width: { xs: "100%", sm: "auto" } }}
             >
               Start
@@ -104,6 +112,7 @@ const Hero = () => {
             <Button
               variant="outlined"
               size="large"
+              onClick={() => scrollToSection("faq")}
               sx={{
                 width: { xs: "100%", sm: "auto" },
                 color: "#fff",

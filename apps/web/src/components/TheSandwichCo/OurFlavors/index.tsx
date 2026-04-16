@@ -29,14 +29,33 @@ import med3C from "../../../assets/TheSandwichCo/OurFlavors/103C.mp4";
 import med4C from "../../../assets/TheSandwichCo/OurFlavors/104C.jpeg";
 import med5C from "../../../assets/TheSandwichCo/OurFlavors/105C.jpeg";
 import med6C from "../../../assets/TheSandwichCo/OurFlavors/106C.mp4";
+
+import Beverages from "../../../assets/TheSandwichCo/OurFlavors/Beverages.jpeg";
+import momos from "../../../assets/TheSandwichCo/OurFlavors/momo.jpeg";
+import momos1 from "../../../assets/TheSandwichCo/OurFlavors/momo1.jpeg";
+import momos2 from "../../../assets/TheSandwichCo/OurFlavors/momo2.jpeg";
+import pizza1 from "../../../assets/TheSandwichCo/OurFlavors/pizza1.jpeg";
+import pizza2 from "../../../assets/TheSandwichCo/OurFlavors/pizza2.png";
+import pizza3 from "../../../assets/TheSandwichCo/OurFlavors/pizza3.jpeg";
+import pizza4 from "../../../assets/TheSandwichCo/OurFlavors/pizza4.jpeg";
+
+import sandwich2 from "../../../assets/TheSandwichCo/OurFlavors/sandwich2.jpeg";
+import sandwich1 from "../../../assets/TheSandwichCo/OurFlavors/sandwich1.jpeg";
+import momos3 from "../../../assets/TheSandwichCo/OurFlavors/momos.jpeg";
+import maggie from "../../../assets/TheSandwichCo/OurFlavors/maggie.jpeg";
+import burger from "../../../assets/TheSandwichCo/OurFlavors/burger.jpeg";
+
 const OurFlavors = () => {
   const galleryData = [
-    [med1, med1A, med1B, med1C],
-    [med2, med2A, med2B, med2C],
-    [med3, med3A, med3B, med3C],
-    [med4, med4A, med4B, med4C],
-    [med5, med5A, med5B, med5C],
-    [med6, med6A, med6B, med6C],
+    { title: "Bunzaa", items: [med6, med4C, med1B, med1C] },
+    { title: "Sandwich", items: [med1A, med6A, med2C, sandwich1, sandwich2] },
+    { title: "Burger", items: [med2A, med4A, med3B, burger] },
+    { title: "Pizza", items: [pizza1, pizza2, pizza3, pizza4] },
+    {
+      title: "Maggi",
+      items: [med5A, med2B, momos, momos1, momos2, momos3, maggie],
+    },
+    { title: "Beverages", items: [med3A, Beverages] },
   ];
 
   // const Bunzaa = [med6, med4C, med6D] //1
@@ -57,10 +76,35 @@ const OurFlavors = () => {
         presentation.
       </Text>
 
-      <Grid gap="md">
+      {/* <Grid gap="md">
         {galleryData.map((items, index) => (
           <Grid.Col span={{ base: 6, sm: 6 }} key={index}>
             <MediaSwitcher items={items} />
+          </Grid.Col>
+        ))}
+      </Grid> */}
+      <Grid gap="md">
+        {galleryData.map((card, index) => (
+          <Grid.Col span={{ base: 6, sm: 6 }} key={index}>
+            {/* Card Wrapper */}
+            <div style={{ position: "relative" }}>
+              <MediaSwitcher items={card.items} />
+
+              {/* 🔥 Title Overlay */}
+              <Text
+                fw={700}
+                c="white"
+                size="lg"
+                style={{
+                  position: "absolute",
+                  bottom: 10,
+                  left: 12,
+                  zIndex: 2,
+                }}
+              >
+                {card.title}
+              </Text>
+            </div>
           </Grid.Col>
         ))}
       </Grid>

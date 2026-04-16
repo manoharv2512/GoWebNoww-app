@@ -250,7 +250,7 @@ const Hero = () => {
             </Button>
 
             {/* Swiggy/Zomato */}
-            <Flex>
+            <Flex gap={4}>
               <Button
                 variant="contained"
                 leftSection={<img src={SwiggyLogo} width={20} />}

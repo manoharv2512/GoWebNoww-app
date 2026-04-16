@@ -11,8 +11,13 @@ const HomePage: React.FC = () => {
     <Flex direction="column" gap={40}>
       <Hero />
       <OurServices />
-      <GetInTouch />
-      <FAQ />
+      <div id="contact">
+        <GetInTouch />
+      </div>
+
+      <div id="faq">
+        <FAQ />
+      </div>
       <Footer />
     </Flex>
   );
