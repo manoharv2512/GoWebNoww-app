@@ -1,19 +1,31 @@
 import { Divider, Typography } from "@mui/material";
 
-const ManoharFooter = () => {
-  return (
-    <>
-      <Divider sx={{ my: 4, backgroundColor: "rgba(255, 255, 255, 0.2)" }} />
+type ManoharFooterProps = {
+  bgColorState?: string;
+  fontColor?: string;
+};
 
-      <Typography
-        variant="body2"
-        align="center"
-        sx={{ color: "rgba(255, 255, 255, 0.7)" }}
-      >
-        {/* © {currentYear} Knectaa. All rights reserved. */}
-        Designed and Developed by Manohar
+const ManoharFooter: React.FC<ManoharFooterProps> = ({
+  bgColorState = "transparent",
+  fontColor = "rgba(255, 255, 255, 0.7)",
+}) => {
+  return (
+    <div style={{ backgroundColor: bgColorState }}>
+      <Divider sx={{ my: 2, backgroundColor: "rgba(255, 255, 255, 0.2)" }} />
+
+      <Typography variant="body2" align="center" sx={{ color: fontColor }}>
+        © {new Date().getFullYear()} Knectaa. All rights reserved. <br />
+        Designed & Developed by{" "}
+        <a
+          // href="https://your-portfolio-link.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: fontColor, textDecoration: "underline" }}
+        >
+          Manohar Varma
+        </a>
       </Typography>
-    </>
+    </div>
   );
 };
 

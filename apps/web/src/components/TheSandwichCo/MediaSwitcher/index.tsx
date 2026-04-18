@@ -7,7 +7,9 @@ type MediaSwitcherProps = {
 };
 
 const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState(() =>
+    Math.floor(Math.random() * items.length),
+  );
   const [paused, setPaused] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -59,8 +61,11 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
 
     clear();
 
+    // random delay to avoid sync switching
+    const delay = 2000 + Math.random() * 1000;
+
     if (!isVideo) {
-      timeoutRef.current = setTimeout(next, 2000);
+      timeoutRef.current = setTimeout(next, delay);
     }
 
     return clear;
@@ -78,7 +83,7 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
         cursor: "pointer",
       }}
     >
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.div
           key={current}
           style={{

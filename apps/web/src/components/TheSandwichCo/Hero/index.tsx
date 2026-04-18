@@ -3,16 +3,19 @@ import { Box, Typography, Stack } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import { Button, Flex } from "@mantine/core";
 import heroVideo from "../../../assets/TheSandwichCo/HeroBgVideo.mp4";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import logo from "../../../assets/common/Instagram_logo.png";
 import googleReviewIcon from "../../../assets/common/googleReview.png";
 import menuIcon from "../../../assets/common/Menu.png";
 import SwiggyLogo from "../../../assets/common/SwiggyLogo.png";
 import ZomatoLogo from "../../../assets/common/ZomatoLogo.png";
+import WifiIcon from "../../../assets/common/wifiIcon.png";
+import { Dialog, DialogContent } from "@mui/material";
+import { QRCodeSVG as QrCode } from "qrcode.react";
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
-
+  const [openWifi, setOpenWifi] = useState(false);
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.5;
@@ -28,6 +31,18 @@ const Hero = () => {
         overflow: "hidden",
       }}
     >
+      <Dialog open={openWifi} onClose={() => setOpenWifi(false)}>
+        <DialogContent style={{ textAlign: "center" }}>
+          <Typography mb={2}>Scan to connect WiFi</Typography>
+
+          <QrCode value={"WIFI:T:WPA;S:SandwichCo;P:12345678;;"} size={200} />
+
+          <Typography mt={2} fontSize={14}>
+            SSID: SandwichCo <br />
+            Password: 12345678
+          </Typography>
+        </DialogContent>
+      </Dialog>
       <Box
         component="video"
         ref={videoRef}
@@ -174,14 +189,32 @@ const Hero = () => {
                 py: 1.5,
                 fontWeight: "bold",
                 backgroundColor: "#38a650",
-                fontFamily: "cursive",
+                
               }}
             >
               View Menu
             </Button> */}
             <Button
               variant="contained"
-              leftSection={<img src={menuIcon} width={24} />}
+              leftSection={<img src={WifiIcon} width={24} />}
+              onClick={() => setOpenWifi(true)}
+              style={{
+                alignItems: "flex-start",
+                px: 4,
+                py: 1.5,
+                borderColor: "#fff",
+                backgroundColor: "transparent",
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
+                  borderColor: "#fff",
+                },
+              }}
+            >
+              WiFi
+            </Button>
+            <Button
+              variant="contained"
+              leftSection={<img src={menuIcon} width={32} />}
               onClick={() => {
                 window.location.href =
                   "https://digitalmenu.applova.io/webstore/BIZ_14751b0sdfb/menu?session=1774241149519#CAT_640b67fke09";
@@ -190,9 +223,7 @@ const Hero = () => {
                 alignItems: "flex-start",
                 px: 4,
                 py: 1.5,
-                // color: "#fff",
                 borderColor: "#fff",
-                fontFamily: "cursive",
                 backgroundColor: "transparent",
                 "&:hover": {
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -215,7 +246,7 @@ const Hero = () => {
                 py: 1.5,
                 // color: "#fff",
                 borderColor: "#fff",
-                fontFamily: "cursive",
+
                 backgroundColor: "transparent",
                 "&:hover": {
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -238,7 +269,7 @@ const Hero = () => {
                 py: 1.5,
                 // color: "#fff",
                 borderColor: "#fff",
-                fontFamily: "cursive",
+
                 backgroundColor: "transparent",
                 "&:hover": {
                   backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -253,7 +284,7 @@ const Hero = () => {
             <Flex gap={4}>
               <Button
                 variant="contained"
-                leftSection={<img src={SwiggyLogo} width={20} />}
+                leftSection={<img src={SwiggyLogo} width={18} />}
                 onClick={() => {
                   window.location.href =
                     "https://www.swiggy.com/menu/1158776?source=sharing";
@@ -264,7 +295,7 @@ const Hero = () => {
                   py: 1.5,
                   // color: "#fff",
                   borderColor: "#fff",
-                  fontFamily: "cursive",
+
                   backgroundColor: "transparent",
                   "&:hover": {
                     backgroundColor: "rgba(255, 255, 255, 0.1)",
@@ -287,7 +318,7 @@ const Hero = () => {
                   py: 1.5,
                   // color: "#fff",
                   borderColor: "#fff",
-                  fontFamily: "cursive",
+
                   backgroundColor: "transparent",
                   "&:hover": {
                     backgroundColor: "rgba(255, 255, 255, 0.1)",

@@ -28,10 +28,10 @@
 import Hero from "../../components/TheSandwichCo/Hero";
 import Reviews from "../../components/TheSandwichCo/Reviews";
 import Contact from "../../components/TheSandwichCo/Contact";
-import Footer from "../../components/TheSandwichCo/Footer";
 import About from "../../components/TheSandwichCo/About";
 import OurFlavors from "../../components/TheSandwichCo/OurFlavors";
 import { Box } from "@mantine/core";
+import ManoharFooter from "../../components/ManoharFooter";
 
 const Index = () => (
   <>
@@ -52,7 +52,8 @@ const Index = () => (
     </Box>
     <Reviews />
     <Contact />
-    <Footer />
+    {/* <Footer /> */}
+    <ManoharFooter bgColorState="black" />
   </>
 );
 
