@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Typography,
@@ -8,6 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { useForm, Controller } from "react-hook-form";
+import { api } from "../../lib/api";
 
 type FormData = {
   name: string;
@@ -18,15 +19,33 @@ type FormData = {
 
 const GetInTouch: React.FC = () => {
   const theme = useTheme();
+  const [submitMessage, setSubmitMessage] = useState("");
+  const [submitError, setSubmitError] = useState("");
   const {
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form submitted:", data);
-    // Add your form submission logic here
+  const onSubmit = async (data: FormData) => {
+    setSubmitMessage("");
+    setSubmitError("");
+
+    try {
+      await api.createContactLead({
+        name: data.name,
+        email: data.email,
+        phone: data.phone,
+        message: data.description,
+      });
+      reset();
+      setSubmitMessage("Thanks. We received your message.");
+    } catch (error) {
+      setSubmitError(
+        error instanceof Error ? error.message : "Unable to send message.",
+      );
+    }
   };
 
   return (
@@ -84,6 +103,13 @@ const GetInTouch: React.FC = () => {
         <Grid size={{ xs: 12, md: 7 }}>
           <form onSubmit={handleSubmit(onSubmit)}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 3 }}>
+              {submitMessage && (
+                <Typography color="success.main">{submitMessage}</Typography>
+              )}
+              {submitError && (
+                <Typography color="error.main">{submitError}</Typography>
+              )}
+
               {/* Name Field */}
               <Controller
                 name="name"

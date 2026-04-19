@@ -7,10 +7,18 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w @gowebnow/web",
-    "build": "npm run build -w @gowebnow/web",
-    "lint": "npm run lint -w @gowebnow/web",
-    "preview": "npm run preview -w @gowebnow/web"
+    "dev": "npm run dev:web",
+    "dev:web": "npm run dev -w @gowebnow/web",
+    "dev:api": "npm run dev -w @gowebnow/api",
+    "build": "npm run build -w @gowebnow/shared && npm run build -w @gowebnow/web && npm run build -w @gowebnow/api",
+    "build:web": "npm run build -w @gowebnow/web",
+    "build:api": "npm run build -w @gowebnow/api",
+    "lint": "npm run lint -w @gowebnow/shared && npm run lint -w @gowebnow/web && npm run lint -w @gowebnow/api",
+    "preview": "npm run preview -w @gowebnow/web",
+    "db:migrate": "npm run db:migrate -w @gowebnow/api",
+    "db:deploy": "npm run db:deploy -w @gowebnow/api",
+    "db:seed": "npm run db:seed -w @gowebnow/api",
+    "db:studio": "npm run db:studio -w @gowebnow/api"
   },
   "dependencies": {
     "framer-motion": "^12.38.0"

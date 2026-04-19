@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Box } from "@mantine/core";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -17,14 +17,14 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
   const isVideo = current.endsWith(".mp4");
 
   // Clear timeout
-  const clear = () => {
+  const clear = useCallback(() => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-  };
+  }, []);
 
   // Handle next
-  const next = () => {
+  const next = useCallback(() => {
     setIndex((prev) => (prev + 1) % items.length);
-  };
+  }, [items.length]);
 
   useEffect(() => {
     items.forEach((item) => {
@@ -37,7 +37,7 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
         img.src = item;
       }
     });
-  }, []);
+  }, [items]);
 
   useEffect(() => {
     const nextIndex = (index + 1) % items.length;
@@ -69,7 +69,7 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
     }
 
     return clear;
-  }, [index, paused, isVideo]);
+  }, [clear, index, paused, isVideo, next]);
 
   return (
     <Box

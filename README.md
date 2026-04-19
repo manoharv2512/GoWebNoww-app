@@ -5,7 +5,9 @@ GoWebNow is structured as an npm-workspaces monorepo. The current React/Vite web
 ## Structure
 
 - `apps/web` - main React, TypeScript, Vite app.
+- `apps/api` - Node.js, Express, TypeScript, Prisma API.
 - `packages` - reserved for shared code that can be reused by future apps.
+- `packages/shared` - shared API validation schemas and DTO types.
 
 ## Commands
 
@@ -14,6 +16,7 @@ Run these from the repository root:
 ```bash
 npm install
 npm run dev
+npm run dev:api
 npm run build
 npm run lint
 npm run preview
@@ -46,6 +49,14 @@ npm run build
 ```
 
 Then upload the contents of `apps/web/dist` to Hostinger. GitHub is used only for managing source code, not for live deployment.
+
+## Backend
+
+Backend setup, database setup, API structure, authentication, and deployment notes are documented in:
+
+```text
+docs/backend-setup.md
+```
 
 ## GitHub Push Checklist
 
