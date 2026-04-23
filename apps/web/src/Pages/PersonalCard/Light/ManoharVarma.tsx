@@ -69,6 +69,7 @@ END:VCARD`;
         alignItems: "center",
         justifyContent: "center",
         padding: "16px",
+        background: "linear-gradient(90deg, #ffb7b7, #ebeb1d)",
       }}
     >
       <Paper
@@ -93,8 +94,8 @@ END:VCARD`;
             <Image
               src={profileImg}
               alt={contact.name}
-              width={120}
-              height={120}
+              width={150}
+              height={150}
               radius="50%"
             />
           </Box>

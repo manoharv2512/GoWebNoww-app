@@ -25,7 +25,7 @@ import profileImg from "../../../assets/VisitingCard/RushikeshDurugkar.jpeg"; //
 const contact = {
   pre: "",
   name: "Rushikesh Durugkar",
-  title: "Co-Founder & COO",
+  title: "Co-Founder & CPO",
   company: "Knectaa",
   phone: "+918237328402",
   email: "rushikeshdurugkar28@gmail.com",
@@ -81,7 +81,7 @@ END:VCARD`;
           {/* Profile */}
           <Box
             style={{
-              borderRadius: "50%",
+              borderRadius: "10%",
               // display: "flex",
               // justifyItems: "center",
               // alignItems: "center",
@@ -93,9 +93,9 @@ END:VCARD`;
             <Image
               src={profileImg}
               alt={contact.name}
-              width={120}
-              height={120}
-              radius="50%"
+              width={150}
+              height={150}
+              radius="10%"
             />
           </Box>
 
