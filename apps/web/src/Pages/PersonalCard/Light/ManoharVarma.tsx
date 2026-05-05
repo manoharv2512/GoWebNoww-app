@@ -6,9 +6,11 @@ import {
   Image,
   Button,
   Group,
-  Grid,
-  ActionIcon,
+  SimpleGrid,
   Paper,
+  Divider,
+  List,
+  ThemeIcon,
 } from "@mantine/core";
 import {
   IconPhone,
@@ -17,14 +19,16 @@ import {
   IconDownload,
   IconBrandLinkedin,
   IconBrandInstagram,
-  IconMapPin,
+  IconUserPlus,
+  IconCheck,
+  IconDotsVertical,
 } from "@tabler/icons-react";
 
-import profileImg from "../../../assets/VisitingCard/ManoharVarma.jpg"; // ✅ FIXED
+import profileImg from "../../../assets/VisitingCard/ManoharVarma.jpg";
 
 const contact = {
-  pre: "",
-  name: "Manohar Varma",
+  name: "MANOHAR VARMA",
+  location: "Nagpur, IN",
   title: "Co-Founder & CTO",
   company: "Knectaa",
   phone: "+919075172459",
@@ -32,228 +36,223 @@ const contact = {
   whatsapp: "919075172459",
   linkedin: "https://www.linkedin.com/in/manoharv2512/",
   instagram: "https://www.instagram.com/its_manoharr",
+  bio: "Passionate technologist driving innovation for the future of connected services.",
+  services: [
+    "Full-Stack Development",
+    "Technology Strategy",
+    "Team Leadership",
+  ],
 };
 
 const ManoharVarma = () => {
-  // ✅ FIXED: proper links
-  const telHref = `tel:${contact.phone}`;
-  const mailHref = `mailto:${contact.email}`;
-  const waHref = `https://wa.me/${contact.whatsapp}`;
-
-  // ✅ FIXED: correct function
   const downloadVCard = () => {
-    const vCard = `
-BEGIN:VCARD
-VERSION:3.0
-FN:${contact.name}
-ORG:${contact.company}
-TITLE:${contact.title}
-TEL:${contact.phone}
-EMAIL:${contact.email}
-END:VCARD`;
-
+    const vCard = `BEGIN:VCARD\nVERSION:3.0\nFN:${contact.name}\nORG:${contact.company}\nTITLE:${contact.title}\nTEL:${contact.phone}\nEMAIL:${contact.email}\nEND:VCARD`;
     const blob = new Blob([vCard], { type: "text/vcard" });
     const url = URL.createObjectURL(blob);
-
     const a = document.createElement("a");
     a.href = url;
-    a.download = "contact.vcf";
+    a.download = `${contact.name.replace(/\s/g, "_")}.vcf`;
     a.click();
   };
 
+  const fontColorState = "white";
+
   return (
-    <Box
-      style={{
-        minHeight: "90vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "16px",
-        background: "linear-gradient(90deg, #ffb7b7, #ebeb1d)",
-      }}
-    >
+    <Box mah="95vh" px="md" pt={10}>
       <Paper
-        radius="xl"
-        shadow="lg"
-        p="md"
-        style={{ maxWidth: 420, width: "100%" }}
+        radius="lg"
+        shadow="md"
+        withBorder
+        px="xl"
+        py="md"
+        mx="auto"
+        //   background: "linear-gradient(90deg, #ffb7b7, #ebeb1d)",
+        style={{
+          maxWidth: 450,
+          background: "linear-gradient( to bottom, #ffffff 12%, #213547 28%)",
+        }}
       >
-        <Stack gap="lg" align="center">
-          {/* Profile */}
-          <Box
-            style={{
-              borderRadius: "50%",
-              // display: "flex",
-              // justifyItems: "center",
-              // alignItems: "center",
-              padding: 6,
-              position: "relative",
-              boxShadow: "0 4px 14px rgba(0,0,0,0.15)",
-            }}
-          >
-            <Image
-              src={profileImg}
-              alt={contact.name}
-              width={150}
-              height={150}
-              radius="50%"
-            />
-          </Box>
+        <Stack gap="lg">
+          {/* Profile Section */}
+          <Stack align="center" gap="xs">
+            <Box
+              style={{
+                borderRadius: "50%",
+                padding: "4px",
+                background: "linear-gradient(135deg, #e7f5ff 0%, #ffffff 100%)",
+                boxShadow: "0 8px 20px rgba(0,0,0,0.08)",
+              }}
+            >
+              <Image
+                src={profileImg}
+                alt={contact.name}
+                w={140}
+                h={140}
+                radius="100%"
+              />
+            </Box>
 
-          {/* Name */}
-          <Stack gap={4} align="center">
-            {contact.pre && <Title order={2}>{contact.pre}</Title>}
-
-            <Title order={2}>{contact.name}</Title>
-
-            <Group gap={4}>
-              <IconMapPin size={14} />
-              <Text size="xs" c="dimmed">
-                Nagpur, IN
+            <Stack gap={0} align="center">
+              <Group gap={8} align="baseline">
+                <Title
+                  order={2}
+                  fz={24}
+                  fw={800}
+                  c={fontColorState}
+                  style={{ letterSpacing: "0.5px" }}
+                >
+                  {contact.name}
+                </Title>
+                <Text fz="sm" c="dimmed">
+                  {contact.location}
+                </Text>
+              </Group>
+              <Text fz="lg" fw={500} c="dark.1">
+                {contact.title} |{" "}
+                <span style={{ color: "#228be6" }}>{contact.company}</span>
               </Text>
-            </Group>
+            </Stack>
           </Stack>
 
-          {/* Title */}
-          <Group
-            px="md"
-            py={6}
-            style={{
-              boxSizing: "content-box",
-              borderRadius: 999,
-              boxShadow: "0 1px 1px rgba(0,0,0,0.15)",
-            }}
-          >
-            <Text size="sm" fw={500}>
-              {contact.title}
-            </Text>
-            <Text size="sm" c="dimmed">
-              |
-            </Text>
-            <Text size="sm">{contact.company}</Text>
-          </Group>
-
-          {/* Save Contact */}
+          {/* Primary CTA */}
           <Button
-            leftSection={<IconDownload size={14} />}
+            leftSection={<IconUserPlus size={20} />}
             onClick={downloadVCard}
-            variant="default"
+            size="lg"
+            radius="md"
             fullWidth
-            style={{
-              borderRadius: "16px",
-              border: "none",
-              // padding: "10px 20px",
-              paddingTop: "10px",
-              paddingBottom: "10px",
-              width: "70%",
-              boxSizing: "content-box",
-              boxShadow: "0 4px 14px rgba(0,0,0,0.15)",
-            }}
+            color="blue.8"
+            variant="filled"
+            ff="heading"
+            style={{ boxShadow: "0 4px 12px rgba(34, 139, 230, 0.25)" }}
           >
-            Save Contact
+            SAVE CONTACT
           </Button>
 
-          {/* Actions */}
-          <Grid w="100%">
-            <Grid.Col
-              span={4}
-              style={{
-                border: "none",
-                borderRadius: "16px",
-                padding: "10px",
-                boxShadow: "0 1px 1px rgba(0,0,0,0.15)",
-              }}
+          {/* Unified Communication Grid */}
+          <SimpleGrid cols={2} spacing="md">
+            <Button
+              component="a"
+              href={`tel:${contact.phone}`}
+              variant="outline"
+              color="gray.2"
+              justify="start"
+              radius="md"
+              h={50}
+              leftSection={<IconPhone size={22} color="#40c057" />}
             >
-              <Stack align="center" gap={4}>
-                <ActionIcon
-                  component="a"
-                  href={telHref}
-                  size={30}
-                  radius="xl"
-                  variant="light"
-                >
-                  <IconPhone size={18} color="green" />
-                </ActionIcon>
-                <Text size="sm">Call</Text>
-              </Stack>
-            </Grid.Col>
+              <Text c="dark.1" fw={600} fz="sm">
+                CALL
+              </Text>
+            </Button>
 
-            <Grid.Col
-              span={4}
-              style={{
-                border: "none",
-                borderRadius: "16px",
-                padding: "10px",
-                boxShadow: "0 1px 1px rgba(0,0,0,0.15)",
-              }}
+            <Button
+              component="a"
+              href={`mailto:${contact.email}`}
+              variant="outline"
+              color="gray.2"
+              justify="start"
+              radius="md"
+              h={50}
+              leftSection={<IconMail size={22} color="#228be6" />}
             >
-              <Stack align="center" gap={4}>
-                <ActionIcon
-                  component="a"
-                  href={mailHref}
-                  size={30}
-                  radius="xl"
-                  variant="light"
-                >
-                  <IconMail size={18} />
-                </ActionIcon>
-                <Text size="sm">Email</Text>
-              </Stack>
-            </Grid.Col>
+              <Text c="dark.1" fw={600} fz="sm">
+                EMAIL
+              </Text>
+            </Button>
 
-            <Grid.Col
-              span={4}
-              style={{
-                border: "none",
-                borderRadius: "16px",
-                padding: "10px",
-                boxShadow: "0 1px 1px rgba(0,0,0,0.15)",
-              }}
-            >
-              <Stack align="center" gap={4}>
-                <ActionIcon
-                  component="a"
-                  href={waHref}
-                  target="_blank"
-                  size={30}
-                  radius="xl"
-                  variant="light"
-                >
-                  <IconMessageCircle size={18} color="green" />
-                </ActionIcon>
-                <Text size="sm">WhatsApp</Text>
-              </Stack>
-            </Grid.Col>
-          </Grid>
-
-          {/* Social */}
-          <Group justify="center">
             <Button
               component="a"
               href={contact.linkedin}
               target="_blank"
               variant="outline"
-              radius="xl"
-              color="black"
-              leftSection={<IconBrandLinkedin size={16} color="blue" />}
+              color="gray.2"
+              justify="start"
+              radius="md"
+              h={50}
+              leftSection={<IconBrandLinkedin size={22} color="#0077b5" />}
             >
-              LinkedIn
+              <Text c="dark.1" fw={600} fz="sm">
+                LINKEDIN
+              </Text>
             </Button>
 
             <Button
               component="a"
-              href={contact.instagram}
+              href={`https://wa.me/${contact.whatsapp}`}
               target="_blank"
               variant="outline"
-              radius="xl"
-              color="black"
-              leftSection={<IconBrandInstagram size={16} color="red" />}
+              color="gray.2"
+              justify="start"
+              radius="md"
+              h={50}
+              leftSection={<IconMessageCircle size={22} color="#25d366" />}
             >
-              Instagram
+              <Text c="dark.1" fw={600} fz="sm">
+                WHATSAPP
+              </Text>
             </Button>
-          </Group>
+          </SimpleGrid>
+
+          {/* Professional Context */}
+          <Stack gap="md">
+            {/* <Text fz="sm" lh={1.6} c="dark.4" fw={450}>
+              {contact.bio}
+            </Text> */}
+
+            <Divider />
+
+            <Box>
+              <Text
+                fz="xs"
+                fw={800}
+                c="dimmed"
+                mb="xs"
+                style={{ letterSpacing: "1px" }}
+              >
+                KEY SERVICES
+              </Text>
+              <List
+                spacing="xs"
+                size="sm"
+                center
+                icon={
+                  <ThemeIcon color="blue" size={18} radius="xl">
+                    <IconCheck size={12} stroke={3} />
+                  </ThemeIcon>
+                }
+              >
+                {contact.services.map((service, index) => (
+                  <List.Item key={index} fw={500} c="dark.1">
+                    {service}
+                  </List.Item>
+                ))}
+              </List>
+            </Box>
+          </Stack>
+
+          {/* Secondary Social */}
+          <Button
+            component="a"
+            href={contact.instagram}
+            target="_blank"
+            variant="outline"
+            color="gray.3"
+            fullWidth
+            radius="md"
+            h={50}
+            leftSection={<IconBrandInstagram size={22} color="#e4405f" />}
+          >
+            <Text c="dark.1" fw={600} fz="sm">
+              INSTAGRAM
+            </Text>
+          </Button>
         </Stack>
       </Paper>
+
+      <Text ta="center" mt="xl" c="dimmed" fz="xs">
+        Designed by Knectaa
+      </Text>
     </Box>
   );
 };

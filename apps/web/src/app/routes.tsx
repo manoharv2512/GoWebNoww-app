@@ -14,6 +14,6 @@ export const appRoutes = [
   { path: "/A0001", element: <RushikeshDurugkar /> },
   { path: "/A0002", element: <HrishikeshGuptaD /> },
   { path: "/A0003", element: <HrishikeshGupta /> },
-  { path: "/A0000", element: <ManoharVarma /> },
+  { path: "/personal-invite/A0000", element: <ManoharVarma /> },
   { path: "/rukhmani", element: <Rukhmani /> },
 ];
