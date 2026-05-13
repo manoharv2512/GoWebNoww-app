@@ -4,7 +4,7 @@ import { manoharvarma } from "..";
 
 const contact = manoharvarma;
 const ManoharVarma1 = () => {
-  const fontColorState = "white";
+  // const fontColorState = "white";
 
   return <PersonalCard contact={{ ...contact, profileImg }} />;
 };
