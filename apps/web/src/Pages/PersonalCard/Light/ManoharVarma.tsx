@@ -16,12 +16,10 @@ import {
   IconPhone,
   IconMail,
   IconMessageCircle,
-  IconDownload,
   IconBrandLinkedin,
   IconBrandInstagram,
   IconUserPlus,
   IconCheck,
-  IconDotsVertical,
 } from "@tabler/icons-react";
 
 import profileImg from "../../../assets/VisitingCard/ManoharVarma.jpg";

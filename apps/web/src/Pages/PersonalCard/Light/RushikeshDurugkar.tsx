@@ -20,7 +20,7 @@ import {
   IconMapPin,
 } from "@tabler/icons-react";
 
-import profileImg from "../../../assets/VisitingCard/RushikeshDurugkar.jpeg"; // ✅ FIXED
+import profileImg from "../../../assets/VisitingCard/RishikeshDurugkar.jpeg"; // ✅ FIXED
 
 const contact = {
   pre: "",
