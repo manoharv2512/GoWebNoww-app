@@ -8,13 +8,14 @@ type MediaSwitcherProps = {
 
 const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
   const [index, setIndex] = useState(() =>
-    Math.floor(Math.random() * items.length),
+    items.length > 0 ? Math.floor(Math.random() * items.length) : 0,
   );
   const [paused, setPaused] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const current = items[index];
-  const isVideo = current.endsWith(".mp4");
+  const safeIndex = items.length > 0 ? index % items.length : 0;
+  const current = items[safeIndex];
+  const isVideo = current?.endsWith(".mp4") ?? false;
 
   // Clear timeout
   const clear = useCallback(() => {
@@ -23,10 +24,13 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
 
   // Handle next
   const next = useCallback(() => {
+    if (items.length === 0) return;
     setIndex((prev) => (prev + 1) % items.length);
   }, [items.length]);
 
   useEffect(() => {
+    if (items.length === 0) return;
+
     items.forEach((item) => {
       if (item.endsWith(".mp4")) {
         const video = document.createElement("video");
@@ -40,7 +44,9 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
   }, [items]);
 
   useEffect(() => {
-    const nextIndex = (index + 1) % items.length;
+    if (items.length === 0) return;
+
+    const nextIndex = (safeIndex + 1) % items.length;
     const nextItem = items[nextIndex];
 
     if (!nextItem) return;
@@ -53,10 +59,11 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
       const img = new Image();
       img.src = nextItem;
     }
-  }, [index, items]);
+  }, [safeIndex, items]);
 
   // Image timing (5s)
   useEffect(() => {
+    if (!current) return;
     if (paused) return;
 
     clear();
@@ -69,7 +76,21 @@ const MediaSwitcher: React.FC<MediaSwitcherProps> = ({ items }) => {
     }
 
     return clear;
-  }, [clear, index, paused, isVideo, next]);
+  }, [clear, current, index, paused, isVideo, next]);
+
+  if (!current) {
+    return (
+      <Box
+        h={220}
+        pos="relative"
+        style={{
+          borderRadius: 16,
+          overflow: "hidden",
+          background: "linear-gradient(135deg, #111, #444)",
+        }}
+      />
+    );
+  }
 
   return (
     <Box

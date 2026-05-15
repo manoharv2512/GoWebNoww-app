@@ -52,13 +52,17 @@ For production, always replace `JWT_SECRET`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD`
 
 ## 4. Start PostgreSQL Locally
 
-Docker Compose is included for local development:
+Install PostgreSQL locally on your machine and make sure the database server is running on port `5432`.
 
-```bash
-docker compose up -d postgres
+Create a database and user that match `apps/api/.env`:
+
+```text
+Database: gowebnow
+User: gowebnow
+Password: gowebnow_password
 ```
 
-This starts PostgreSQL on port `5432` with the credentials from `docker-compose.yml`.
+If you prefer different credentials, update `DATABASE_URL` in `apps/api/.env`.
 
 ## 5. Install Dependencies
 
@@ -305,11 +309,7 @@ apps/web/src/Pages/AdminLeads/index.tsx
 
 ## 16. Common Problems
 
-If Prisma says it cannot connect, confirm PostgreSQL is running:
-
-```bash
-docker compose ps
-```
+If Prisma says it cannot connect, confirm PostgreSQL is installed, running, and accepting connections on the host/port from `DATABASE_URL`.
 
 If the frontend cannot call the API, check:
 
@@ -337,15 +337,7 @@ npm run dev:api
 Database is unavailable
 ```
 
-PostgreSQL is not running or `DATABASE_URL` is wrong. Start PostgreSQL first.
-
-With Docker:
-
-```bash
-docker compose up -d postgres
-```
-
-If Docker is not installed, install Docker Desktop or install PostgreSQL locally and update `apps/api/.env`.
+PostgreSQL is not running or `DATABASE_URL` is wrong. Start your local PostgreSQL service first, then verify the database, username, password, host, and port in `apps/api/.env`.
 
 ```text
 Invalid email or password

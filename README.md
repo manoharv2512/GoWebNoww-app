@@ -58,6 +58,8 @@ Backend setup, database setup, API structure, authentication, and deployment not
 docs/backend-setup.md
 ```
 
+Use a normal local PostgreSQL installation for backend development. Docker is no longer part of this project setup.
+
 ## GitHub Push Checklist
 
 If `git push` says everything is up to date but GitHub does not show your latest code, your changes are probably not committed yet:

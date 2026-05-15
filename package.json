@@ -15,12 +15,15 @@
     "build:api": "npm run build -w @gowebnow/api",
     "lint": "npm run lint -w @gowebnow/shared && npm run lint -w @gowebnow/web && npm run lint -w @gowebnow/api",
     "preview": "npm run preview -w @gowebnow/web",
+    "db:generate": "npm run db:generate -w @gowebnow/api",
     "db:migrate": "npm run db:migrate -w @gowebnow/api",
     "db:deploy": "npm run db:deploy -w @gowebnow/api",
     "db:seed": "npm run db:seed -w @gowebnow/api",
     "db:studio": "npm run db:studio -w @gowebnow/api"
   },
   "dependencies": {
-    "framer-motion": "^12.38.0"
+    "@tabler/icons-react": "^3.41.1",
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^1.8.0"
   }
 }
