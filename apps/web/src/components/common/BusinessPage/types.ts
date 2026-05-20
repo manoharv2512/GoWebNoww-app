@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 export type HeroAction = {
   label: string;
-  icon?: string;
+  icon?: string | ReactNode;
   href?: string;
   action?: "wifi";
 };

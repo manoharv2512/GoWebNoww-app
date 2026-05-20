@@ -1,15 +1,35 @@
-import ComingSoon from "../../components/ComingSoon";
-import bgImage from "../../assets/common/comingSoon.jpeg";
+import {
+  AboutSection,
+  BusinessHero,
+  ContactSection,
+  GallerySection,
+  ReviewsSection,
+} from "../../components/common/BusinessPage";
+import Footer from "../../components/common/Footer";
+
+import {
+  kanchanHero,
+  kanchanAbout,
+  kanchanGallery,
+  kanchanReviews,
+  kanchanContact,
+  kanchanFooter,
+} from "./data/kanchanMedicosContent";
 
 const KanchanMedicos = () => {
   return (
-    <ComingSoon
-      brandName="Kanchan Medicos"
-      description="Exclusive product available at Kanchan Medicos. Visit our Instagram page for more details and updates on the launch."
-      backgroundImage={bgImage}
-      primaryButtonText="Visit Instagram"
-      primaryButtonLink="https://www.instagram.com/kanchanmedicos?utm_source=qr&igsh=MXFpc2VnY2Q4Zndodg=="
-    />
+    <>
+      <BusinessHero {...kanchanHero} />
+      <AboutSection {...kanchanAbout} />
+      <GallerySection {...kanchanGallery} />
+      <ReviewsSection {...kanchanReviews} />
+      <ContactSection {...kanchanContact} />
+      <Footer
+        bgColorState={kanchanFooter.background}
+        fontColor={kanchanFooter.color}
+        text={kanchanFooter.text}
+      />
+    </>
   );
 };
 

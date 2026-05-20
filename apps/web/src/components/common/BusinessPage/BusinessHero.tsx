@@ -180,7 +180,11 @@ const BusinessHero = ({
                 key={action.label}
                 leftSection={
                   action.icon ? (
-                    <img src={action.icon} width={20} alt="" />
+                    typeof action.icon === "string" ? (
+                      <img src={action.icon} width={20} alt="" />
+                    ) : (
+                      action.icon
+                    )
                   ) : null
                 }
                 onClick={() => {
@@ -208,7 +212,11 @@ const BusinessHero = ({
                     key={action.label}
                     leftSection={
                       action.icon ? (
-                        <img src={action.icon} width={20} alt="" />
+                        typeof action.icon === "string" ? (
+                          <img src={action.icon} width={20} alt="" />
+                        ) : (
+                          action.icon
+                        )
                       ) : null
                     }
                     onClick={() => {
