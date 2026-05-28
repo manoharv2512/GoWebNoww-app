@@ -5,23 +5,27 @@ import ManoharVarma from "../Pages/PersonalCard/Light/ManoharVarma";
 import RushikeshDurugkar from "../Pages/PersonalCard/Light/RushikeshDurugkar";
 import Bunzaa from "../Pages/Cafe/Bunzaa";
 import Rukhmani from "../Pages/Fashion/Rukhmani";
-import ManoharVarma1 from "../Pages/PersonalCard/Light/ManoharVarma1";
 import KanchanMedicos from "../Pages/Pharmacy/KanchanMedicos";
 import DevanshSports from "../Pages/SportsShop/DevanshSports";
 import Frutoss from "../Pages/Cafe/Frutoss";
+import { ManoharVarma1 } from "../Pages/PersonalCard/Light/ManoharVarma1";
+import { RushikeshDurugkar1 } from "../Pages/PersonalCard/Light/RushikeshDurugkar1";
+import ManoharVarma2 from "../Pages/PersonalCard/Light/ManoharVarma2";
 
 export const navItems = [{ label: "Home", path: "/" }];
 
 export const appRoutes = [
   { path: "/", element: <HomePage /> },
   { path: "/bunzaa", element: <Bunzaa /> },
-  { path: "/A0001", element: <RushikeshDurugkar /> },
-  { path: "/A0002", element: <HrishikeshGuptaD /> },
-  { path: "/A0003", element: <HrishikeshGupta /> },
-  { path: "/personal-invite/A0000", element: <ManoharVarma /> },
-  { path: "/personal-invite/A0004", element: <ManoharVarma1 /> },
   { path: "/rukhmani", element: <Rukhmani /> },
   { path: "/kanchan-medicos", element: <KanchanMedicos /> },
   { path: "/devansh-sports", element: <DevanshSports /> },
   { path: "/frutoss", element: <Frutoss /> },
+  { path: "/card/rushikesh", element: <RushikeshDurugkar /> },
+  { path: "/card/hrishikesh", element: <HrishikeshGuptaD /> },
+  { path: "/card/hrishikesh1", element: <HrishikeshGupta /> },
+  { path: "/card/manohar", element: <ManoharVarma /> },
+  { path: "/card/manohar1", element: <ManoharVarma1 /> },
+  { path: "/card/rushikesh1", element: <RushikeshDurugkar1 /> },
+  { path: "/card/manohar2", element: <ManoharVarma2 /> },
 ];

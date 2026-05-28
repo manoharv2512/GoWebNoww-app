@@ -15,27 +15,27 @@ import type {
   ReviewsContent,
 } from "../../../components/common/BusinessPage";
 
-import heroImage from "../../../assets/DevanshSports/DevanshSports.jpg";
-import storeLogo from "../../../assets/DevanshSports/DevanshSports.jpg";
-import aboutImage from "../../../assets/DevanshSports/DevanshSports.jpg";
-import reviewBackground from "../../../assets/DevanshSports/DevanshSports.jpg";
+import heroImage from "../../../assets/KanchanMedicos/KanchanMedicos.jpg";
+import storeLogo from "../../../assets/KanchanMedicos/KanchanMedicos.jpg";
+import aboutImage from "../../../assets/KanchanMedicos/KanchanMedicos.jpg";
+import reviewBackground from "../../../assets/KanchanMedicos/KanchanMedicos.jpg";
 
 import googleReviewIcon from "../../../assets/common/googleReview.png";
 import wifiIcon from "../../../assets/common/wifiIcon.png";
 import instagramLogo from "../../../assets/common/Instagram_logo.png";
 
-import sportswearA from "../../../assets/DevanshSports/Gallery/DevanshSports.jpg";
-import sportswearB from "../../../assets/DevanshSports/Gallery/DevanshSports.jpg";
-import sportswearC from "../../../assets/DevanshSports/Gallery/DevanshSports.jpg";
+import sportswearA from "../../../assets/KanchanMedicos/Gallery/KanchanMedicos.jpg";
+import sportswearB from "../../../assets/KanchanMedicos/Gallery/KanchanMedicos.jpg";
+import sportswearC from "../../../assets/KanchanMedicos/Gallery/KanchanMedicos.jpg";
 
-import accessoriesA from "../../../assets/DevanshSports/Gallery/DevanshSports.jpg";
-import accessoriesB from "../../../assets/DevanshSports/Gallery/DevanshSports.jpg";
+import accessoriesA from "../../../assets/KanchanMedicos/Gallery/KanchanMedicos.jpg";
+import accessoriesB from "../../../assets/KanchanMedicos/Gallery/KanchanMedicos.jpg";
 
-import shoesA from "../../../assets/DevanshSports/Gallery/DevanshSports.jpg";
-import shoesB from "../../../assets/DevanshSports/Gallery/DevanshSports.jpg";
+import shoesA from "../../../assets/KanchanMedicos/Gallery/KanchanMedicos.jpg";
+import shoesB from "../../../assets/KanchanMedicos/Gallery/KanchanMedicos.jpg";
 
-import fitnessA from "../../../assets/DevanshSports/Gallery/DevanshSports.jpg";
-import fitnessB from "../../../assets/DevanshSports/Gallery/DevanshSports.jpg";
+import fitnessA from "../../../assets/KanchanMedicos/Gallery/KanchanMedicos.jpg";
+import fitnessB from "../../../assets/KanchanMedicos/Gallery/KanchanMedicos.jpg";
 
 export const hero: HeroContent = {
   title: "Devansh Sports",

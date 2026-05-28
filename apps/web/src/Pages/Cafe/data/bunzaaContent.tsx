@@ -55,7 +55,7 @@ import beverageA from "../../../assets/TheSandwichCo/OurFlavors/103A.png";
 import beverageB from "../../../assets/TheSandwichCo/OurFlavors/Beverages.jpeg";
 
 export const bunzaaHero: HeroContent = {
-  title: "The Bunzaa! Sandwich Company",
+  title: "Sandwich Company",
   subtitle: "100% Veg",
   description: "Handcrafted sandwiches made with fresh, quality ingredients.",
   videoSrc: heroVideo,
@@ -64,7 +64,7 @@ export const bunzaaHero: HeroContent = {
   reviewText: "4.9 - 200+ Reviews",
   reviewIcon: googleReviewIcon,
   wifi: {
-    ssid: "SandwichCo",
+    ssid: "SandwichCompany",
     password: "12345678",
   },
   actions: [
@@ -102,11 +102,11 @@ export const bunzaaHero: HeroContent = {
 export const bunzaaAbout: AboutContent = {
   background: "linear-gradient(90deg, #ffca1a, #f5903d)",
   logoSrc: tradeLogo,
-  logoAlt: "Bunzaa",
+  logoAlt: "SandwichLogo",
   description:
     "Known for uniqueness.\nCrunchy. Juicy. Fresh.\nLoaded with your love, where every sandwich is crafted to perfection.\nFresh, tasty, and made to satisfy every craving.",
   imageSrc: storyImage,
-  imageAlt: "Bunzaa shop story",
+  imageAlt: "shop story",
   stats: [
     { value: "20K+", label: "Sandwiches Served" },
     { value: "13K+", label: "Views on Google" },

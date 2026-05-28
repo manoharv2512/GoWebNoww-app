@@ -1,4 +1,24 @@
-export const manoharvarma = {
+import manohar from "../../assets/VisitingCard/ManoharVarma.jpg";
+import hrishikesh from "../../assets/VisitingCard/ChaitanyaHrishiGupta.jpeg";
+import rushikesh from "../../assets/VisitingCard/RishikeshDurugkar.jpeg";
+
+export interface IPersonProfile {
+  pre?: string;
+  name: string;
+  location: string;
+  title: string;
+  company: string;
+  phone?: string;
+  email?: string;
+  whatsapp?: string;
+  linkedin?: string;
+  instagram?: string;
+  bio?: string;
+  services?: string[];
+  profileImg: string;
+}
+
+export const manoharvarma: IPersonProfile = {
   name: "MANOHAR VARMA",
   location: "Nagpur, IN",
   title: "Co-Founder & CTO",
@@ -14,9 +34,10 @@ export const manoharvarma = {
     "Technology Strategy",
     "Team Leadership",
   ],
+  profileImg: manohar,
 };
 
-export const rushikeshDurugkar = {
+export const rushikeshDurugkar: IPersonProfile = {
   name: "Rushikesh Durugkar",
   location: "Nagpur, IN",
   title: "Co-Founder & CPO",
@@ -32,9 +53,10 @@ export const rushikeshDurugkar = {
     "Technology Strategy",
     "Team Leadership",
   ],
+  profileImg: rushikesh,
 };
 
-export const hrishikeshGupta = {
+export const hrishikeshGupta: IPersonProfile  = {
   name: "Chaitanya Hrishikesh Gupta",
   location: "Nagpur, IN",
   title: "Founder & CEO",
@@ -50,4 +72,5 @@ export const hrishikeshGupta = {
     "Technology Strategy",
     "Team Leadership",
   ],
+  profileImg: hrishikesh,
 };

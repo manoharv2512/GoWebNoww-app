@@ -8,7 +8,7 @@ const App = () => {
   const location = useLocation();
 
   // Check if current path includes "/personal-invite"
-  const hideNavbar = location.pathname.includes("/personal-invite");
+  const hideNavbar = location.pathname.includes("/card");
   return (
     <Box>
       {!hideNavbar && <Navbar navItems={navItems} />}
