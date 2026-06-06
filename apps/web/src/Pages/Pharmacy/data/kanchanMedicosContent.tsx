@@ -2,7 +2,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
-import { WhatsApp } from "@mui/icons-material";
+import { SaveAsOutlined, SaveOutlined, WhatsApp } from "@mui/icons-material";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import type {
   AboutContent,
@@ -13,13 +13,13 @@ import type {
   ReviewsContent,
 } from "../../../components/common/BusinessPage";
 
-import heroImage from "../../../assets/KanchanMedicos/KanchanMedicos.jpg";
+import heroImage from "../../../assets/KanchanMedicos/heroBg.jpeg";
 import storeLogo from "../../../assets/KanchanMedicos/newLogo.png";
 import aboutImage from "../../../assets/KanchanMedicos/storeLogo.jpeg";
 import reviewBackground from "../../../assets/KanchanMedicos/KanchanMedicos.jpg";
 
 import googleReviewIcon from "../../../assets/common/googleReview.png";
-import wifiIcon from "../../../assets/common/wifiIcon.png";
+import saveIcon from "../../../assets/common/saveIcon.png";
 import instagramLogo from "../../../assets/common/Instagram_logo.png";
 
 import medicinesA from "../../../assets/KanchanMedicos/Gallery/AllopathicMedicines/Allopathic-Medicines.jpg";
@@ -62,47 +62,27 @@ export const kanchanHero: HeroContent = {
     password: "12345678",
   },
   actions: [
-    { label: "WiFi", icon: wifiIcon, action: "wifi" },
-    {
-      label: "Call Now",
-      icon: <PhoneIcon color="primary" />,
-      href: "tel:+919876543210",
-    },
-    {
-      label: "WhatsApp",
-      icon: <WhatsApp color="primary" />,
-      href: "https://wa.me/919876543210?text=Hello%20Kanchan%20Medicos",
-    },
-    {
-      label: "Location",
-      icon: <LocationOnIcon color="primary" />,
-      href: "https://www.google.com/maps?q=Kanchan+Medicos+Nagpur",
-    },
-  ],
-
-  secondaryAction: [
-    {
-      label: "Google Reviews",
-      icon: googleReviewIcon,
-      href: "https://www.google.com/",
-    },
     {
       label: "Instagram",
       icon: instagramLogo,
       href: "https://www.instagram.com/",
     },
+    {
+      label: "Google Reviews",
+      icon: googleReviewIcon,
+      href: "https://www.google.com/",
+    },
+    { label: "Save Data", icon: saveIcon, action: "saveData" },
+    {
+      label: "WhatsApp",
+      icon: <WhatsApp color="primary" />,
+      href: "https://wa.me/919876543210?text=Hello%20Kanchan%20Medicos",
+    },
   ],
 };
 
 export const kanchanAbout: AboutContent = {
-  background: "linear-gradient(90deg, #0f9b8e, #38ef7d)",
-
-  logoSrc: storeLogo,
-  logoAlt: "Kanchan Medicos",
-
-  description:
-    "At Kanchan Medicos, we are committed to your health and wellness.\nWe provide authentic medicines, healthcare essentials, and trusted medical guidance.\nServing our community with care, reliability, and quick service every day.",
-
+  background: "white",
   imageSrc: aboutImage,
   imageAlt: "Kanchan Medicos Store",
 

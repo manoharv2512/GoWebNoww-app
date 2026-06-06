@@ -111,24 +111,6 @@ END:VCARD`;
               </Text>
             </Group>
           </Stack>
-          {/* DIVIDER */}
-          <Group w="100%" align="center" gap="xs">
-            <Divider
-              style={{
-                flex: 1,
-              }}
-              color="rgba(37,99,235,0.2)"
-            />
-
-            <IconSparkles size={18} color="#93c5fd" />
-
-            <Divider
-              style={{
-                flex: 1,
-              }}
-              color="rgba(37,99,235,0.2)"
-            />
-          </Group>
           {/* Title */}
           <Group
             px="md"

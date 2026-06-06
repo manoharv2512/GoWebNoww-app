@@ -1,3 +1,4 @@
+import { Text } from "@mantine/core";
 import ScrollRevealSection from "../ScrollRevealSection";
 import type { ReviewsContent } from "./types";
 

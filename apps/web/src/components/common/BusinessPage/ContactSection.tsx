@@ -68,7 +68,7 @@ const ContactSection = ({
                     </Paper>
                   )}
 
-                  <Box>
+                  <Box textAlign={"left"}>
                     <Typography fontWeight="600">{item.label}</Typography>
                     <Typography
                       variant="body2"

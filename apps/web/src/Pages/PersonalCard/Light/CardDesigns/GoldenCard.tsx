@@ -1,4 +1,13 @@
-import { Box, Stack, Text, Image, Button, Group } from "@mantine/core";
+import {
+  Box,
+  Stack,
+  Text,
+  Image,
+  Button,
+  Group,
+  Typography,
+  Flex,
+} from "@mantine/core";
 import {
   IconPhone,
   IconMail,
@@ -80,7 +89,7 @@ const ActionBtn = ({ href, icon, label, target }: ActionBtnProps) => (
       borderRadius: 50,
       border: "2px solid #C9A84C",
       background: "transparent",
-      color: "#0E1C3A",
+      color: "#F5ECD7",
       fontFamily: "'Playfair Display', serif",
       fontWeight: 700,
       fontSize: 13,
@@ -93,11 +102,11 @@ const ActionBtn = ({ href, icon, label, target }: ActionBtnProps) => (
     }}
     onMouseEnter={(e) => {
       (e.currentTarget as HTMLElement).style.background = "#C9A84C";
-      (e.currentTarget as HTMLElement).style.color = "#fff";
+      (e.currentTarget as HTMLElement).style.color = "#0E1C3A";
     }}
     onMouseLeave={(e) => {
       (e.currentTarget as HTMLElement).style.background = "transparent";
-      (e.currentTarget as HTMLElement).style.color = "#0E1C3A";
+      (e.currentTarget as HTMLElement).style.color = "#F5ECD7";
     }}
   >
     {icon}
@@ -173,7 +182,7 @@ const KnectaaCard = ({ contact }: VisitingCardProps) => {
             }}
           >
             {/* AI chip top-right decoration */}
-            <Box
+            {/* <Box
               style={{
                 position: "absolute",
                 top: 14,
@@ -206,20 +215,19 @@ const KnectaaCard = ({ contact }: VisitingCardProps) => {
                   letterSpacing: 1,
                 }}
               >
-                AI
+                knectaa
               </Text>
-            </Box>
+            </Box> */}
 
             {/* Profile photo with gold ring */}
-            <Box
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                paddingTop: 36,
-                paddingBottom: 0,
-                position: "relative",
-                zIndex: 2,
-              }}
+            <Flex
+              direction="column"
+              align="center"
+              justify="center"
+              pt={36}
+              pb={0}
+              pos="relative"
+              style={{ zIndex: 5 }}
             >
               <Box
                 style={{
@@ -254,17 +262,36 @@ const KnectaaCard = ({ contact }: VisitingCardProps) => {
                   />
                 </Box>
               </Box>
-            </Box>
+              <Box ta={"center"}>
+                <Typography fw={600} fz={25}>
+                  {contact.name}
+                </Typography>
+                <Typography fw={400}>
+                  Co-founder & CTO @{contact.company}
+                </Typography>
+              </Box>
+              <Box h={37} w={"100%"} />
+            </Flex>
 
             {/* Wave bottom of beige section */}
-            <Box style={{ position: "relative", marginTop: -2 }}>
+            <Box
+              style={{
+                position: "absolute",
+                marginTop: 0,
+                zIndex: 2,
+                width: "100%",
+                top: 194,
+                height: "80%",
+              }}
+            >
               <svg
                 viewBox="0 0 390 80"
                 xmlns="http://www.w3.org/2000/svg"
                 style={{ display: "block", width: "100%" }}
                 preserveAspectRatio="none"
               >
-                <path d="M0,0 L0,40 Q195,90 390,40 L390,0 Z" fill="#E8D5B7" />
+                {/* <path d="M0,0 L0,20 Q195,45 390,20 L390,0 Z" fill="#E8D5B7" /> */}
+                {/* <path d="M0,0 L0,20 Q195,45 390,20 L390,0 Z" fill="#382302" /> */}
                 <path d="M0,40 Q195,90 390,40 L390,80 L0,80 Z" fill="#0E1C3A" />
               </svg>
             </Box>
@@ -274,32 +301,10 @@ const KnectaaCard = ({ contact }: VisitingCardProps) => {
           <Box
             style={{
               background: "#0E1C3A",
-              padding: "0 24px 36px",
+              padding: "24px 24px 36px",
             }}
           >
             <Stack gap="xl" align="center">
-              {/* Logo */}
-              <Box style={{ marginTop: -8 }}>
-                <KnectaaLogo />
-              </Box>
-
-              {/* Bio */}
-              <Text
-                ta="center"
-                style={{
-                  color: "#C8D4E8",
-                  fontSize: 14,
-                  fontFamily: "'Lato', sans-serif",
-                  fontWeight: 300,
-                  lineHeight: 1.6,
-                  maxWidth: 280,
-                  marginTop: -8,
-                }}
-              >
-                {contact.bio ??
-                  "Helping businesses bridge data and strategy. Let's connect!"}
-              </Text>
-
               {/* Call + Email row */}
               <Group w="100%" gap={12}>
                 <ActionBtn

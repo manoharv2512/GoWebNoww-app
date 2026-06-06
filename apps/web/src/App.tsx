@@ -3,20 +3,22 @@ import Navbar from "./components/Navbar";
 import { Box } from "@mui/material";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { appRoutes, navItems } from "./app/routes";
+import { Text } from "@mantine/core";
 
 const App = () => {
   const location = useLocation();
 
   // Check if current path includes "/personal-invite"
-  const hideNavbar = location.pathname.includes("/card");
+  const hideNavbar = location.pathname.includes("/vc");
   return (
-    <Box>
+    <Box textAlign={"center"}>
       {!hideNavbar && <Navbar navItems={navItems} />}
       <Routes>
         {appRoutes.map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
       </Routes>
+      {hideNavbar && <Text c={"#cfcccc"}>Powered by Knectaa</Text>}
     </Box>
   );
 };

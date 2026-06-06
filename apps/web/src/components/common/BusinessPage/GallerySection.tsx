@@ -29,12 +29,16 @@ const GallerySection = ({
                 <Text
                   fw={700}
                   c="white"
+                  bg={"#ffffff65"}
                   size="lg"
+                  w={"100%"}
+                  truncate="end"
+                  pl={4}
                   style={{
                     position: "absolute",
                     bottom: 10,
-                    left: 12,
                     zIndex: 2,
+                    textAlign: "left",
                   }}
                 >
                   {card.title}
