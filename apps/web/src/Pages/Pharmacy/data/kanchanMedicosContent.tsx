@@ -13,9 +13,9 @@ import type {
   ReviewsContent,
 } from "../../../components/common/BusinessPage";
 
-import heroImage from "../../../assets/KanchanMedicos/heroBg.jpeg";
+import heroVideo from "../../../assets/KanchanMedicos/heroBg.mp4";
 import aboutImage from "../../../assets/KanchanMedicos/storeLogo.jpeg";
-import reviewBackground from "../../../assets/KanchanMedicos/KanchanMedicos.jpg";
+import reviewBackground from "../../../assets/KanchanMedicos/ratingBg.jpeg";
 
 import googleReviewIcon from "../../../assets/common/googleReview.png";
 import saveIcon from "../../../assets/common/saveIcon.png";
@@ -50,7 +50,7 @@ export const kanchanHero: HeroContent = {
   description:
     "Providing genuine medicines, healthcare essentials, and wellness products with care and reliability.",
 
-  imageSrc: heroImage,
+  videoSrc: heroVideo,
   mediaFit: "cover",
 
   rating: 5,
