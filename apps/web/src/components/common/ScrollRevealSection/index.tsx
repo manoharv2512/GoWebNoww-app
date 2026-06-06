@@ -71,6 +71,10 @@ const ScrollRevealSection: React.FC<Props> = ({
         }}
       />
 
+      <Text fw={700} c="white" size="lg" fz={22} pl={4}>
+        Trusted by Customers
+      </Text>
+
       {/* 🔥 Reviews Content */}
       <ScrollArea h="70vh">
         <Box
@@ -90,6 +94,9 @@ const ScrollRevealSection: React.FC<Props> = ({
                     borderRadius: 16,
                     padding: "16px",
                     backdropFilter: "blur(10px)",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
                   }}
                 >
                   <Rating value={review.rating} readOnly color="yellow" />

@@ -61,7 +61,7 @@ const Navbar = ({ navItems, onLogoClick }: NavbarProps) => {
     <AppBar position="static" sx={{ backgroundColor: "white", color: "black" }}>
       <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
         <img
-          style={{ cursor: "pointer", width: "52px", aspectRatio: 1 }}
+          style={{ cursor: "pointer", height: "36px" }}
           src={logo}
           alt="KnectaaLogo"
           onClick={onLogoClick}

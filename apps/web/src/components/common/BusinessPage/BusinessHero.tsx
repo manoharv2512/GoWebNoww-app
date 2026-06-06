@@ -23,10 +23,17 @@ const BusinessHero = ({
   height = "90vh",
   minHeight = "600px",
   mediaFit = "cover",
-  overlay = "rgba(0,0,0,0.6)",
+  overlay = "rgba(0, 0, 0, 0.65)",
 }: BusinessHeroProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [openWifi, setOpenWifi] = useState(false);
+  const [openSaveData, setOpenSaveData] = useState(false);
+  const [saveForm, setSaveForm] = useState({
+    name: "",
+    email: "",
+    pincode: "",
+  });
+  const [saved, setSaved] = useState(false);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -53,6 +60,106 @@ const BusinessHero = ({
           </DialogContent>
         </Dialog>
       )}
+      {/* Save Data Dialog */}
+      <Dialog
+        open={openSaveData}
+        onClose={() => setOpenSaveData(false)}
+        maxWidth="xs"
+        fullWidth
+      >
+        <DialogContent sx={{ textAlign: "center", py: 4 }}>
+          {saved ? (
+            <Stack spacing={2} alignItems="center">
+              <Typography variant="h6" color="success.main" fontWeight={700}>
+                ✅ Data Saved!
+              </Typography>
+              <Typography fontSize={14} color="text.secondary">
+                Thanks, we'll be in touch soon.
+              </Typography>
+            </Stack>
+          ) : (
+            <Stack spacing={2.5}>
+              <Typography variant="h6" fontWeight={700}>
+                Save Your Info
+              </Typography>
+
+              <input
+                placeholder="Full Name"
+                value={saveForm.name}
+                onChange={(e) =>
+                  setSaveForm((p) => ({ ...p, name: e.target.value }))
+                }
+                style={{
+                  width: "100%",
+                  padding: "10px 14px",
+                  borderRadius: 8,
+                  border: "1px solid #ccc",
+                  fontSize: 14,
+                  outline: "none",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              <input
+                placeholder="Email Address"
+                type="email"
+                value={saveForm.email}
+                onChange={(e) =>
+                  setSaveForm((p) => ({ ...p, email: e.target.value }))
+                }
+                style={{
+                  width: "100%",
+                  padding: "10px 14px",
+                  borderRadius: 8,
+                  border: "1px solid #ccc",
+                  fontSize: 14,
+                  outline: "none",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              <input
+                placeholder="Area Pincode"
+                type="number"
+                value={saveForm.pincode}
+                onChange={(e) =>
+                  setSaveForm((p) => ({ ...p, pincode: e.target.value }))
+                }
+                style={{
+                  width: "100%",
+                  padding: "10px 14px",
+                  borderRadius: 8,
+                  border: "1px solid #ccc",
+                  fontSize: 14,
+                  outline: "none",
+                  boxSizing: "border-box",
+                }}
+              />
+
+              <Button
+                fullWidth
+                disabled={
+                  !saveForm.name || !saveForm.email || !saveForm.pincode
+                }
+                onClick={() => {
+                  // 👉 plug in your API call here if needed
+                  console.log("Saved:", saveForm);
+                  setSaved(true);
+                }}
+                style={{
+                  background: "#228be6",
+                  color: "#fff",
+                  borderRadius: 8,
+                  padding: "10px",
+                  marginTop: 4,
+                }}
+              >
+                Save
+              </Button>
+            </Stack>
+          )}
+        </DialogContent>
+      </Dialog>
 
       {videoSrc ? (
         <Box
@@ -180,12 +287,23 @@ const BusinessHero = ({
                 key={action.label}
                 leftSection={
                   action.icon ? (
-                    <img src={action.icon} width={20} alt="" />
+                    typeof action.icon === "string" ? (
+                      <img src={action.icon} width={20} alt="" />
+                    ) : (
+                      action.icon
+                    )
                   ) : null
                 }
                 onClick={() => {
                   if (action.action === "wifi" && wifi) {
                     setOpenWifi(true);
+                    return;
+                  }
+
+                  if (action.action === "saveData") {
+                    setSaved(false);
+                    setSaveForm({ name: "", email: "", pincode: "" });
+                    setOpenSaveData(true);
                     return;
                   }
 
@@ -208,7 +326,11 @@ const BusinessHero = ({
                     key={action.label}
                     leftSection={
                       action.icon ? (
-                        <img src={action.icon} width={20} alt="" />
+                        typeof action.icon === "string" ? (
+                          <img src={action.icon} width={20} alt="" />
+                        ) : (
+                          action.icon
+                        )
                       ) : null
                     }
                     onClick={() => {

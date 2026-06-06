@@ -14,7 +14,7 @@ const AboutSection = ({
   background,
 }: AboutContent) => {
   return (
-    <Box id={id} sx={{ px: 2, py: 6, position: "relative", background }}>
+    <Box id={id} sx={{ px: 2, py: 2, position: "relative", background }}>
       <Container maxWidth="lg">
         <Grid container spacing={3} alignItems="center">
           <Grid size={{ xs: 12, md: 6 }}>

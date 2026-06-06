@@ -2,9 +2,9 @@ import type { ReactNode } from "react";
 
 export type HeroAction = {
   label: string;
-  icon?: string;
+  icon?: string | ReactNode;
   href?: string;
-  action?: "wifi";
+  action?: "wifi" | "saveData" | "";
 };
 
 export type WifiConfig = {
@@ -41,10 +41,10 @@ export type AboutContent = {
   logoSrc?: string;
   logoAlt?: string;
   title?: string;
-  description: string;
+  description?: string;
   stats?: StatItem[];
-  imageSrc: string;
-  imageAlt: string;
+  imageSrc?: string;
+  imageAlt?: string;
   background?: string;
 };
 

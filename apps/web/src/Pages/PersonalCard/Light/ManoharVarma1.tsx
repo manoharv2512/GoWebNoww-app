@@ -1,12 +1,9 @@
-import profileImg from "../../../assets/VisitingCard/ManoharVarma.jpg";
-import { PersonalCard } from ".";
-import { manoharvarma } from "..";
+import { ResumeFormatCard } from "./CardDesigns/ResumeFormatCard";
+import { manoharvarma } from "../userData";
 
 const contact = manoharvarma;
-const ManoharVarma1 = () => {
+export const ManoharVarma1 = () => {
   // const fontColorState = "white";
 
-  return <PersonalCard contact={{ ...contact, profileImg }} />;
+  return <ResumeFormatCard contact={contact} />;
 };
-
-export default ManoharVarma1;
