@@ -2,7 +2,7 @@ import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PhoneIcon from "@mui/icons-material/Phone";
-import { SaveAsOutlined, SaveOutlined, WhatsApp } from "@mui/icons-material";
+import { WhatsApp } from "@mui/icons-material";
 import MedicalServicesIcon from "@mui/icons-material/MedicalServices";
 import type {
   AboutContent,
@@ -14,7 +14,6 @@ import type {
 } from "../../../components/common/BusinessPage";
 
 import heroImage from "../../../assets/KanchanMedicos/heroBg.jpeg";
-import storeLogo from "../../../assets/KanchanMedicos/newLogo.png";
 import aboutImage from "../../../assets/KanchanMedicos/storeLogo.jpeg";
 import reviewBackground from "../../../assets/KanchanMedicos/KanchanMedicos.jpg";
 

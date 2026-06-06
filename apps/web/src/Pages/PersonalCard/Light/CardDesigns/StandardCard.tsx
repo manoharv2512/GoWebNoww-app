@@ -9,7 +9,6 @@ import {
   Grid,
   ActionIcon,
   Paper,
-  Divider,
 } from "@mantine/core";
 import {
   IconPhone,
@@ -19,7 +18,6 @@ import {
   IconBrandLinkedin,
   IconBrandInstagram,
   IconMapPin,
-  IconSparkles,
 } from "@tabler/icons-react";
 import bgImg from "../../../../assets/VisitingCard/theme/3.jpeg";
 import type { IPersonProfile } from "../../userData";

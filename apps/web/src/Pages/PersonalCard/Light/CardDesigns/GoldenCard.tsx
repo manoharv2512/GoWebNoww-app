@@ -1,7 +1,6 @@
 import {
   Box,
   Stack,
-  Text,
   Image,
   Button,
   Group,
@@ -17,54 +16,6 @@ import {
   IconBrandLinkedin,
 } from "@tabler/icons-react";
 import { manoharvarma } from "../../userData";
-
-// ── Knectaa logo inline SVG (gold + navy) ────────────────────────────────────
-const KnectaaLogo = () => (
-  <Group gap={10} align="center" justify="center">
-    <svg
-      width="40"
-      height="40"
-      viewBox="0 0 80 80"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <circle
-        cx="40"
-        cy="40"
-        r="38"
-        stroke="#C9A84C"
-        strokeWidth="3"
-        fill="none"
-      />
-      <path
-        d="M22 28 C22 28 30 40 40 40 C50 40 58 28 58 28"
-        stroke="#C9A84C"
-        strokeWidth="4"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M22 52 C22 52 30 40 40 40 C50 40 58 52 58 52"
-        stroke="#C9A84C"
-        strokeWidth="4"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <circle cx="40" cy="40" r="5" fill="#C9A84C" />
-    </svg>
-    <Text
-      style={{
-        fontFamily: "'Playfair Display', serif",
-        fontSize: 32,
-        fontWeight: 700,
-        color: "#c6d2ec",
-        letterSpacing: "-0.5px",
-      }}
-    >
-      knectaa
-    </Text>
-  </Group>
-);
 
 // ── Action button ─────────────────────────────────────────────────────────────
 interface ActionBtnProps {
