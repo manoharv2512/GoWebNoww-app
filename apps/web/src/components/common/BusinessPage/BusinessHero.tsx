@@ -8,6 +8,9 @@ import type { HeroContent } from "./types";
 
 type BusinessHeroProps = HeroContent;
 
+const APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyRi9CWD_I_ulg2ccv_D2CvBmRo4UjYmS-ejXwJoj7hpeIRrSZfMQlvYhyqyq-f7trg/exec";
+
 const BusinessHero = ({
   title,
   subtitle,
@@ -30,10 +33,12 @@ const BusinessHero = ({
   const [openSaveData, setOpenSaveData] = useState(false);
   const [saveForm, setSaveForm] = useState({
     name: "",
-    email: "",
+    phoneNo: "",
     pincode: "",
   });
   const [saved, setSaved] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [phoneError, setPhoneError] = useState(""); // ← new
 
   useEffect(() => {
     if (videoRef.current) {
@@ -45,8 +50,63 @@ const BusinessHero = ({
     ? `WIFI:T:${wifi.security ?? "WPA"};S:${wifi.ssid};P:${wifi.password};;`
     : "";
 
+  const checkPhoneExists = (phone: string): Promise<boolean> => {
+    return new Promise((resolve) => {
+      const callbackName = `cb_${Date.now()}`;
+      const script = document.createElement("script");
+
+      (window as any)[callbackName] = (data: { exists: boolean }) => {
+        resolve(data.exists);
+        delete (window as any)[callbackName];
+        document.body.removeChild(script);
+      };
+
+      script.src = `${APPS_SCRIPT_URL}?phone=${phone}&callback=${callbackName}`;
+      script.onerror = () => {
+        resolve(false); // if error, allow proceed
+        delete (window as any)[callbackName];
+        document.body.removeChild(script);
+      };
+
+      document.body.appendChild(script);
+    });
+  };
+
+  const handleSave = async () => {
+    if (!/^[0-9]{10}$/.test(saveForm.phoneNo)) {
+      setPhoneError("Enter a valid 10-digit mobile number");
+      return;
+    }
+
+    setLoading(true);
+    setPhoneError("");
+
+    try {
+      const exists = await checkPhoneExists(saveForm.phoneNo);
+
+      if (exists) {
+        setPhoneError("This number is already registered ❌");
+        return;
+      }
+
+      await fetch(APPS_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(saveForm),
+      });
+
+      setSaved(true);
+    } catch {
+      alert("Network error — please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <Box sx={{ position: "relative", height, minHeight, overflow: "hidden" }}>
+      {/* WiFi Dialog */}
       {wifi && (
         <Dialog open={openWifi} onClose={() => setOpenWifi(false)}>
           <DialogContent sx={{ textAlign: "center" }}>
@@ -60,6 +120,7 @@ const BusinessHero = ({
           </DialogContent>
         </Dialog>
       )}
+
       {/* Save Data Dialog */}
       <Dialog
         open={openSaveData}
@@ -71,7 +132,7 @@ const BusinessHero = ({
           {saved ? (
             <Stack spacing={2} alignItems="center">
               <Typography variant="h6" color="success.main" fontWeight={700}>
-                ✅ Data Saved!
+                ✅ Registration Successful!
               </Typography>
               <Typography fontSize={14} color="text.secondary">
                 Thanks, we'll be in touch soon.
@@ -83,6 +144,7 @@ const BusinessHero = ({
                 Save Your Info
               </Typography>
 
+              {/* Name */}
               <input
                 placeholder="Full Name"
                 value={saveForm.name}
@@ -100,24 +162,36 @@ const BusinessHero = ({
                 }}
               />
 
-              <input
-                placeholder="Email Address"
-                type="email"
-                value={saveForm.email}
-                onChange={(e) =>
-                  setSaveForm((p) => ({ ...p, email: e.target.value }))
-                }
-                style={{
-                  width: "100%",
-                  padding: "10px 14px",
-                  borderRadius: 8,
-                  border: "1px solid #ccc",
-                  fontSize: 14,
-                  outline: "none",
-                  boxSizing: "border-box",
-                }}
-              />
+              {/* Phone — with validation */}
+              <Box style={{ textAlign: "left" }}>
+                <input
+                  placeholder="Phone Number (10 digits)"
+                  type="tel"
+                  maxLength={10}
+                  value={saveForm.phoneNo}
+                  onChange={(e) => {
+                    const val = e.target.value.replace(/\D/g, ""); // numbers only
+                    setSaveForm((p) => ({ ...p, phoneNo: val }));
+                    setPhoneError(""); // clear error on type
+                  }}
+                  style={{
+                    width: "100%",
+                    padding: "10px 14px",
+                    borderRadius: 8,
+                    border: `1px solid ${phoneError ? "red" : "#ccc"}`,
+                    fontSize: 14,
+                    outline: "none",
+                    boxSizing: "border-box",
+                  }}
+                />
+                {phoneError && (
+                  <Typography fontSize={12} color="error" mt={0.5}>
+                    {phoneError}
+                  </Typography>
+                )}
+              </Box>
 
+              {/* Pincode */}
               <input
                 placeholder="Area Pincode"
                 type="number"
@@ -138,14 +212,11 @@ const BusinessHero = ({
 
               <Button
                 fullWidth
+                loading={loading}
                 disabled={
-                  !saveForm.name || !saveForm.email || !saveForm.pincode
+                  !saveForm.name || !saveForm.phoneNo || !saveForm.pincode
                 }
-                onClick={() => {
-                  // 👉 plug in your API call here if needed
-                  console.log("Saved:", saveForm);
-                  setSaved(true);
-                }}
+                onClick={handleSave}
                 style={{
                   background: "#228be6",
                   color: "#fff",
@@ -154,7 +225,7 @@ const BusinessHero = ({
                   marginTop: 4,
                 }}
               >
-                Save
+                Register
               </Button>
             </Stack>
           )}
@@ -299,26 +370,23 @@ const BusinessHero = ({
                     setOpenWifi(true);
                     return;
                   }
-
                   if (action.action === "saveData") {
                     setSaved(false);
-                    setSaveForm({ name: "", email: "", pincode: "" });
+                    setPhoneError(""); // ← reset error on open
+                    setSaveForm({ name: "", phoneNo: "", pincode: "" });
                     setOpenSaveData(true);
                     return;
                   }
-
                   if (action.href) {
                     window.open(action.href, "_blank", "noopener,noreferrer");
                   }
                 }}
-                style={{
-                  background: "transparent",
-                  border: "1px solid #fff",
-                }}
+                style={{ background: "transparent", border: "1px solid #fff" }}
               >
                 {action.label}
               </Button>
             ))}
+
             {secondaryAction && (
               <Flex gap={4}>
                 {secondaryAction.map((action) => (
@@ -338,7 +406,6 @@ const BusinessHero = ({
                         setOpenWifi(true);
                         return;
                       }
-
                       if (action.href) {
                         window.open(
                           action.href,
