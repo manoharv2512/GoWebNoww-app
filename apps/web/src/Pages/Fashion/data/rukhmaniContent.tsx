@@ -12,22 +12,22 @@ import type {
   ReviewsContent,
 } from "../../../components/common/BusinessPage";
 import phoneIcon1 from "../../../assets/common/phoneIcon1.png";
-import heroImg from "../../../assets/rukhmani/pexels-gustavo-fring-6050395.jpg";
-import tradeLogo from "../../../assets/rukhmani/rukhmaniLogo1.png";
-import storyImage from "../../../assets/rukhmani/pexels-rachel-claire-5864245.jpg";
-import reviewBackground from "../../../assets/TheSandwichCo/OurFlavors/105C.jpeg";
+import heroImg from "../../../assets/rukhmani/pexels-gustavo-fring-6050395.webp";
+import tradeLogo from "../../../assets/rukhmani/rukhmaniLogo1.webp";
+import storyImage from "../../../assets/rukhmani/pexels-rachel-claire-5864245.webp";
+import reviewBackground from "../../../assets/TheSandwichCo/OurFlavors/105C.webp";
 import googleReviewIcon from "../../../assets/common/googleReview.png";
 import menuIcon from "../../../assets/common/Menu.png";
 import wifiIcon from "../../../assets/common/wifiIcon.png";
 import instagramLogo from "../../../assets/common/Instagram_logo.png";
-import collectionA from "../../../assets/rukhmani/1.jpg";
-import collectionB from "../../../assets/rukhmani/2.jpg";
-import collectionC from "../../../assets/rukhmani/3.jpg";
-import collectionD from "../../../assets/rukhmani/4.jpg";
-import collectionE from "../../../assets/rukhmani/5.jpg";
-import collectionF from "../../../assets/rukhmani/6.jpg";
-import collectionG from "../../../assets/rukhmani/1.jpg";
-import collectionH from "../../../assets/rukhmani/3.jpg";
+import collectionA from "../../../assets/rukhmani/1.webp";
+import collectionB from "../../../assets/rukhmani/2.webp";
+import collectionC from "../../../assets/rukhmani/3.webp";
+import collectionD from "../../../assets/rukhmani/4.webp";
+import collectionE from "../../../assets/rukhmani/5.webp";
+import collectionF from "../../../assets/rukhmani/6.webp";
+import collectionG from "../../../assets/rukhmani/1.webp";
+import collectionH from "../../../assets/rukhmani/3.webp";
 
 export const hero: HeroContent = {
   title: "Rukhmani Clothing Store",

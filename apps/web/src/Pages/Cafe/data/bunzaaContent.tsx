@@ -11,10 +11,10 @@ import type {
   HeroContent,
   ReviewsContent,
 } from "../../../components/common/BusinessPage";
-import heroVideo from "../../../assets/TheSandwichCo/HeroBgVideo.mp4";
-import tradeLogo from "../../../assets/TheSandwichCo/BunzaaTrade.png";
-import storyImage from "../../../assets/TheSandwichCo/OurStoryImg.png";
-import reviewBackground from "../../../assets/TheSandwichCo/OurFlavors/105C.jpeg";
+import heroVideo from "../../../assets/TheSandwichCo/HeroBgVideo.webm";
+import tradeLogo from "../../../assets/TheSandwichCo/BunzaaTrade.webp";
+import storyImage from "../../../assets/TheSandwichCo/OurStoryImg.webp";
+import reviewBackground from "../../../assets/TheSandwichCo/OurFlavors/105C.webp";
 import googleReviewIcon from "../../../assets/common/googleReview.png";
 import menuIcon from "../../../assets/common/Menu.png";
 import swiggyLogo from "../../../assets/common/SwiggyLogo.png";
@@ -22,37 +22,37 @@ import zomatoLogo from "../../../assets/common/ZomatoLogo.png";
 import wifiIcon from "../../../assets/common/wifiIcon.png";
 import instagramLogo from "../../../assets/common/Instagram_logo.png";
 
-import bunzaaVideo from "../../../assets/TheSandwichCo/OurFlavors/106.mp4";
-import bunzaaA from "../../../assets/TheSandwichCo/OurFlavors/104C.jpeg";
-import bunzaaB from "../../../assets/TheSandwichCo/OurFlavors/101B.jpeg";
-import bunzaaC from "../../../assets/TheSandwichCo/OurFlavors/101C.jpeg";
+import bunzaaVideo from "../../../assets/TheSandwichCo/OurFlavors/106.webm";
+import bunzaaA from "../../../assets/TheSandwichCo/OurFlavors/104C.webp";
+import bunzaaB from "../../../assets/TheSandwichCo/OurFlavors/101B.webp";
+import bunzaaC from "../../../assets/TheSandwichCo/OurFlavors/101C.webp";
 
-import sandwichA from "../../../assets/TheSandwichCo/OurFlavors/101A.jpeg";
-import sandwichB from "../../../assets/TheSandwichCo/OurFlavors/106A.jpeg";
-import sandwichC from "../../../assets/TheSandwichCo/OurFlavors/102C.jpeg";
-import sandwichD from "../../../assets/TheSandwichCo/OurFlavors/sandwich1.jpeg";
-import sandwichE from "../../../assets/TheSandwichCo/OurFlavors/sandwich2.jpeg";
+import sandwichA from "../../../assets/TheSandwichCo/OurFlavors/101A.webp";
+import sandwichB from "../../../assets/TheSandwichCo/OurFlavors/106A.webp";
+import sandwichC from "../../../assets/TheSandwichCo/OurFlavors/102C.webp";
+import sandwichD from "../../../assets/TheSandwichCo/OurFlavors/sandwich1.webp";
+import sandwichE from "../../../assets/TheSandwichCo/OurFlavors/sandwich2.webp";
 
-import burgerA from "../../../assets/TheSandwichCo/OurFlavors/102A.jpeg";
-import burgerB from "../../../assets/TheSandwichCo/OurFlavors/104A.jpeg";
-import burgerC from "../../../assets/TheSandwichCo/OurFlavors/103B.jpeg";
-import burgerD from "../../../assets/TheSandwichCo/OurFlavors/burger.jpeg";
+import burgerA from "../../../assets/TheSandwichCo/OurFlavors/102A.webp";
+import burgerB from "../../../assets/TheSandwichCo/OurFlavors/104A.webp";
+import burgerC from "../../../assets/TheSandwichCo/OurFlavors/103B.webp";
+import burgerD from "../../../assets/TheSandwichCo/OurFlavors/burger.webp";
 
-import pizzaA from "../../../assets/TheSandwichCo/OurFlavors/pizza1.jpeg";
-import pizzaB from "../../../assets/TheSandwichCo/OurFlavors/pizza2.png";
-import pizzaC from "../../../assets/TheSandwichCo/OurFlavors/pizza3.jpeg";
-import pizzaD from "../../../assets/TheSandwichCo/OurFlavors/pizza4.jpeg";
+import pizzaA from "../../../assets/TheSandwichCo/OurFlavors/pizza1.webp";
+import pizzaB from "../../../assets/TheSandwichCo/OurFlavors/pizza2.webp";
+import pizzaC from "../../../assets/TheSandwichCo/OurFlavors/pizza3.webp";
+import pizzaD from "../../../assets/TheSandwichCo/OurFlavors/pizza4.webp";
 
-import maggiA from "../../../assets/TheSandwichCo/OurFlavors/105A.jpeg";
-import maggiB from "../../../assets/TheSandwichCo/OurFlavors/102B.jpeg";
-import momoA from "../../../assets/TheSandwichCo/OurFlavors/momo.jpeg";
-import momoB from "../../../assets/TheSandwichCo/OurFlavors/momo1.jpeg";
-import momoC from "../../../assets/TheSandwichCo/OurFlavors/momo2.jpeg";
-import momoD from "../../../assets/TheSandwichCo/OurFlavors/momos.jpeg";
-import maggie from "../../../assets/TheSandwichCo/OurFlavors/maggie.jpeg";
+import maggiA from "../../../assets/TheSandwichCo/OurFlavors/105A.webp";
+import maggiB from "../../../assets/TheSandwichCo/OurFlavors/102B.webp";
+import momoA from "../../../assets/TheSandwichCo/OurFlavors/momo.webp";
+import momoB from "../../../assets/TheSandwichCo/OurFlavors/momo1.webp";
+import momoC from "../../../assets/TheSandwichCo/OurFlavors/momo2.webp";
+import momoD from "../../../assets/TheSandwichCo/OurFlavors/momos.webp";
+import maggie from "../../../assets/TheSandwichCo/OurFlavors/maggie.webp";
 
-import beverageA from "../../../assets/TheSandwichCo/OurFlavors/103A.png";
-import beverageB from "../../../assets/TheSandwichCo/OurFlavors/Beverages.jpeg";
+import beverageA from "../../../assets/TheSandwichCo/OurFlavors/103A.webp";
+import beverageB from "../../../assets/TheSandwichCo/OurFlavors/Beverages.webp";
 
 export const bunzaaHero: HeroContent = {
   title: "Sandwich Company",
