@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
   MantineProvider,
   createTheme,
@@ -11,25 +11,56 @@ import {
   SimpleGrid,
   Card,
   Badge,
-  Anchor,
   rgba,
+  Anchor,
+  Flex,
 } from "@mantine/core";
 import {
-  IconMenu2,
-  IconShoppingBag,
-  IconBrandInstagram,
   IconBrandWhatsapp,
   IconHome,
   IconShirt,
-  IconStar,
-  IconArrowLeft,
+  IconArrowUp,
 } from "@tabler/icons-react";
+import {
+  ReviewsSection,
+  type ReviewsContent,
+} from "../../components/common/BusinessPage";
+import instagramLogo from "../../assets/common/Instagram_logo.png";
+import saveIcon from "../../assets/common/saveIcon.png";
+import googleReviewIcon from "../../assets/common/googleReview.png";
+import Footer from "../../components/common/Footer";
+
+export const bunzaaReviews: ReviewsContent = {
+  image:
+    "https://lh3.googleusercontent.com/aida-public/AB6AXuCCfH__QklynzYT3AlaisqjkA9GV3kKmE2Ee-loGYMMeMbBMXfD90gYuUk2UoaCfxYis7HcDQI_-XD2g-aSzPG_D4X75U64GMQWnB6fUFaBTzMB-hQXEbfJ6TxbZC0grUzSIwUX93u4DiYyCXIlfns71ciid0MujvOKLzQMFxjrY5BbRou5onGOvIJVWRV_6CgPrdYbL8vE9kFyjeRsz4bYyjeC52rfmPPP8pkTaoWfFQCrLHyWp2f1t1hREJ5SLr9rTLJkaIjNMjPz",
+  title: "Athlete Reviews",
+  reviews: [
+    {
+      name: "K. Sharma",
+      text: "The compression kits are world-class. Best performance gear I\'ve used in years. Fast delivery to Mumbai too.",
+      rating: 5,
+      date: "1 week ago",
+    },
+    {
+      name: "Rahul M.",
+      text: "Premium quality fabric. The fit is perfect for marathon training. Definitely coming back for the apparel.",
+      rating: 5,
+      date: "2 weeks ago",
+    },
+    {
+      name: "Sneha V.",
+      text: "Excellent customer service and even better equipment. Devansh Sports is now my go-to for fitness gear.",
+      rating: 5,
+      date: "4 weeks ago",
+    },
+  ],
+};
 
 // ─── Design Tokens ────────────────────────────────────────────────────────────
 
 const LIME = "#c3f400";
 const SURFACE = "#121509";
-const SURFACE_HIGH = "#1e2114";
+// const SURFACE_HIGH = "#1e2114";
 const ON_SURFACE = "#e2e4d0";
 const ON_SURFACE_VAR = "#c5c9ad";
 const ON_PRIMARY = "#2a3500";
@@ -64,13 +95,12 @@ const theme = createTheme({
 const mono: React.CSSProperties = { fontFamily: "'JetBrains Mono', monospace" };
 const oswald: React.CSSProperties = { fontFamily: "'Oswald', sans-serif" };
 
-function Label({
-  children,
-  style,
-}: {
+interface LabelProps {
   children: React.ReactNode;
   style?: React.CSSProperties;
-}) {
+}
+
+function Label({ children, style }: LabelProps) {
   return (
     <Text
       size="xs"
@@ -87,23 +117,20 @@ function Label({
   );
 }
 
-// ─── Routing ─────────────────────────────────────────────────────────────────
-
-type Page = "home" | "collection" | "accessories";
-
 // ─── Shared layout components ────────────────────────────────────────────────
 
-function NavBar({ active, onNav }: { active: Page; onNav: (p: Page) => void }) {
-  const items: { label: string; icon: React.ReactNode; page: Page }[] = [
-    { label: "Home", icon: <IconHome size={22} />, page: "home" },
-    { label: "Apparel", icon: <IconShirt size={22} />, page: "collection" },
-    // {
-    //   label: "Accessories",
-    //   icon: <IconBarbell size={22} />,
-    //   page: "accessories",
-    // },
-    // { label: "Kits", icon: <IconBox size={22} />, page: "home" },
+type Section = "home" | "collection";
+
+interface NavBarProps {
+  onNav: (section: Section) => void;
+}
+
+function NavBar({ onNav }: NavBarProps) {
+  const items: { label: string; icon: React.ReactNode; section: Section }[] = [
+    { label: "Home", icon: <IconHome size={22} />, section: "home" },
+    { label: "Apparel", icon: <IconShirt size={22} />, section: "collection" },
   ];
+
   return (
     <Box
       component="nav"
@@ -124,94 +151,34 @@ function NavBar({ active, onNav }: { active: Page; onNav: (p: Page) => void }) {
         borderTop: "1px solid rgba(255,255,255,0.06)",
       }}
     >
-      {items.map(({ label, icon, page }) => {
-        const isActive = page === active;
-        return (
-          <Box
-            key={label}
-            onClick={() => onNav(page)}
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              gap: 2,
-              color: isActive ? LIME : ON_SURFACE_VAR,
-              opacity: isActive ? 1 : 0.6,
-              cursor: "pointer",
-              transition: "color 0.15s, opacity 0.15s",
-              userSelect: "none",
-            }}
-          >
-            {icon}
-            <Label>{label}</Label>
-          </Box>
-        );
-      })}
-    </Box>
-  );
-}
-
-function TopHeader({
-  onBack,
-  showBack,
-}: {
-  onBack?: () => void;
-  showBack?: boolean;
-}) {
-  return (
-    <Box
-      component="header"
-      style={{
-        position: "fixed",
-        top: 0,
-        width: "100%",
-        zIndex: 50,
-        height: 64,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "0 20px",
-        background: rgba(SURFACE, 0.82),
-        backdropFilter: "blur(24px)",
-        borderBottom: "1px solid rgba(255,255,255,0.08)",
-      }}
-    >
-      {showBack ? (
-        <Button
-          variant="subtle"
-          p={0}
-          onClick={onBack}
-          style={{ color: LIME }}
-          aria-label="Back"
+      {items.map(({ label, icon, section }) => (
+        <Box
+          key={label}
+          onClick={() => onNav(section)}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: 2,
+            color: ON_SURFACE_VAR,
+            opacity: 0.7,
+            cursor: "pointer",
+            transition: "color 0.15s, opacity 0.15s",
+            userSelect: "none",
+          }}
+          onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) => {
+            e.currentTarget.style.color = LIME;
+            e.currentTarget.style.opacity = "1";
+          }}
+          onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) => {
+            e.currentTarget.style.color = ON_SURFACE_VAR;
+            e.currentTarget.style.opacity = "0.7";
+          }}
         >
-          <IconArrowLeft size={22} />
-        </Button>
-      ) : (
-        <Button
-          variant="subtle"
-          p={0}
-          style={{ color: LIME }}
-          aria-label="Menu"
-        >
-          <IconMenu2 size={24} />
-        </Button>
-      )}
-      <Title
-        order={1}
-        style={{
-          ...oswald,
-          fontSize: 20,
-          fontWeight: 700,
-          letterSpacing: "-0.01em",
-          textTransform: "uppercase",
-          color: LIME,
-        }}
-      >
-        DEVANSH SPORTS
-      </Title>
-      <Button variant="subtle" p={0} style={{ color: LIME }} aria-label="Cart">
-        <IconShoppingBag size={24} />
-      </Button>
+          {icon}
+          <Label>{label}</Label>
+        </Box>
+      ))}
     </Box>
   );
 }
@@ -240,98 +207,50 @@ function FooterSection() {
         >
           DEVANSH SPORTS
         </Title>
-        <SimpleGrid cols={2} spacing="md">
-          {[
-            ["Shop Address", "Contact Us"],
-            ["Privacy Policy", "Terms"],
-          ].map((col, ci) => (
-            <Stack key={ci} gap="xs">
-              {col.map((link) => (
-                <Anchor
-                  key={link}
-                  href="#"
-                  style={{
-                    color: ON_SURFACE_VAR,
-                    fontSize: 14,
-                    textDecoration: "none",
-                  }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = LIME)}
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = ON_SURFACE_VAR)
-                  }
-                >
-                  {link}
-                </Anchor>
-              ))}
-            </Stack>
-          ))}
+        <SimpleGrid cols={1} spacing="md">
+          {[["Find Us", "Phone no.", "Whatsapp", "Google Location"]].map(
+            (col, ci) => (
+              <Flex key={ci} gap="xs" justify={"center"}>
+                {col.map((link) => (
+                  <Anchor
+                    key={link}
+                    href="#"
+                    style={{
+                      color: ON_SURFACE_VAR,
+                      fontSize: 14,
+                      textDecoration: "none",
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = LIME)}
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = ON_SURFACE_VAR)
+                    }
+                  >
+                    {link}
+                  </Anchor>
+                ))}
+              </Flex>
+            ),
+          )}
         </SimpleGrid>
       </Stack>
+      <Footer
+        bgColorState="black"
+        fontColor="rgba(255, 255, 255, 0.7)"
+        text={`©️ ${new Date().getFullYear()} Knectaa. All rights reserved.`}
+      />
     </Box>
   );
 }
 
-// ─── HOME PAGE ────────────────────────────────────────────────────────────────
-
-const reviews = [
-  {
-    name: "K. Sharma",
-    ago: "2 Days ago",
-    text: '"The compression kits are world-class. Best performance gear I\'ve used in years. Fast delivery to Mumbai too."',
-  },
-  {
-    name: "Rahul M.",
-    ago: "1 Week ago",
-    text: '"Premium quality fabric. The fit is perfect for marathon training. Definitely coming back for the apparel."',
-  },
-  {
-    name: "Sneha V.",
-    ago: "2 Weeks ago",
-    text: '"Excellent customer service and even better equipment. Devansh Sports is now my go-to for fitness gear."',
-  },
-];
-
+// ─── HOME SECTION ─────────────────────────────────────────────────────────────
 const HERO_IMG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuCeOFcF8VL3PDdI6VFxG0pCdMNIpP9NYSFjD5HDBHk-Fp4y7H-5rshZmY5zlxHY_NMl1fZUDUhEfOteVl7fUKQDvK32F3PvWq4zDQp1mL_RWed7TIQJ4luSuFIcyjUz5y9qHfPgVjnwiD64xhLu-SHQCyAMsSUN55gfScEyY_Fjz3rrHe4UtrZvNf0gd57cZuLYxD8jXjXfTonRS2LL5X9d7DzGkB8bEtqUkH0xsBm6OUDXQafDFpPJwaZQekuaXcWQ3WMucuybmVV1";
-const KIT_IMG =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuBZVq12TFI2uZNVU0b9YxGsV-I9MEx3eaGwt0v25z9uBrhWo1WnkX2swUAXRpwu4q9ZhUT9_esGgPwbAT15g9QHlccQlo_BuQq-KAvluHYu3aBAFNbIgrEr7ggU7Y87mZt0l1Lk4mSki6n6m7nJP4J2xVOnrYMVGTDS32wDxI4TQAEzM9G-gy50N_b7tNRe5Fg0lfZmXSpRhX6V-ef5Po5PwpQl5-sF9xB6toQLwaou0f-U1gI7wgx7IQvGkIy_r2ouqt1Ydr6ZY6dV";
 
-function StarRating({ count = 5 }: { count?: number }) {
-  return (
-    <Group gap={2}>
-      {Array.from({ length: count }).map((_, i) => (
-        <IconStar key={i} size={14} fill={LIME} color={LIME} />
-      ))}
-    </Group>
-  );
+interface HomeSectionProps {
+  onExplore: () => void;
 }
 
-function ReviewCard({ name, ago, text }: (typeof reviews)[0]) {
-  return (
-    <Card
-      miw={280}
-      p="md"
-      style={{
-        background: GLASS,
-        backdropFilter: "blur(20px)",
-        border: GLASS_BORDER,
-        borderLeft: `2px solid ${LIME}`,
-        flexShrink: 0,
-        scrollSnapAlign: "start",
-      }}
-    >
-      <Group justify="space-between" mb="sm">
-        <Label style={{ color: LIME }}>{name}</Label>
-        <Label style={{ opacity: 0.4 }}>{ago}</Label>
-      </Group>
-      <Text size="sm" fs="italic" c={ON_SURFACE_VAR}>
-        {text}
-      </Text>
-    </Card>
-  );
-}
-
-function HomePage({ onExplore }: { onExplore: () => void }) {
+function HomeSection({ onExplore }: HomeSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -346,10 +265,8 @@ function HomePage({ onExplore }: { onExplore: () => void }) {
   }, []);
 
   return (
-    <Box component="main" pt={64} pb={96}>
-      {/* Hero */}
+    <Box component="section">
       <Box
-        component="section"
         style={{
           position: "relative",
           width: "100%",
@@ -395,6 +312,20 @@ function HomePage({ onExplore }: { onExplore: () => void }) {
             maxWidth: 640,
           }}
         >
+          <Title
+            order={2}
+            style={{
+              ...oswald,
+              fontSize: "clamp(30px,10vw,52px)",
+              lineHeight: 0.9,
+              textTransform: "uppercase",
+              letterSpacing: "-0.02em",
+              marginBottom: 24,
+              color: ON_SURFACE,
+            }}
+          >
+            Devansh Sports
+          </Title>
           <Badge
             variant="light"
             style={{
@@ -409,7 +340,7 @@ function HomePage({ onExplore }: { onExplore: () => void }) {
               borderRadius: 2,
             }}
           >
-            New Arrival Season 2024
+            New Arrival Season 2026
           </Badge>
           <Title
             order={2}
@@ -443,8 +374,8 @@ function HomePage({ onExplore }: { onExplore: () => void }) {
               marginBottom: 40,
             }}
           >
-            Technical apparel designed for maximum mobility and temperature
-            control during high-intensity performance.
+            🏏⚽🏸🏐 All-in-One Sports Store Sportswear | Accessories | Team
+            Kits | Equipment Quality • Performance • Passion
           </Text>
           <Button
             size="lg"
@@ -461,10 +392,12 @@ function HomePage({ onExplore }: { onExplore: () => void }) {
               paddingInline: 40,
               borderRadius: 2,
             }}
-            onMouseEnter={(e) =>
+            onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) =>
               (e.currentTarget.style.boxShadow = `0 0 22px ${rgba(LIME, 0.4)}`)
             }
-            onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
+            onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) =>
+              (e.currentTarget.style.boxShadow = "none")
+            }
           >
             Explore Collection
           </Button>
@@ -472,16 +405,33 @@ function HomePage({ onExplore }: { onExplore: () => void }) {
       </Box>
 
       <Stack gap={40} px={20} py={40}>
-        {/* Social quick links */}
         <SimpleGrid cols={2} spacing="md">
           {[
-            { icon: <IconBrandInstagram size={20} />, label: "Instagram" },
-            { icon: <IconBrandWhatsapp size={20} />, label: "WhatsApp" },
-          ].map(({ icon, label }) => (
+            {
+              icon: <img src={instagramLogo} alt="Instagram" width={20} />,
+              label: "Instagram",
+              url: "https://www.instagram.com/devansh_sports_01?utm_source=qr&igsh=dG9ndW5uZjhxbTNt",
+            },
+            {
+              icon: <IconBrandWhatsapp size={20} />,
+              label: "WhatsApp Community",
+              url: "https://chat.whatsapp.com/LpsA0f3FChgK61tC4AvcJJ",
+            },
+            {
+              icon: <img src={saveIcon} alt="Instagram" width={20} />,
+              label: "Save Data",
+              url: "#",
+            },
+            {
+              icon: <img src={googleReviewIcon} alt="Instagram" width={20} />,
+              label: "Google Review",
+              url: "https://www.google.com/maps",
+            },
+          ].map(({ icon, label, url }) => (
             <Card
               key={label}
               component="a"
-              href="#"
+              href={url}
               p="md"
               style={{
                 background: GLASS,
@@ -510,181 +460,23 @@ function HomePage({ onExplore }: { onExplore: () => void }) {
             </Card>
           ))}
         </SimpleGrid>
-
-        {/* Reviews */}
-        <Stack gap="md">
-          <Group justify="space-between" align="flex-end">
-            <Stack gap={4}>
-              <Title
-                order={3}
-                style={{
-                  ...oswald,
-                  fontSize: 28,
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  color: ON_SURFACE,
-                }}
-              >
-                Athlete Reviews
-              </Title>
-              <Group gap="xs">
-                <StarRating />
-                <Label style={{ color: ON_SURFACE_VAR }}>
-                  4.9/5 TrustScore
-                </Label>
-              </Group>
-            </Stack>
-            <Anchor
-              href="#"
-              style={{
-                color: LIME,
-                fontSize: 12,
-                ...mono,
-                textDecoration: "underline",
-              }}
-            >
-              View All
-            </Anchor>
-          </Group>
-          <Box
-            ref={scrollRef}
-            style={{
-              display: "flex",
-              gap: 16,
-              overflowX: "auto",
-              paddingBottom: 16,
-              marginInline: -20,
-              paddingInline: 20,
-              scrollSnapType: "x mandatory",
-              scrollbarWidth: "none",
-            }}
-          >
-            {reviews.map((r) => (
-              <ReviewCard key={r.name} {...r} />
-            ))}
-          </Box>
-        </Stack>
-
-        {/* Bento grid */}
-        <SimpleGrid cols={2} spacing="sm">
-          <Card
-            style={{
-              gridColumn: "1 / -1",
-              position: "relative",
-              height: 192,
-              overflow: "hidden",
-              padding: 0,
-              cursor: "pointer",
-              background: GLASS,
-              border: GLASS_BORDER,
-            }}
-          >
-            <img
-              src={KIT_IMG}
-              alt="Kit Series"
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                opacity: 0.6,
-                transition: "transform 0.7s ease",
-              }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLImageElement).style.transform =
-                  "scale(1.1)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLImageElement).style.transform =
-                  "scale(1)")
-              }
-            />
-            <Box
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "rgba(0,0,0,0.38)",
-              }}
-            />
-            <Box style={{ position: "absolute", bottom: 16, left: 16 }}>
-              <Title
-                order={4}
-                style={{
-                  ...oswald,
-                  fontSize: 22,
-                  textTransform: "uppercase",
-                  color: ON_SURFACE,
-                }}
-              >
-                The Kit Series
-              </Title>
-              <Label style={{ color: LIME }}>View Pro Series</Label>
-            </Box>
-          </Card>
-          <Card
-            style={{
-              height: 160,
-              background: SURFACE_HIGH,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              border: GLASS_BORDER,
-            }}
-          >
-            <Title
-              order={4}
-              style={{
-                ...oswald,
-                fontSize: 22,
-                textTransform: "uppercase",
-                lineHeight: 1,
-                marginBottom: 4,
-                color: ON_SURFACE,
-              }}
-            >
-              Training
-            </Title>
-            <Label style={{ opacity: 0.6, color: ON_SURFACE }}>
-              Essentials
-            </Label>
-          </Card>
-          <Card
-            style={{
-              height: 160,
-              background: LIME,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              border: "none",
-            }}
-          >
-            <Title
-              order={4}
-              style={{
-                ...oswald,
-                fontSize: 22,
-                textTransform: "uppercase",
-                lineHeight: 1,
-                marginBottom: 4,
-                color: ON_PRIMARY,
-              }}
-            >
-              New In
-            </Title>
-            <Label style={{ color: rgba(ON_PRIMARY, 0.6) }}>Accessories</Label>
-          </Card>
-        </SimpleGrid>
+        <ReviewsSection {...bunzaaReviews} />
       </Stack>
-
-      <FooterSection />
     </Box>
   );
 }
 
-// ─── COLLECTION PAGE ──────────────────────────────────────────────────────────
+// ─── COLLECTION SECTION ───────────────────────────────────────────────────────
 
-const galleryItems = [
+interface GalleryItem {
+  badge: string;
+  badgeLime: boolean;
+  title: string;
+  sub: string;
+  img: string;
+}
+
+const galleryItems: GalleryItem[] = [
   {
     badge: "TRENDING",
     badgeLime: true,
@@ -708,7 +500,15 @@ const galleryItems = [
   },
 ];
 
-const apparelCategories = [
+interface ApparelCategory {
+  title: string;
+  count: string;
+  span2: boolean;
+  height: number;
+  img: string;
+}
+
+const apparelCategories: ApparelCategory[] = [
   {
     title: "Top Wear",
     count: "64 ITEMS",
@@ -731,16 +531,11 @@ const apparelCategories = [
     img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgYm3caj7qNkIDvW5j23qGJ28_u79gNey09MaZI_F4u4gMRypyjYRBc9R4JEKrC2sgU-ZzEx6i4DKT89bS0ukCIEcaPwdYY_OKt1h84COE39QeVMDchq64BvherTDNBCursq2vGjIxmHlJ_Jfww7xHDS7sxVrqLIZMdnDnTZq3opA9Dt-pWv2jcAhNb0xXl6b4Z1vgeUW8KNRQyfPV6ZDRMuoRuThZzkPGHX4fsPHIlWLKqL8kLMEZ72pUC3jw9oE3qPlTh0D1Re0B",
   },
 ];
+
 const TRACKSUIT_IMG =
   "https://lh3.googleusercontent.com/aida-public/AB6AXuDlmB_yyo5nSy7yx_N9e4MFOhXWp-YO2BTjCD6qRtqMdS1SwJ85eyVf46_OshUJmqJ-J-4dTYxoHdyblIg5A1eXe0_PxlTbO-SvmrieWm-76AY4j7mxzPYCksKXtVsqcCPvlELjG4B1rGxD4CwAw1CP5D5-wMT6KCvI_lyJsxn9bghvqu3ya-OCxG5Z3ul6T2cAGMI7pUcuiZjLz2P9FJQIZhu2l2y295SJUduMADKL47WjzEdJ-K202LpdkPAW85UMasy3KSMnKRFd";
 
-function GalleryCard({
-  badge,
-  badgeLime,
-  title,
-  sub,
-  img,
-}: (typeof galleryItems)[0]) {
+function GalleryCard({ badge, badgeLime, title, sub, img }: GalleryItem) {
   const [hovered, setHovered] = useState(false);
   return (
     <Box
@@ -758,18 +553,17 @@ function GalleryCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Lime glow ring that appears on hover */}
       <Box
         style={{
           position: "absolute",
           inset: 0,
           zIndex: 5,
           borderRadius: 8,
+          pointerEvents: "none",
           boxShadow: hovered
             ? `inset 0 0 0 2px ${LIME}, 0 0 32px ${rgba(LIME, 0.25)}`
             : "inset 0 0 0 0px transparent",
           transition: "box-shadow 0.4s ease",
-          pointerEvents: "none",
         }}
       />
       <img
@@ -779,7 +573,6 @@ function GalleryCard({
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          // Greyscale + slightly dark when idle; full colour + brighter on hover
           filter: hovered
             ? "grayscale(0) brightness(1.06) saturate(1.1)"
             : "grayscale(1) brightness(0.72)",
@@ -820,7 +613,6 @@ function GalleryCard({
             marginBottom: 8,
             borderRadius: 999,
             textTransform: "uppercase",
-            // Badge pops to full opacity on hover
             opacity: hovered ? 1 : 0.75,
             transition: "opacity 0.3s ease",
           }}
@@ -834,10 +626,10 @@ function GalleryCard({
             fontSize: 24,
             textTransform: "uppercase",
             lineHeight: 1.1,
+            marginBottom: 4,
             color: hovered ? "#fff" : ON_SURFACE_VAR,
             textShadow: hovered ? `0 0 12px ${rgba(LIME, 0.3)}` : "none",
             transition: "color 0.4s ease, text-shadow 0.4s ease",
-            marginBottom: 4,
           }}
         >
           {title}
@@ -850,13 +642,7 @@ function GalleryCard({
   );
 }
 
-function ApparelCard({
-  title,
-  count,
-  span2,
-  height,
-  img,
-}: (typeof apparelCategories)[0]) {
+function ApparelCard({ title, span2, height, img }: ApparelCategory) {
   const [hovered, setHovered] = useState(false);
   return (
     <Box
@@ -911,36 +697,16 @@ function ApparelCard({
         >
           {title}
         </Title>
-        <Group justify="space-between" align="center" mt={4}>
-          <Label style={{ color: ON_SURFACE_VAR, fontSize: 10 }}>{count}</Label>
-          <Button
-            size="xs"
-            style={{
-              background: LIME,
-              color: ON_PRIMARY,
-              ...mono,
-              letterSpacing: "0.08em",
-              textTransform: "uppercase",
-              fontSize: 10,
-              fontWeight: 700,
-              borderRadius: 2,
-              height: 26,
-              paddingInline: 12,
-            }}
-          >
-            View
-          </Button>
-        </Group>
       </Box>
     </Box>
   );
 }
 
-function CollectionPage() {
+function CollectionSection() {
   const galleryRef = useRef<HTMLDivElement>(null);
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeft = useRef(0);
+  const isDragging = useRef<boolean>(false);
+  const startX = useRef<number>(0);
+  const scrollLeftRef = useRef<number>(0);
 
   useEffect(() => {
     const el = galleryRef.current;
@@ -948,7 +714,7 @@ function CollectionPage() {
     const down = (e: MouseEvent) => {
       isDragging.current = true;
       startX.current = e.pageX - el.offsetLeft;
-      scrollLeft.current = el.scrollLeft;
+      scrollLeftRef.current = el.scrollLeft;
     };
     const up = () => {
       isDragging.current = false;
@@ -957,7 +723,7 @@ function CollectionPage() {
       if (!isDragging.current) return;
       e.preventDefault();
       el.scrollLeft =
-        scrollLeft.current - (e.pageX - el.offsetLeft - startX.current) * 2;
+        scrollLeftRef.current - (e.pageX - el.offsetLeft - startX.current) * 2;
     };
     el.addEventListener("mousedown", down);
     el.addEventListener("mouseup", up);
@@ -972,46 +738,49 @@ function CollectionPage() {
   }, []);
 
   return (
-    <Box component="main" pt={80} pb={96}>
-      <Box component="section" mb={40}>
-        <Box px={20} mb={12}>
-          <Label style={{ color: LIME, letterSpacing: "0.12em" }}>
-            Digital Arena
-          </Label>
-          <Title
-            order={2}
-            style={{
-              ...oswald,
-              fontSize: 28,
-              textTransform: "uppercase",
-              marginTop: 4,
-              color: ON_SURFACE,
-            }}
-          >
-            The Performance Gallery
-          </Title>
-        </Box>
-        <Box
-          ref={galleryRef}
+    <Box component="section" pt={40}>
+      <Box
+        px={20}
+        mb={32}
+        style={{ borderTop: `1px solid ${rgba(LIME, 0.15)}`, paddingTop: 40 }}
+      >
+        <Label style={{ color: LIME, letterSpacing: "0.12em" }}>
+          Digital Arena
+        </Label>
+        <Title
+          order={2}
           style={{
-            display: "flex",
-            gap: 12,
-            overflowX: "auto",
-            paddingInline: 20,
-            paddingBottom: 16,
-            scrollSnapType: "x mandatory",
-            scrollbarWidth: "none",
-            cursor: "grab",
-            userSelect: "none",
+            ...oswald,
+            fontSize: 28,
+            textTransform: "uppercase",
+            marginTop: 4,
+            color: ON_SURFACE,
           }}
         >
-          {galleryItems.map((item) => (
-            <GalleryCard key={item.title} {...item} />
-          ))}
-        </Box>
+          The Performance Gallery
+        </Title>
       </Box>
 
-      <Box component="section" px={20} mb={40}>
+      <Box
+        ref={galleryRef}
+        style={{
+          display: "flex",
+          gap: 12,
+          overflowX: "auto",
+          paddingInline: 20,
+          paddingBottom: 16,
+          scrollSnapType: "x mandatory",
+          scrollbarWidth: "none",
+          cursor: "grab",
+          userSelect: "none",
+        }}
+      >
+        {galleryItems.map((item) => (
+          <GalleryCard key={item.title} {...item} />
+        ))}
+      </Box>
+
+      <Box component="section" px={20} mt={40} mb={40}>
         <Box mb={16}>
           <Label style={{ color: LIME, letterSpacing: "0.12em" }}>
             Collections
@@ -1057,15 +826,13 @@ function CollectionPage() {
                 opacity: 0.6,
                 transition: "opacity 0.4s, transform 0.5s",
               }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLImageElement).style.opacity = "1";
-                (e.currentTarget as HTMLImageElement).style.transform =
-                  "scale(1.05)";
+              onMouseEnter={(e: React.MouseEvent<HTMLImageElement>) => {
+                e.currentTarget.style.opacity = "1";
+                e.currentTarget.style.transform = "scale(1.05)";
               }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLImageElement).style.opacity = "0.6";
-                (e.currentTarget as HTMLImageElement).style.transform =
-                  "scale(1)";
+              onMouseLeave={(e: React.MouseEvent<HTMLImageElement>) => {
+                e.currentTarget.style.opacity = "0.6";
+                e.currentTarget.style.transform = "scale(1)";
               }}
             />
             <Box
@@ -1110,38 +877,25 @@ function CollectionPage() {
                 <Text size="sm" c={ON_SURFACE_VAR}>
                   Full coverage high-octane gear.
                 </Text>
-                <Button
-                  size="sm"
-                  style={{
-                    background: LIME,
-                    color: ON_PRIMARY,
-                    ...mono,
-                    letterSpacing: "0.08em",
-                    textTransform: "uppercase",
-                    fontSize: 11,
-                    fontWeight: 700,
-                    borderRadius: 2,
-                    height: 32,
-                    paddingInline: 16,
-                  }}
-                >
-                  View All Tracksuits
-                </Button>
               </Group>
             </Box>
           </Box>
         </SimpleGrid>
       </Box>
-      <AccessoriesPage />
-
-      <FooterSection />
     </Box>
   );
 }
 
-// ─── ACCESSORIES PAGE ─────────────────────────────────────────────────────────
+// ─── ACCESSORIES SECTION ──────────────────────────────────────────────────────
 
-const accessoryItems = [
+interface AccessoryItem {
+  tag: string;
+  title: string;
+  price: string;
+  img: string;
+}
+
+const accessoryItems: AccessoryItem[] = [
   {
     tag: "TRAINING",
     title: "Carbon Grip Gloves",
@@ -1192,11 +946,10 @@ const accessoryItems = [
   },
 ];
 
-// Stock bar — 4 of 7 filled = 57% remaining (matches "40% stock remaining" flavour)
 const STOCK_FILLED = 4;
 const STOCK_TOTAL = 7;
 
-function AccessoryCard({ tag, title, price, img }: (typeof accessoryItems)[0]) {
+function AccessoryCard({ tag, title, img }: AccessoryItem) {
   return (
     <Box
       style={{
@@ -1209,14 +962,13 @@ function AccessoryCard({ tag, title, price, img }: (typeof accessoryItems)[0]) {
         cursor: "pointer",
         transition: "transform 0.2s",
       }}
-      onMouseEnter={(e) =>
-        ((e.currentTarget as HTMLElement).style.transform = "scale(0.98)")
+      onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>
+        (e.currentTarget.style.transform = "scale(0.98)")
       }
-      onMouseLeave={(e) =>
-        ((e.currentTarget as HTMLElement).style.transform = "scale(1)")
+      onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) =>
+        (e.currentTarget.style.transform = "scale(1)")
       }
     >
-      {/* Tag pill */}
       <Box
         style={{
           position: "absolute",
@@ -1236,8 +988,6 @@ function AccessoryCard({ tag, title, price, img }: (typeof accessoryItems)[0]) {
       >
         {tag}
       </Box>
-
-      {/* Image */}
       <Box
         style={{
           aspectRatio: "4/5",
@@ -1255,19 +1005,16 @@ function AccessoryCard({ tag, title, price, img }: (typeof accessoryItems)[0]) {
             opacity: 0.8,
             transition: "opacity 0.4s, transform 0.6s",
           }}
-          onMouseEnter={(e) => {
-            (e.currentTarget as HTMLImageElement).style.opacity = "1";
-            (e.currentTarget as HTMLImageElement).style.transform =
-              "scale(1.1)";
+          onMouseEnter={(e: React.MouseEvent<HTMLImageElement>) => {
+            e.currentTarget.style.opacity = "1";
+            e.currentTarget.style.transform = "scale(1.1)";
           }}
-          onMouseLeave={(e) => {
-            (e.currentTarget as HTMLImageElement).style.opacity = "0.8";
-            (e.currentTarget as HTMLImageElement).style.transform = "scale(1)";
+          onMouseLeave={(e: React.MouseEvent<HTMLImageElement>) => {
+            e.currentTarget.style.opacity = "0.8";
+            e.currentTarget.style.transform = "scale(1)";
           }}
         />
       </Box>
-
-      {/* Info row */}
       <Box style={{ padding: "12px 14px 14px" }}>
         <Title
           order={5}
@@ -1282,53 +1029,18 @@ function AccessoryCard({ tag, title, price, img }: (typeof accessoryItems)[0]) {
         >
           {title}
         </Title>
-        <Group justify="space-between" align="center">
-          <Text style={{ ...mono, fontSize: 15, color: LIME, fontWeight: 600 }}>
-            {price}
-          </Text>
-          <Button
-            size="xs"
-            style={{
-              background: LIME,
-              color: ON_PRIMARY,
-              ...oswald,
-              fontWeight: 700,
-              letterSpacing: "0.05em",
-              textTransform: "uppercase",
-              fontSize: 11,
-              height: 28,
-              paddingInline: 12,
-              borderRadius: 2,
-            }}
-            onMouseDown={(e) =>
-              ((e.currentTarget as HTMLElement).style.transform = "scale(0.93)")
-            }
-            onMouseUp={(e) =>
-              ((e.currentTarget as HTMLElement).style.transform = "scale(1)")
-            }
-            onMouseLeave={(e) =>
-              ((e.currentTarget as HTMLElement).style.transform = "scale(1)")
-            }
-          >
-            Quick Buy
-          </Button>
-        </Group>
       </Box>
     </Box>
   );
 }
 
-function AccessoriesPage() {
+function AccessoriesSection() {
   return (
-    <Box
-      component="main"
-      pt={88}
-      pb={96}
-      px={20}
-      style={{ maxWidth: 800, margin: "0 auto" }}
-    >
-      {/* Hero title */}
-      <Box component="section" mb={32}>
+    <Box px={20} pt={40} style={{ maxWidth: 800, margin: "0 auto" }}>
+      <Box
+        mb={32}
+        style={{ borderTop: `1px solid ${rgba(LIME, 0.15)}`, paddingTop: 40 }}
+      >
         <Title
           order={2}
           style={{
@@ -1354,20 +1066,16 @@ function AccessoriesPage() {
           modality.
         </Text>
       </Box>
-
-      {/* Product grid */}
       <SimpleGrid cols={2} spacing="md" mb={40}>
         {accessoryItems.map((item) => (
           <AccessoryCard key={item.title} {...item} />
         ))}
       </SimpleGrid>
-
-      {/* Live Inventory Bar */}
       <Box
         style={{
           background: GLASS,
           backdropFilter: "blur(20px)",
-          border: `1px dashed rgba(195,244,0,0.25)`,
+          border: "1px dashed rgba(195,244,0,0.25)",
           borderRadius: 4,
           padding: 16,
           marginBottom: 40,
@@ -1397,14 +1105,26 @@ function AccessoriesPage() {
   );
 }
 
-// ─── App Shell (router) ───────────────────────────────────────────────────────
+// ─── App Shell ────────────────────────────────────────────────────────────────
 
 function DevanshSApp() {
-  const [page, setPage] = useState<Page>("home");
+  const homeRef = useRef<HTMLDivElement>(null);
+  const collectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  const scrollTo = (section: Section) => {
+    const targets: Record<Section, React.RefObject<HTMLDivElement | null>> = {
+      home: homeRef,
+      collection: collectionRef,
+    };
+    const ref = targets[section];
+    if (ref?.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
+  const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [page]);
+  };
 
   return (
     <Box
@@ -1416,13 +1136,50 @@ function DevanshSApp() {
         fontFamily: "'Hanken Grotesk', sans-serif",
       }}
     >
-      <TopHeader showBack={page !== "home"} onBack={() => setPage("home")} />
+      {/* <TopHeader onScrollTop={handleScrollTop} /> */}
 
-      {page === "home" && <HomePage onExplore={() => setPage("collection")} />}
-      {page === "collection" && <CollectionPage />}
-      {/* {page === "accessories" && <AccessoriesPage />} */}
+      <Box component="main" pt={64}>
+        <Box ref={homeRef}>
+          <HomeSection onExplore={() => scrollTo("collection")} />
+        </Box>
+        <Box ref={collectionRef}>
+          <CollectionSection />
+        </Box>
+        <AccessoriesSection />
+        <FooterSection />
+      </Box>
 
-      <NavBar active={page} onNav={setPage} />
+      <Box
+        onClick={handleScrollTop}
+        style={{
+          position: "fixed",
+          bottom: 96,
+          right: 20,
+          zIndex: 40,
+          width: 44,
+          height: 44,
+          borderRadius: "50%",
+          background: LIME,
+          color: ON_PRIMARY,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          boxShadow: `0 4px 20px ${rgba(LIME, 0.3)}`,
+          transition: "transform 0.2s",
+        }}
+        onMouseEnter={(e: React.MouseEvent<HTMLDivElement>) =>
+          (e.currentTarget.style.transform = "scale(1.1)")
+        }
+        onMouseLeave={(e: React.MouseEvent<HTMLDivElement>) =>
+          (e.currentTarget.style.transform = "scale(1)")
+        }
+        aria-label="Scroll to top"
+      >
+        <IconArrowUp size={20} />
+      </Box>
+
+      <NavBar onNav={scrollTo} />
     </Box>
   );
 }

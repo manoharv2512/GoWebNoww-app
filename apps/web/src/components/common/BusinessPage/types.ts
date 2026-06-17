@@ -70,6 +70,7 @@ export type ReviewItem = {
 export type ReviewsContent = {
   id?: string;
   image: string;
+  title?: string;
   reviews: ReviewItem[];
 };
 

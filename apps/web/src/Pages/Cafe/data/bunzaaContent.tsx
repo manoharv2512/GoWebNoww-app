@@ -137,6 +137,7 @@ export const bunzaaGallery: GalleryContent = {
 
 export const bunzaaReviews: ReviewsContent = {
   image: reviewBackground,
+  title: "Trusted by Customers",
   reviews: [
     {
       name: "Reema Juneja Sapra",

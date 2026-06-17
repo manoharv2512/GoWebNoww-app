@@ -1,23 +1,14 @@
 import { useEffect, useState } from "react";
 import { Box, Container, Text, Rating, Flex, ScrollArea } from "@mantine/core";
 
-type Review = {
-  name: string;
-  text: string;
-  rating: number;
-  date: string;
-};
+import { type ReviewsContent } from "../../../components/common/BusinessPage/types";
+import googleReviewIcon from "../../../assets/common/googleReview.png";
 
-type Props = {
-  image: string;
-  reviews: Review[];
-  id?: string; // optional (for scroll detection)
-};
-
-const ScrollRevealSection: React.FC<Props> = ({
+const ScrollRevealSection: React.FC<ReviewsContent> = ({
   image,
   reviews,
   id = "reviews-section",
+  title = "Customer Reviews",
 }) => {
   const [visible, setVisible] = useState(false);
 
@@ -70,10 +61,12 @@ const ScrollRevealSection: React.FC<Props> = ({
           zIndex: 1,
         }}
       />
-
-      <Text fw={700} c="white" size="lg" fz={22} pl={4}>
-        Trusted by Customers
-      </Text>
+      <Flex align="center" justify={"center"} gap="md">
+        <img src={googleReviewIcon} alt="Google Reviews" width={24} />
+        <Text fw={700} c="white" size="lg" fz={22} pl={4}>
+          {title}
+        </Text>
+      </Flex>
 
       {/* 🔥 Reviews Content */}
       <ScrollArea h="70vh">
