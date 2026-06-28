@@ -25,10 +25,16 @@ import {
   ReviewsSection,
   type ReviewsContent,
 } from "../../components/common/BusinessPage";
+import { SaveDataDialog } from "../../components/common/BusinessPage/SaveDataDialog"; // ← NEW
 import instagramLogo from "../../assets/common/Instagram_logo.png";
 import saveIcon from "../../assets/common/saveIcon.png";
 import googleReviewIcon from "../../assets/common/googleReview.png";
 import Footer from "../../components/common/Footer";
+
+// ── Apps Script URL for this customer ────────────────────────────────────────
+// Change this per-customer; everything else is reusable.
+const DEVANSH_APPS_SCRIPT_URL =
+  "https://script.google.com/macros/s/AKfycbyRi9CWD_I_ulg2ccv_D2CvBmRo4UjYmS-ejXwJoj7hpeIRrSZfMQlvYhyqyq-f7trg/exec";
 
 export const bunzaaReviews: ReviewsContent = {
   image:
@@ -37,7 +43,7 @@ export const bunzaaReviews: ReviewsContent = {
   reviews: [
     {
       name: "K. Sharma",
-      text: "The compression kits are world-class. Best performance gear I\'ve used in years. Fast delivery to Mumbai too.",
+      text: "The compression kits are world-class. Best performance gear I've used in years. Fast delivery to Mumbai too.",
       rating: 5,
       date: "1 week ago",
     },
@@ -60,7 +66,6 @@ export const bunzaaReviews: ReviewsContent = {
 
 const LIME = "#c3f400";
 const SURFACE = "#121509";
-// const SURFACE_HIGH = "#1e2114";
 const ON_SURFACE = "#e2e4d0";
 const ON_SURFACE_VAR = "#c5c9ad";
 const ON_PRIMARY = "#2a3500";
@@ -184,6 +189,24 @@ function NavBar({ onNav }: NavBarProps) {
 }
 
 function FooterSection() {
+  const footerLinks = [
+    {
+      label: "Find Us",
+      href: "https://maps.app.goo.gl/W8weuYWVv49ap4ns9",
+    },
+    {
+      label: "Phone no.",
+      href: "tel:7385623459",
+    },
+    {
+      label: "Whatsapp",
+      href: "https://wa.me/918010827353?text=Hi%20Devansh%20Sports,%20I%20am%20interested%20in%20your%20products.",
+    },
+    {
+      label: "Google Location",
+      href: "https://maps.app.goo.gl/W8weuYWVv49ap4ns9",
+    },
+  ];
   return (
     <Box
       component="footer"
@@ -208,29 +231,27 @@ function FooterSection() {
           DEVANSH SPORTS
         </Title>
         <SimpleGrid cols={1} spacing="md">
-          {[["Find Us", "Phone no.", "Whatsapp", "Google Location"]].map(
-            (col, ci) => (
-              <Flex key={ci} gap="xs" justify={"center"}>
-                {col.map((link) => (
-                  <Anchor
-                    key={link}
-                    href="#"
-                    style={{
-                      color: ON_SURFACE_VAR,
-                      fontSize: 14,
-                      textDecoration: "none",
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = LIME)}
-                    onMouseLeave={(e) =>
-                      (e.currentTarget.style.color = ON_SURFACE_VAR)
-                    }
-                  >
-                    {link}
-                  </Anchor>
-                ))}
-              </Flex>
-            ),
-          )}
+          <Flex gap="xs" justify="center" wrap="wrap">
+            {footerLinks.map((link) => (
+              <Anchor
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                style={{
+                  color: ON_SURFACE_VAR,
+                  fontSize: 14,
+                  textDecoration: "none",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = LIME)}
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = ON_SURFACE_VAR)
+                }
+              >
+                {link.label}
+              </Anchor>
+            ))}
+          </Flex>
         </SimpleGrid>
       </Stack>
       <Footer
@@ -253,6 +274,9 @@ interface HomeSectionProps {
 function HomeSection({ onExplore }: HomeSectionProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  // ── NEW: controls Save Data dialog ────────────────────────────────────────
+  const [saveDataOpen, setSaveDataOpen] = useState(false);
+
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
@@ -264,8 +288,46 @@ function HomeSection({ onExplore }: HomeSectionProps) {
     return () => el.removeEventListener("wheel", h);
   }, []);
 
+  // Quick-link definitions — "Save Data" triggers the dialog via onClick,
+  // all others are plain anchor hrefs.
+  const quickLinks: {
+    icon: React.ReactNode;
+    label: string;
+    href?: string;
+    onClick?: () => void;
+  }[] = [
+    {
+      icon: <img src={instagramLogo} alt="Instagram" width={20} />,
+      label: "Instagram",
+      href: "https://www.instagram.com/devansh_sports_01?utm_source=qr&igsh=dG9ndW5uZjhxbTNt",
+    },
+    {
+      icon: <IconBrandWhatsapp size={20} />,
+      label: "WhatsApp Community",
+      href: "https://chat.whatsapp.com/LpsA0f3FChgK61tC4AvcJJ",
+    },
+    {
+      icon: <img src={saveIcon} alt="Save_Data" width={20} />,
+      label: "Save Data",
+      // ← no href; onClick opens the dialog instead
+      onClick: () => setSaveDataOpen(true),
+    },
+    {
+      icon: <img src={googleReviewIcon} alt="GoogleReview" width={20} />,
+      label: "Google Review",
+      href: "https://maps.app.goo.gl/W8weuYWVv49ap4ns9",
+    },
+  ];
+
   return (
     <Box component="section">
+      {/* ── Save Data dialog ── */}
+      <SaveDataDialog
+        appsScriptUrl={DEVANSH_APPS_SCRIPT_URL}
+        open={saveDataOpen}
+        onClose={() => setSaveDataOpen(false)}
+      />
+
       <Box
         style={{
           position: "relative",
@@ -374,7 +436,7 @@ function HomeSection({ onExplore }: HomeSectionProps) {
               marginBottom: 40,
             }}
           >
-            🏏⚽🏸🏐 All-in-One Sports Store Sportswear | Accessories | Team
+            🏏⚽🏸🏐 All-in-One Sports Store Sportswear | Accessories | Team
             Kits | Equipment Quality • Performance • Passion
           </Text>
           <Button
@@ -405,33 +467,16 @@ function HomeSection({ onExplore }: HomeSectionProps) {
       </Box>
 
       <Stack gap={40} px={20} py={40}>
+        {/* ── Quick links grid — href cards open new tab, onClick card opens dialog */}
         <SimpleGrid cols={2} spacing="md">
-          {[
-            {
-              icon: <img src={instagramLogo} alt="Instagram" width={20} />,
-              label: "Instagram",
-              url: "https://www.instagram.com/devansh_sports_01?utm_source=qr&igsh=dG9ndW5uZjhxbTNt",
-            },
-            {
-              icon: <IconBrandWhatsapp size={20} />,
-              label: "WhatsApp Community",
-              url: "https://chat.whatsapp.com/LpsA0f3FChgK61tC4AvcJJ",
-            },
-            {
-              icon: <img src={saveIcon} alt="Instagram" width={20} />,
-              label: "Save Data",
-              url: "#",
-            },
-            {
-              icon: <img src={googleReviewIcon} alt="Instagram" width={20} />,
-              label: "Google Review",
-              url: "https://www.google.com/maps",
-            },
-          ].map(({ icon, label, url }) => (
+          {quickLinks.map(({ icon, label, href, onClick }) => (
             <Card
               key={label}
-              component="a"
-              href={url}
+              component={onClick ? "div" : "a"}
+              href={onClick ? undefined : href}
+              target={href ? "_blank" : undefined}
+              rel={href ? "noopener noreferrer" : undefined}
+              onClick={onClick}
               p="md"
               style={{
                 background: GLASS,
@@ -575,7 +620,7 @@ function GalleryCard({ badge, badgeLime, title, sub, img }: GalleryItem) {
           objectFit: "cover",
           filter: hovered
             ? "grayscale(0) brightness(1.06) saturate(1.1)"
-            : "grayscale(1) brightness(0.72)",
+            : "grayscale(0) brightness(1.06) saturate(1.1)",
           transform: hovered ? "scale(1.04)" : "scale(1.08)",
           transition: "filter 0.55s ease, transform 0.65s ease",
         }}
@@ -671,7 +716,7 @@ function ApparelCard({ title, span2, height, img }: ApparelCategory) {
           width: "100%",
           height: "100%",
           objectFit: "cover",
-          opacity: hovered ? 1 : 0.6,
+          opacity: hovered ? 1 : 1,
           transform: hovered ? "scale(1.07)" : "scale(1)",
           transition: "opacity 0.4s, transform 0.5s",
         }}
@@ -823,7 +868,7 @@ function CollectionSection() {
                 width: "100%",
                 height: "100%",
                 objectFit: "cover",
-                opacity: 0.6,
+                opacity: 1,
                 transition: "opacity 0.4s, transform 0.5s",
               }}
               onMouseEnter={(e: React.MouseEvent<HTMLImageElement>) => {
@@ -1136,8 +1181,6 @@ function DevanshSApp() {
         fontFamily: "'Hanken Grotesk', sans-serif",
       }}
     >
-      {/* <TopHeader onScrollTop={handleScrollTop} /> */}
-
       <Box component="main" pt={64}>
         <Box ref={homeRef}>
           <HomeSection onExplore={() => scrollTo("collection")} />

@@ -60,6 +60,8 @@ export const kanchanHero: HeroContent = {
     ssid: "SandwichCo",
     password: "12345678",
   },
+  saveDataAppsScriptUrl:
+    "https://script.google.com/macros/s/AKfycbyRi9CWD_I_ulg2ccv_D2CvBmRo4UjYmS-ejXwJoj7hpeIRrSZfMQlvYhyqyq-f7trg/exec",
   actions: [
     {
       label: "Instagram",
@@ -71,7 +73,12 @@ export const kanchanHero: HeroContent = {
       icon: googleReviewIcon,
       href: "https://www.google.com/",
     },
-    { label: "Save Data", icon: saveIcon, action: "saveData" },
+    {
+      label: "Save Data",
+      icon: saveIcon,
+      action: "saveData",
+      href: "https://script.google.com/macros/s/AKfycbyRi9CWD_I_ulg2ccv_D2CvBmRo4UjYmS-ejXwJoj7hpeIRrSZfMQlvYhyqyq-f7trg/exec",
+    },
     {
       label: "WhatsApp",
       icon: <WhatsApp color="primary" />,

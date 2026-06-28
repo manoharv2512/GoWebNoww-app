@@ -47,7 +47,7 @@ const ScrollRevealSection: React.FC<ReviewsContent> = ({
             width: "100%",
             height: "100vh",
             objectFit: "cover",
-            zIndex: -1,
+            zIndex: 0,
           }}
         />
       )}

@@ -29,6 +29,7 @@ export type HeroContent = {
   minHeight?: string;
   mediaFit?: "cover" | "contain" | "fill" | "none";
   overlay?: string;
+  saveDataAppsScriptUrl?:string;
 };
 
 export type StatItem = {
