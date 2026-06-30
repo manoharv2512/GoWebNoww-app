@@ -47,7 +47,7 @@ const ScrollRevealSection: React.FC<ReviewsContent> = ({
             width: "100%",
             height: "100vh",
             objectFit: "cover",
-            zIndex: 0,
+            zIndex: -1,
           }}
         />
       )}
@@ -58,7 +58,7 @@ const ScrollRevealSection: React.FC<ReviewsContent> = ({
           position: "absolute",
           inset: 0,
           background: "rgba(0,0,0,0.4)",
-          zIndex: 1,
+          zIndex: -1,
         }}
       />
       <Flex align="center" justify={"center"} gap="md">

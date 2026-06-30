@@ -42,6 +42,8 @@ const BusinessHero = ({
   secondaryAction,
   wifi,
   saveDataAppsScriptUrl,
+  saveDataAdminKey,
+  saveDataBusinessName,
   height = "90vh",
   minHeight = "600px",
   mediaFit = "cover",
@@ -87,6 +89,8 @@ const BusinessHero = ({
       {saveDataAppsScriptUrl && (
         <SaveDataDialog
           appsScriptUrl={saveDataAppsScriptUrl}
+          adminKey={saveDataAdminKey}
+          businessName={saveDataBusinessName}
           open={openSaveData}
           onClose={() => setOpenSaveData(false)}
         />

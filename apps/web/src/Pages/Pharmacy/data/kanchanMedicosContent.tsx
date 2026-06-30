@@ -12,6 +12,10 @@ import type {
   HeroContent,
   ReviewsContent,
 } from "../../../components/common/BusinessPage";
+import {
+  LEAD_CAPTURE_ADMINS,
+  LEAD_CAPTURE_WEB_APP_URL,
+} from "../../../config/leadCapture";
 
 import heroVideo from "../../../assets/KanchanMedicos/heroBg.mp4";
 import aboutImage from "../../../assets/KanchanMedicos/storeLogo.jpeg";
@@ -60,8 +64,9 @@ export const kanchanHero: HeroContent = {
     ssid: "SandwichCo",
     password: "12345678",
   },
-  saveDataAppsScriptUrl:
-    "https://script.google.com/macros/s/AKfycbyRi9CWD_I_ulg2ccv_D2CvBmRo4UjYmS-ejXwJoj7hpeIRrSZfMQlvYhyqyq-f7trg/exec",
+  saveDataAppsScriptUrl: LEAD_CAPTURE_WEB_APP_URL,
+  saveDataAdminKey: LEAD_CAPTURE_ADMINS.KanchanMedicos.adminKey,
+  saveDataBusinessName: LEAD_CAPTURE_ADMINS.KanchanMedicos.businessName,
   actions: [
     {
       label: "Instagram",
@@ -77,7 +82,7 @@ export const kanchanHero: HeroContent = {
       label: "Save Data",
       icon: saveIcon,
       action: "saveData",
-      href: "https://script.google.com/macros/s/AKfycbyRi9CWD_I_ulg2ccv_D2CvBmRo4UjYmS-ejXwJoj7hpeIRrSZfMQlvYhyqyq-f7trg/exec",
+      href: LEAD_CAPTURE_WEB_APP_URL,
     },
     {
       label: "WhatsApp",

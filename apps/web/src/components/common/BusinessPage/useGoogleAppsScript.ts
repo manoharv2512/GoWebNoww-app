@@ -11,6 +11,8 @@ export interface SaveFormData {
 
 export interface UseGoogleAppsScriptOptions {
   appsScriptUrl: string;
+  adminKey?: string;
+  businessName?: string;
 }
 
 export interface UseGoogleAppsScriptReturn {
@@ -35,6 +37,7 @@ const EMPTY_FORM: SaveFormData = {
 function checkPhoneExists(
   appsScriptUrl: string,
   phone: string,
+  adminKey?: string,
 ): Promise<boolean> {
   return new Promise((resolve) => {
     const callbackName = `appsScriptCb_${Date.now()}`;
@@ -56,9 +59,16 @@ function checkPhoneExists(
       }
     };
 
-    script.src = `${appsScriptUrl}?phone=${encodeURIComponent(
+    const query = new URLSearchParams({
       phone,
-    )}&callback=${callbackName}`;
+      callback: callbackName,
+    });
+
+    if (adminKey) {
+      query.set("adminKey", adminKey);
+    }
+
+    script.src = `${appsScriptUrl}?${query.toString()}`;
 
     script.onerror = () => {
       resolve(false);
@@ -78,6 +88,8 @@ function checkPhoneExists(
 
 export function useGoogleAppsScript({
   appsScriptUrl,
+  adminKey,
+  businessName,
 }: UseGoogleAppsScriptOptions): UseGoogleAppsScriptReturn {
   const [formData, setFormData] = useState<SaveFormData>({
     ...EMPTY_FORM,
@@ -114,20 +126,35 @@ export function useGoogleAppsScript({
     setPhoneError("");
 
     try {
-      const exists = await checkPhoneExists(appsScriptUrl, formData.phoneNo);
+      const exists = await checkPhoneExists(
+        appsScriptUrl,
+        formData.phoneNo,
+        adminKey,
+      );
 
       if (exists) {
         setPhoneError("This number is already registered ❌");
         return;
       }
 
+      const payload = {
+        ...formData,
+        ...(adminKey ? { adminKey } : {}),
+        ...(businessName ? { businessName } : {}),
+      };
+
       await fetch(appsScriptUrl, {
         method: "POST",
         mode: "no-cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
+        body: new URLSearchParams(
+          Object.entries(payload).reduce<Record<string, string>>(
+            (acc, [key, value]) => {
+              acc[key] = String(value ?? "");
+              return acc;
+            },
+            {},
+          ),
+        ),
       });
 
       setSaved(true);

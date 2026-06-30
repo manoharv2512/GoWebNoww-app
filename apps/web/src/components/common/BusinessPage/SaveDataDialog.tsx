@@ -58,6 +58,8 @@ const inputBase: React.CSSProperties = {
  */
 export function SaveDataDialog({
   appsScriptUrl,
+  adminKey,
+  businessName,
   open,
   onClose,
   extraFields = [],
@@ -66,7 +68,7 @@ export function SaveDataDialog({
   successHeading = "✅ Registration Successful!",
   successBody = "Thanks, we'll be in touch soon.",
 }: SaveDataDialogProps) {
-  const gas = useGoogleAppsScript({ appsScriptUrl });
+  const gas = useGoogleAppsScript({ appsScriptUrl, adminKey, businessName });
 
   // Reset the form every time the dialog is opened.
   const handleOpen = React.useCallback(() => {

@@ -30,12 +30,13 @@ import instagramLogo from "../../assets/common/Instagram_logo.png";
 import saveIcon from "../../assets/common/saveIcon.png";
 import googleReviewIcon from "../../assets/common/googleReview.png";
 import Footer from "../../components/common/Footer";
+import {
+  LEAD_CAPTURE_ADMINS,
+  LEAD_CAPTURE_WEB_APP_URL,
+} from "../../config/leadCapture";
 
 // ── Apps Script URL for this customer ────────────────────────────────────────
 // Change this per-customer; everything else is reusable.
-const DEVANSH_APPS_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbyRi9CWD_I_ulg2ccv_D2CvBmRo4UjYmS-ejXwJoj7hpeIRrSZfMQlvYhyqyq-f7trg/exec";
-
 export const bunzaaReviews: ReviewsContent = {
   image:
     "https://lh3.googleusercontent.com/aida-public/AB6AXuCCfH__QklynzYT3AlaisqjkA9GV3kKmE2Ee-loGYMMeMbBMXfD90gYuUk2UoaCfxYis7HcDQI_-XD2g-aSzPG_D4X75U64GMQWnB6fUFaBTzMB-hQXEbfJ6TxbZC0grUzSIwUX93u4DiYyCXIlfns71ciid0MujvOKLzQMFxjrY5BbRou5onGOvIJVWRV_6CgPrdYbL8vE9kFyjeRsz4bYyjeC52rfmPPP8pkTaoWfFQCrLHyWp2f1t1hREJ5SLr9rTLJkaIjNMjPz",
@@ -61,6 +62,73 @@ export const bunzaaReviews: ReviewsContent = {
     },
   ],
 };
+
+interface GalleryItem {
+  badge: string;
+  badgeLime: boolean;
+  title: string;
+  sub: string;
+  img: string;
+}
+
+const galleryItems: GalleryItem[] = [
+  {
+    badge: "TRENDING",
+    badgeLime: true,
+    title: "Elite Training Series",
+    sub: "Precision engineered for the top 1%.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDJKp9piTujszuvxx0Ew4wUX8uQ8Kg0rkxbyMnHcv5TeFp3hwXYRwYoJkUS9MG9VnuZzc1fzCLN7OSpqHUxF2Qw3f1dG59HeXs7AesE7hHO013qXN7XTBXVS6Lb0kYEp87U26ubhFcX3m9kE29gr8uKJMcDzS0i0MMkoQ2coclFHen2sLQd1dG5qFEIXfiAMmIZtB0ElA9QX7KVAlMOwy55koXYjGLK1Y8c7AyNc21O7FEVXtgn-I-r9UQPae0_cspIRJnuYpk9RLhA",
+  },
+  {
+    badge: "TECH FOCUS",
+    badgeLime: false,
+    title: "Hexa-Breathe Mesh",
+    sub: "Zero heat retention. Absolute focus.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7wlKJEH-c2VbghPi1_wIeK0b-nkmlHnsivU5VmvDmt6ZvgoLSk-vWib1vDtJ_eDOMMQX0Ei59YXU8r3bjzsgDAOjuDOKOwM4DoFHAI_ioJydjEholndvdzOnIjeFXmybSDr0eOj3FfsOnpp-VT7TLXd0GKExwHtYGQGRRCQOAarZRi6QF1fyNK0M-zXtFIV4yJ1bkrb8dNzs9P2-wnStTfRnfBizA5TrN3GSuv5ioxjN4TPfOZBXIn7FfOoHkvnj1aEjUwSgWlRhV",
+  },
+  {
+    badge: "NEW ARRIVAL",
+    badgeLime: true,
+    title: "Midnight Velocity",
+    sub: "Unseen speed, visible style.",
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCCfH__QklynzYT3AlaisqjkA9GV3kKmE2Ee-loGYMMeMbBMXfD90gYuUk2UoaCfxYis7HcDQI_-XD2g-aSzPG_D4X75U64GMQWnB6fUFaBTzMB-hQXEbfJ6TxbZC0grUzSIwUX93u4DiYyCXIlfns71ciid0MujvOKLzQMFxjrY5BbRou5onGOvIJVWRV_6CgPrdYbL8vE9kFyjeRsz4bYyjeC52rfmPPP8pkTaoWfFQCrLHyWp2f1t1hREJ5SLr9rTLJkaIjNMjPz",
+  },
+];
+
+interface ApparelCategory {
+  title: string;
+  count: string;
+  span2: boolean;
+  height: number;
+  img: string;
+}
+
+const apparelCategories: ApparelCategory[] = [
+  {
+    title: "Top Wear",
+    count: "64 ITEMS",
+    span2: true,
+    height: 256,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuB8Nsj_NVCp_cen_5PUYiMQHleeJD9oRxS1FNZjL3H17_VxO6t8gnMRLeGuaAi7tbdWyjLM2ac8LblOS1NX8kHbMRgJozkspELj2_0NfrTw-eK49o6yE-WKrvfX0OUNwWatDLMK3NZr17Vwn17y-jKUHwyUhZYYpd86TyBio9F50W5TYC2lJ0BAoOIkfSlA1mrHWWqJXzOkkz_smfn-DLWkMXs2JA9aeYcpw6Jo1kAGxOgDFrW1qDPwYmUgc3byx5I2QLpnYAY7uSmB",
+  },
+  {
+    title: "Bottoms",
+    count: "42 ITEMS",
+    span2: false,
+    height: 256,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2h-Q65J0btr0tnKdcu-V3DIeNWq48R8LncYIxJ_r5csMpJ0SB7hmysaXLS9IvNBk63kntWVV7GkVt4M0sw41jN3y0wqSh9tmj9MPAgTwCIP7gClWo1liYGXAwxXlsUPiP3bZoV9Gf5ony9Ef_KSf505mAWjrdkOAg5EGQUBPwxq4SulXQUIb1drX2cDi2nVzHmsnOKQP71y0q1AeoqU38fmYc9jygtk5eiqKzwHQm_X5kiHSiwjfTYTpeLDMlblH73TjYohtxjwZG",
+  },
+  {
+    title: "Inners",
+    count: "28 ITEMS",
+    span2: false,
+    height: 256,
+    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgYm3caj7qNkIDvW5j23qGJ28_u79gNey09MaZI_F4u4gMRypyjYRBc9R4JEKrC2sgU-ZzEx6i4DKT89bS0ukCIEcaPwdYY_OKt1h84COE39QeVMDchq64BvherTDNBCursq2vGjIxmHlJ_Jfww7xHDS7sxVrqLIZMdnDnTZq3opA9Dt-pWv2jcAhNb0xXl6b4Z1vgeUW8KNRQyfPV6ZDRMuoRuThZzkPGHX4fsPHIlWLKqL8kLMEZ72pUC3jw9oE3qPlTh0D1Re0B",
+  },
+];
+
+const TRACKSUIT_IMG =
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuDlmB_yyo5nSy7yx_N9e4MFOhXWp-YO2BTjCD6qRtqMdS1SwJ85eyVf46_OshUJmqJ-J-4dTYxoHdyblIg5A1eXe0_PxlTbO-SvmrieWm-76AY4j7mxzPYCksKXtVsqcCPvlELjG4B1rGxD4CwAw1CP5D5-wMT6KCvI_lyJsxn9bghvqu3ya-OCxG5Z3ul6T2cAGMI7pUcuiZjLz2P9FJQIZhu2l2y295SJUduMADKL47WjzEdJ-K202LpdkPAW85UMasy3KSMnKRFd";
 
 // ─── Design Tokens ────────────────────────────────────────────────────────────
 
@@ -323,7 +391,9 @@ function HomeSection({ onExplore }: HomeSectionProps) {
     <Box component="section">
       {/* ── Save Data dialog ── */}
       <SaveDataDialog
-        appsScriptUrl={DEVANSH_APPS_SCRIPT_URL}
+        appsScriptUrl={LEAD_CAPTURE_WEB_APP_URL}
+        adminKey={LEAD_CAPTURE_ADMINS.DevanshSports.adminKey}
+        businessName={LEAD_CAPTURE_ADMINS.DevanshSports.businessName}
         open={saveDataOpen}
         onClose={() => setSaveDataOpen(false)}
       />
@@ -465,8 +535,12 @@ function HomeSection({ onExplore }: HomeSectionProps) {
           </Button>
         </Box>
       </Box>
-
-      <Stack gap={40} px={20} py={40}>
+      <Stack
+        gap={40}
+        px={20}
+        py={40}
+        style={{ position: "relative", zIndex: 2 }}
+      >
         {/* ── Quick links grid — href cards open new tab, onClick card opens dialog */}
         <SimpleGrid cols={2} spacing="md">
           {quickLinks.map(({ icon, label, href, onClick }) => (
@@ -505,80 +579,10 @@ function HomeSection({ onExplore }: HomeSectionProps) {
             </Card>
           ))}
         </SimpleGrid>
-        <ReviewsSection {...bunzaaReviews} />
       </Stack>
     </Box>
   );
 }
-
-// ─── COLLECTION SECTION ───────────────────────────────────────────────────────
-
-interface GalleryItem {
-  badge: string;
-  badgeLime: boolean;
-  title: string;
-  sub: string;
-  img: string;
-}
-
-const galleryItems: GalleryItem[] = [
-  {
-    badge: "TRENDING",
-    badgeLime: true,
-    title: "Elite Training Series",
-    sub: "Precision engineered for the top 1%.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDJKp9piTujszuvxx0Ew4wUX8uQ8Kg0rkxbyMnHcv5TeFp3hwXYRwYoJkUS9MG9VnuZzc1fzCLN7OSpqHUxF2Qw3f1dG59HeXs7AesE7hHO013qXN7XTBXVS6Lb0kYEp87U26ubhFcX3m9kE29gr8uKJMcDzS0i0MMkoQ2coclFHen2sLQd1dG5qFEIXfiAMmIZtB0ElA9QX7KVAlMOwy55koXYjGLK1Y8c7AyNc21O7FEVXtgn-I-r9UQPae0_cspIRJnuYpk9RLhA",
-  },
-  {
-    badge: "TECH FOCUS",
-    badgeLime: false,
-    title: "Hexa-Breathe Mesh",
-    sub: "Zero heat retention. Absolute focus.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuC7wlKJEH-c2VbghPi1_wIeK0b-nkmlHnsivU5VmvDmt6ZvgoLSk-vWib1vDtJ_eDOMMQX0Ei59YXU8r3bjzsgDAOjuDOKOwM4DoFHAI_ioJydjEholndvdzOnIjeFXmybSDr0eOj3FfsOnpp-VT7TLXd0GKExwHtYGQGRRCQOAarZRi6QF1fyNK0M-zXtFIV4yJ1bkrb8dNzs9P2-wnStTfRnfBizA5TrN3GSuv5ioxjN4TPfOZBXIn7FfOoHkvnj1aEjUwSgWlRhV",
-  },
-  {
-    badge: "NEW ARRIVAL",
-    badgeLime: true,
-    title: "Midnight Velocity",
-    sub: "Unseen speed, visible style.",
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuCCfH__QklynzYT3AlaisqjkA9GV3kKmE2Ee-loGYMMeMbBMXfD90gYuUk2UoaCfxYis7HcDQI_-XD2g-aSzPG_D4X75U64GMQWnB6fUFaBTzMB-hQXEbfJ6TxbZC0grUzSIwUX93u4DiYyCXIlfns71ciid0MujvOKLzQMFxjrY5BbRou5onGOvIJVWRV_6CgPrdYbL8vE9kFyjeRsz4bYyjeC52rfmPPP8pkTaoWfFQCrLHyWp2f1t1hREJ5SLr9rTLJkaIjNMjPz",
-  },
-];
-
-interface ApparelCategory {
-  title: string;
-  count: string;
-  span2: boolean;
-  height: number;
-  img: string;
-}
-
-const apparelCategories: ApparelCategory[] = [
-  {
-    title: "Top Wear",
-    count: "64 ITEMS",
-    span2: true,
-    height: 256,
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuB8Nsj_NVCp_cen_5PUYiMQHleeJD9oRxS1FNZjL3H17_VxO6t8gnMRLeGuaAi7tbdWyjLM2ac8LblOS1NX8kHbMRgJozkspELj2_0NfrTw-eK49o6yE-WKrvfX0OUNwWatDLMK3NZr17Vwn17y-jKUHwyUhZYYpd86TyBio9F50W5TYC2lJ0BAoOIkfSlA1mrHWWqJXzOkkz_smfn-DLWkMXs2JA9aeYcpw6Jo1kAGxOgDFrW1qDPwYmUgc3byx5I2QLpnYAY7uSmB",
-  },
-  {
-    title: "Bottoms",
-    count: "42 ITEMS",
-    span2: false,
-    height: 256,
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuD2h-Q65J0btr0tnKdcu-V3DIeNWq48R8LncYIxJ_r5csMpJ0SB7hmysaXLS9IvNBk63kntWVV7GkVt4M0sw41jN3y0wqSh9tmj9MPAgTwCIP7gClWo1liYGXAwxXlsUPiP3bZoV9Gf5ony9Ef_KSf505mAWjrdkOAg5EGQUBPwxq4SulXQUIb1drX2cDi2nVzHmsnOKQP71y0q1AeoqU38fmYc9jygtk5eiqKzwHQm_X5kiHSiwjfTYTpeLDMlblH73TjYohtxjwZG",
-  },
-  {
-    title: "Inners",
-    count: "28 ITEMS",
-    span2: false,
-    height: 256,
-    img: "https://lh3.googleusercontent.com/aida-public/AB6AXuDgYm3caj7qNkIDvW5j23qGJ28_u79gNey09MaZI_F4u4gMRypyjYRBc9R4JEKrC2sgU-ZzEx6i4DKT89bS0ukCIEcaPwdYY_OKt1h84COE39QeVMDchq64BvherTDNBCursq2vGjIxmHlJ_Jfww7xHDS7sxVrqLIZMdnDnTZq3opA9Dt-pWv2jcAhNb0xXl6b4Z1vgeUW8KNRQyfPV6ZDRMuoRuThZzkPGHX4fsPHIlWLKqL8kLMEZ72pUC3jw9oE3qPlTh0D1Re0B",
-  },
-];
-
-const TRACKSUIT_IMG =
-  "https://lh3.googleusercontent.com/aida-public/AB6AXuDlmB_yyo5nSy7yx_N9e4MFOhXWp-YO2BTjCD6qRtqMdS1SwJ85eyVf46_OshUJmqJ-J-4dTYxoHdyblIg5A1eXe0_PxlTbO-SvmrieWm-76AY4j7mxzPYCksKXtVsqcCPvlELjG4B1rGxD4CwAw1CP5D5-wMT6KCvI_lyJsxn9bghvqu3ya-OCxG5Z3ul6T2cAGMI7pUcuiZjLz2P9FJQIZhu2l2y295SJUduMADKL47WjzEdJ-K202LpdkPAW85UMasy3KSMnKRFd";
 
 function GalleryCard({ badge, badgeLime, title, sub, img }: GalleryItem) {
   const [hovered, setHovered] = useState(false);
@@ -1181,16 +1185,22 @@ function DevanshSApp() {
         fontFamily: "'Hanken Grotesk', sans-serif",
       }}
     >
-      <Box component="main" pt={64}>
-        <Box ref={homeRef}>
-          <HomeSection onExplore={() => scrollTo("collection")} />
-        </Box>
-        <Box ref={collectionRef}>
-          <CollectionSection />
-        </Box>
-        <AccessoriesSection />
-        <FooterSection />
+      <Box
+        pos={"relative"}
+        style={{ position: "relative", zIndex: 2, backgroundColor: "#101208" }}
+      >
+        <HomeSection onExplore={() => scrollTo("collection")} />
       </Box>
+      <Box style={{ position: "relative", zIndex: 0 }}>
+        <ReviewsSection {...bunzaaReviews} />
+      </Box>
+      <Box
+        style={{ position: "relative", zIndex: 2, backgroundColor: "#101208" }}
+      >
+        <CollectionSection />
+      </Box>
+      <AccessoriesSection />
+      <FooterSection />
 
       <Box
         onClick={handleScrollTop}
