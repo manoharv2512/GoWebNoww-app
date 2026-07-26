@@ -1,0 +1,122 @@
+/* -------------------------------------------------------------------------- */
+/* Design tokens                                                              */
+/* -------------------------------------------------------------------------- */
+.burghar-page {
+  --ds-ember: oklch(0.68 0.22 40);
+  --ds-flame: oklch(0.78 0.2 55);
+  --ds-cheese: oklch(0.82 0.18 85);
+  --ds-basil: oklch(0.65 0.17 145);
+  --ds-gradient-fire: linear-gradient(135deg, oklch(0.55 0.24 25), oklch(0.72 0.22 55), oklch(0.85 0.18 85));
+  --ds-gradient-ember: radial-gradient(ellipse at center, oklch(0.72 0.22 45 / 0.6), transparent 70%);
+  --ds-shadow-ember: 0 20px 60px -15px oklch(0.68 0.22 40 / 0.6);
+  --ds-shadow-glow: 0 0 40px oklch(0.75 0.22 55 / 0.5);
+  --ds-background: oklch(0.1 0.01 40);
+  --ds-foreground: oklch(0.96 0.01 80);
+  --ds-card: oklch(0.15 0.02 40);
+  --ds-border: oklch(0.28 0.03 40);
+
+  background-color: var(--ds-background);
+  color: var(--ds-foreground);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Keyframes                                                                  */
+/* -------------------------------------------------------------------------- */
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(3deg); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes cheese-drip {
+  0% { transform: scaleY(0); transform-origin: top; opacity: 0.9; }
+  100% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+}
+@keyframes flame-flicker {
+  0%, 100% { opacity: 0.85; transform: scaleY(1) scaleX(1); }
+  25% { opacity: 1; transform: scaleY(1.1) scaleX(0.95); }
+  50% { opacity: 0.75; transform: scaleY(0.95) scaleX(1.05); }
+  75% { opacity: 1; transform: scaleY(1.05) scaleX(0.98); }
+}
+@keyframes ember-rise {
+  0% { transform: translateY(0) translateX(0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-400px) translateX(var(--dx, 20px)); opacity: 0; }
+}
+@keyframes veg-orbit-1 {
+  0% { transform: rotate(0deg) translateX(220px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(220px) rotate(-360deg); }
+}
+@keyframes veg-orbit-2 {
+  0% { transform: rotate(0deg) translateX(260px) rotate(0deg); }
+  100% { transform: rotate(-360deg) translateX(260px) rotate(360deg); }
+}
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  width: max-content;
+  animation: marquee 25s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.anim-float-slow { animation: float-slow 6s ease-in-out infinite; }
+.anim-spin-slow { animation: spin-slow 40s linear infinite; }
+.anim-cheese-drip { animation: cheese-drip 1.4s ease-out 0.6s both; }
+.anim-flame-flicker { animation: flame-flicker 1.2s ease-in-out infinite; }
+.anim-ember-rise { animation: ember-rise 4s linear infinite; }
+.anim-veg-orbit-1 { animation: veg-orbit-1 30s linear infinite; }
+.anim-veg-orbit-2 { animation: veg-orbit-2 45s linear infinite reverse; }
+.anim-fade-in-up { animation: fade-in-up 0.9s ease-out both; }
+
+/* -------------------------------------------------------------------------- */
+/* Things Mantine style props genuinely can't do                             */
+/* -------------------------------------------------------------------------- */
+.gradient-text {
+  background: var(--ds-gradient-fire);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.wood-texture {
+  background-color: oklch(0.18 0.03 40);
+  background-image:
+    repeating-linear-gradient(90deg, oklch(0.15 0.03 35) 0px, oklch(0.2 0.04 40) 2px, oklch(0.16 0.03 35) 4px, oklch(0.22 0.04 40) 8px),
+    linear-gradient(180deg, oklch(0.1 0.02 30) 0%, oklch(0.2 0.04 40) 50%, oklch(0.1 0.02 30) 100%);
+}
+
+.veggie-clip {
+  clip-path: circle(40% at 50% 50%);
+}
+
+.ember-particle {
+  background: radial-gradient(circle, oklch(0.85 0.2 55) 0%, oklch(0.65 0.22 30 / 0) 70%);
+}
+
+/* hover states — need a real pseudo-class, style props can't express :hover */
+.social-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+.social-card:hover { transform: translateY(-4px); box-shadow: var(--ds-shadow-ember); }
+.social-card:hover .glow-reveal { opacity: 0.6; }
+.glow-reveal { opacity: 0.3; transition: opacity 0.2s ease; }
+
+.menu-card { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+.menu-card:hover { transform: translateY(-4px); box-shadow: var(--ds-shadow-ember); border-color: color-mix(in oklch, var(--ds-ember) 60%, transparent); }
+
+.gallery-tile img { transition: transform 0.7s ease; }
+.gallery-tile:hover img { transform: scale(1.1); }
+
+.nav-link { color: inherit; transition: color 0.2s ease; }
+.nav-link:hover { color: var(--ds-ember); }

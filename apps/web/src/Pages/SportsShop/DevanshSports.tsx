@@ -383,7 +383,7 @@ function HomeSection({ onExplore }: HomeSectionProps) {
     {
       icon: <img src={googleReviewIcon} alt="GoogleReview" width={20} />,
       label: "Google Review",
-      href: "https://maps.app.goo.gl/W8weuYWVv49ap4ns9",
+      href: "https://g.page/r/CQdlspLuzeTMEBM/review",
     },
   ];
 

@@ -12,6 +12,8 @@ import Frutoss from "../Pages/Cafe/Frutoss";
 import { ManoharVarma1 } from "../Pages/PersonalCard/Light/ManoharVarma1";
 import { RushikeshDurugkar1 } from "../Pages/PersonalCard/Light/RushikeshDurugkar1";
 import ManoharVarma2 from "../Pages/PersonalCard/Light/ManoharVarma2";
+import DowntownSmoothie from "../Pages/Cafe/Burghar1/DowntownSmoothie";
+import LoyaltyProgram from "../components/LoyaltyProgram/LoyaltyProgram";
 
 export const navItems = [{ label: "Home", path: "/" }];
 
@@ -29,4 +31,6 @@ export const appRoutes = [
   { path: "/vc/manohar1", element: <ManoharVarma1 /> },
   { path: "/vc/rushikesh1", element: <RushikeshDurugkar1 /> },
   { path: "/vc/manohar2", element: <ManoharVarma2 /> },
+  { path: "/downtown-smoothie", element: <DowntownSmoothie /> },
+  { path: "/downtown-smoothie/lp", element: <LoyaltyProgram /> },
 ];

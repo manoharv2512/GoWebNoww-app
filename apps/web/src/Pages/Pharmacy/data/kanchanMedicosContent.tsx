@@ -71,12 +71,12 @@ export const kanchanHero: HeroContent = {
     {
       label: "Instagram",
       icon: instagramLogo,
-      href: "https://www.instagram.com/",
+      href: "https://www.instagram.com/kanchanmedicos?igsh=MXFpc2VnY2Q4Zndodg==",
     },
     {
       label: "Google Reviews",
       icon: googleReviewIcon,
-      href: "https://www.google.com/",
+      href: "https://g.page/r/Cbxe1AliKzQQEBM/review",
     },
     {
       label: "Save Data",
@@ -85,9 +85,9 @@ export const kanchanHero: HeroContent = {
       href: LEAD_CAPTURE_WEB_APP_URL,
     },
     {
-      label: "WhatsApp",
+      label: "Join WhatsApp",
       icon: <WhatsApp color="primary" />,
-      href: "https://wa.me/919876543210?text=Hello%20Kanchan%20Medicos",
+      href: "https://chat.whatsapp.com/ET3B9kBqxbb1IfQqKqVM3l",
     },
   ],
 };
@@ -187,8 +187,8 @@ export const kanchanContact: ContactContent = {
     {
       icon: <PhoneIcon color="primary" />,
       label: "Phone",
-      value: "+91 9876543210",
-      href: "tel:+919876543210",
+      value: "+91 9370472533",
+      href: "tel:+919370472533",
     },
     {
       icon: <MedicalServicesIcon color="primary" />,
