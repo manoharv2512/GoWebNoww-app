@@ -1,0 +1,343 @@
+.hero {
+  background:
+    radial-gradient(circle at 82% 12%, rgba(255, 182, 39, 0.22), transparent 45%),
+    radial-gradient(circle at 8% 90%, rgba(14, 165, 160, 0.2), transparent 40%),
+    #131a3c;
+  overflow: hidden;
+}
+
+/* ---------------- RIPPLE ---------------- */
+
+.tapStage {
+  position: relative;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ripple {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px solid #ffb627;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
+  animation: ripple 2.8s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+}
+
+.ripple2 {
+  animation-delay: 0.9s;
+}
+
+.ripple3 {
+  animation-delay: 1.8s;
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.4);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.6;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(3.1);
+    opacity: 0;
+  }
+}
+
+/* ---------------- PHONE ---------------- */
+
+.phone {
+  position: relative;
+  width: 190px;
+  height: 380px;
+  background: linear-gradient(145deg, #26305f, #171e47);
+  border: 3px solid #34407a;
+  border-radius: 32px;
+  box-shadow:
+    0 30px 60px rgba(0, 0, 0, 0.45),
+    0 0 35px rgba(255, 182, 39, 0.08);
+  z-index: 2;
+
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+
+  animation: phoneFloat 5s ease-in-out infinite;
+}
+
+.phone:hover {
+  transform: translateY(-12px) rotate(2deg);
+  box-shadow:
+    0 40px 80px rgba(0, 0, 0, 0.55),
+    0 0 50px rgba(255, 182, 39, 0.2);
+}
+
+@keyframes phoneFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.phoneNotch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  width: 50px;
+  height: 6px;
+  transform: translateX(-50%);
+  background: #2d386b;
+  border-radius: 100px;
+  z-index: 2;
+}
+
+.phoneScreen {
+  position: absolute;
+  inset: 32px 10px 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #131a3c, #0c1230);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phoneGlow {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 182, 39, 0.95),
+    rgba(255, 182, 39, 0) 70%
+  );
+  animation: pulseGlow 2.8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
+
+/* ---------------- NFC CARD ---------------- */
+
+.tapCard {
+  position: absolute;
+  width: 220px;
+  height: 135px;
+  left: 50%;
+  top: 38%;
+  transform: translate(-50%, -50%) rotate(-8deg);
+
+  background: linear-gradient(135deg, #ffca4f, #f2960b);
+  border-radius: 16px;
+
+  box-shadow:
+    0 22px 40px rgba(0, 0, 0, 0.35),
+    inset 0 1px 1px rgba(255, 255, 255, 0.4);
+
+  z-index: 3;
+
+  animation: cardFloat 4.2s ease-in-out infinite;
+
+  transition:
+    filter 0.3s ease,
+    box-shadow 0.3s ease;
+
+  cursor: pointer;
+}
+
+.tapCard:hover {
+  filter: brightness(1.08);
+  box-shadow:
+    0 32px 55px rgba(0, 0, 0, 0.5),
+    0 0 35px rgba(255, 182, 39, 0.4);
+}
+
+@keyframes cardFloat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(-8deg) translateY(0);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) rotate(-8deg) translateY(-16px);
+  }
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.primaryButton {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease !important;
+}
+
+.primaryButton:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(255, 182, 39, 0.3);
+}
+
+.secondaryButton {
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease !important;
+}
+
+.secondaryButton:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #fff6e8;
+}
+
+/* ---------------- MARQUEE ---------------- */
+
+.marquee {
+  background: #ffb627;
+  padding: 14px 0;
+  overflow: hidden;
+  border-top: 2px solid #131a3c;
+  border-bottom: 2px solid #131a3c;
+  position: relative;
+}
+
+.marquee::before,
+.marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 100px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee::before {
+  left: 0;
+  background: linear-gradient(to right, #ffb627, transparent);
+}
+
+.marquee::after {
+  right: 0;
+  background: linear-gradient(to left, #ffb627, transparent);
+}
+
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  gap: 40px;
+  animation: marqueeScroll 26s linear infinite;
+  will-change: transform;
+}
+
+.marquee:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+.marqueeItem {
+  white-space: nowrap;
+  font-weight: 700;
+  color: #131a3c;
+  font-family: "Baloo 2", sans-serif;
+  font-size: 1.05rem;
+
+  transition: transform 0.25s ease;
+}
+
+.marqueeItem:hover {
+  transform: scale(1.08);
+}
+
+@keyframes marqueeScroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------------- STATS ---------------- */
+
+.stat {
+  transition: transform 0.25s ease;
+}
+
+.stat:hover {
+  transform: translateY(-5px);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 768px) {
+  .tapStage {
+    height: 330px;
+  }
+
+  .phone {
+    transform: scale(0.85);
+  }
+
+  .tapCard {
+    transform: translate(-50%, -50%) rotate(-8deg) scale(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ripple,
+  .phone,
+  .phoneGlow,
+  .tapCard,
+  .marqueeTrack {
+    animation: none !important;
+  }
+}
+
+/* -----------------footer---------------- */
+
+.whatsappButton {
+  animation: whatsappFloat 2.5s ease-in-out infinite;
+  box-shadow: 0 12px 28px rgba(37, 211, 102, 0.45);
+  transition: box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.whatsappButton:hover {
+  animation-play-state: paused;
+  filter: brightness(1.1);
+  box-shadow: 0 18px 38px rgba(37, 211, 102, 0.65);
+}
+
+@keyframes whatsappFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}

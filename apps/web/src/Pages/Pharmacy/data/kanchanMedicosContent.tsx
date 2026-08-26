@@ -74,6 +74,12 @@ export const kanchanHero: HeroContent = {
       href: "https://www.instagram.com/kanchanmedicos?igsh=MXFpc2VnY2Q4Zndodg==",
     },
     {
+      label: "Pay Now",
+      icon: instagramLogo,
+      href: "upi://pay?pa=hrishi.gupta.02-1@okicici",
+      // href="upi://pay?pa=yourname@okaxis&pn=Your%20Name&am=500&cu=INR&tn=Payment%20for%20Services"
+    },
+    {
       label: "Google Reviews",
       icon: googleReviewIcon,
       href: "https://g.page/r/Cbxe1AliKzQQEBM/review",

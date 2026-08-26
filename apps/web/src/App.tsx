@@ -8,17 +8,22 @@ import { Text } from "@mantine/core";
 const App = () => {
   const location = useLocation();
 
-  // Check if current path includes "/personal-invite"
-  const hideNavbar = location.pathname.includes("/vc");
+  const hideNavbar =
+    location.pathname.includes("/vc") || location.pathname === "/knectaa2";
+
   return (
-    <Box textAlign={"center"}>
+    <Box textAlign="center">
       {!hideNavbar && <Navbar navItems={navItems} />}
+
       <Routes>
         {appRoutes.map((route) => (
           <Route key={route.path} path={route.path} element={route.element} />
         ))}
       </Routes>
-      {hideNavbar && <Text c={"#cfcccc"}>Powered by Knectaa</Text>}
+
+      {location.pathname.includes("/vc") && (
+        <Text c="#cfcccc">Powered by Knectaa</Text>
+      )}
     </Box>
   );
 };

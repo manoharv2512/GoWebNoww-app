@@ -14,11 +14,11 @@ import { RushikeshDurugkar1 } from "../Pages/PersonalCard/Light/RushikeshDurugka
 import ManoharVarma2 from "../Pages/PersonalCard/Light/ManoharVarma2";
 import DowntownSmoothie from "../Pages/Cafe/Burghar1/DowntownSmoothie";
 import LoyaltyProgram from "../components/LoyaltyProgram/LoyaltyProgram";
-
+import Knectaa2 from "../Pages/knectaa2";
 export const navItems = [{ label: "Home", path: "/" }];
 
 export const appRoutes = [
-  { path: "/", element: <HomePage /> },
+  { path: "/", element: <Knectaa2 /> },
   { path: "/bunzaa", element: <Bunzaa /> },
   { path: "/rukhmani", element: <Rukhmani /> },
   { path: "/kanchan-medicos", element: <KanchanMedicos /> },
@@ -33,4 +33,5 @@ export const appRoutes = [
   { path: "/vc/manohar2", element: <ManoharVarma2 /> },
   { path: "/downtown-smoothie", element: <DowntownSmoothie /> },
   { path: "/downtown-smoothie/lp", element: <LoyaltyProgram /> },
+  { path: "/knectaa2", element: <HomePage /> },
 ];
