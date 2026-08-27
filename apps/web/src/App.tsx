@@ -9,7 +9,7 @@ const App = () => {
   const location = useLocation();
 
   const hideNavbar =
-    location.pathname.includes("/vc") || location.pathname === "/knectaa2";
+    location.pathname.includes("/vc") || location.pathname === "/";
 
   return (
     <Box textAlign="center">
