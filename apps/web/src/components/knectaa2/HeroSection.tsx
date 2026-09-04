@@ -188,7 +188,7 @@ export function HeroSection() {
         </Container>
       </Box>
 
-      <Box className={styles.marquee}>
+      {/* <Box className={styles.marquee}>
         <Box className={styles.marqueeTrack}>
           {[...marqueeItems, ...marqueeItems].map((item, index) => (
             <Text key={`${item}-${index}`} className={styles.marqueeItem}>
@@ -196,7 +196,38 @@ export function HeroSection() {
             </Text>
           ))}
         </Box>
+      </Box> */}
+      <Box className={styles.marqueeWrapper}>
+  <Stack gap={10}>
+    {/* Right → Left */}
+    <Box className={styles.marquee}>
+      <Box className={styles.marqueeTrackLeft}>
+        {[...marqueeItems, ...marqueeItems].map((item, index) => (
+          <Text
+            key={`left-${item}-${index}`}
+            className={styles.marqueeItem}
+          >
+            {item} ✦
+          </Text>
+        ))}
       </Box>
+    </Box>
+
+    {/* Left → Right */}
+    <Box className={styles.marquee}>
+      <Box className={styles.marqueeTrackRight}>
+        {[...marqueeItems, ...marqueeItems].map((item, index) => (
+          <Text
+            key={`right-${item}-${index}`}
+            className={styles.marqueeItem}
+          >
+            ✦ {item}
+          </Text>
+        ))}
+      </Box>
+    </Box>
+  </Stack>
+</Box>
     </>
   );
 }

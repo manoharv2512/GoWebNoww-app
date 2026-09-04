@@ -212,15 +212,20 @@
   background: rgba(255, 255, 255, 0.08);
   border-color: #fff6e8;
 }
+/* ---------------- MARQUEE WRAPPER ---------------- */
 
-/* ---------------- MARQUEE ---------------- */
+.marqueeWrapper {
+  background: #131a3c;
+  padding: 6px 0;
+  overflow: hidden;
+}
+
+/* ---------------- COMMON MARQUEE ---------------- */
 
 .marquee {
   background: #ffb627;
   padding: 14px 0;
   overflow: hidden;
-  border-top: 2px solid #131a3c;
-  border-bottom: 2px solid #131a3c;
   position: relative;
 }
 
@@ -229,7 +234,7 @@
   content: "";
   position: absolute;
   top: 0;
-  width: 100px;
+  width: 80px;
   height: 100%;
   z-index: 2;
   pointer-events: none;
@@ -237,47 +242,129 @@
 
 .marquee::before {
   left: 0;
-  background: linear-gradient(to right, #ffb627, transparent);
+  background: linear-gradient(
+    to right,
+    #ffb627,
+    rgba(255, 182, 39, 0)
+  );
 }
 
 .marquee::after {
   right: 0;
-  background: linear-gradient(to left, #ffb627, transparent);
+  background: linear-gradient(
+    to left,
+    #ffb627,
+    rgba(255, 182, 39, 0)
+  );
 }
 
-.marqueeTrack {
+/* ---------------- TRACK COMMON ---------------- */
+
+.marqueeTrackLeft,
+.marqueeTrackRight {
   display: flex;
   width: max-content;
   gap: 40px;
-  animation: marqueeScroll 26s linear infinite;
   will-change: transform;
 }
 
-.marquee:hover .marqueeTrack {
+/* Right → Left */
+
+.marqueeTrackLeft {
+  animation: marqueeLeft 26s linear infinite;
+}
+
+/* Left → Right */
+
+.marqueeTrackRight {
+  animation: marqueeRight 26s linear infinite;
+}
+
+/* Pause only the hovered marquee */
+
+.marquee:hover .marqueeTrackLeft,
+.marquee:hover .marqueeTrackRight {
   animation-play-state: paused;
 }
 
+/* ---------------- ITEM ---------------- */
+
 .marqueeItem {
+  flex-shrink: 0;
   white-space: nowrap;
+
   font-weight: 700;
   color: #131a3c;
+
   font-family: "Baloo 2", sans-serif;
   font-size: 1.05rem;
 
-  transition: transform 0.25s ease;
+  cursor: default;
+
+  transition:
+    transform 0.25s ease,
+    color 0.25s ease;
 }
 
 .marqueeItem:hover {
   transform: scale(1.08);
 }
 
-@keyframes marqueeScroll {
+/* ---------------- ANIMATIONS ---------------- */
+
+/* RIGHT → LEFT */
+
+@keyframes marqueeLeft {
   from {
     transform: translateX(0);
   }
 
   to {
     transform: translateX(-50%);
+  }
+}
+
+/* LEFT → RIGHT */
+
+@keyframes marqueeRight {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media (max-width: 768px) {
+  .marquee {
+    padding: 10px 0;
+  }
+
+  .marqueeTrackLeft,
+  .marqueeTrackRight {
+    gap: 24px;
+    animation-duration: 20s;
+  }
+
+  .marqueeItem {
+    font-size: 0.9rem;
+  }
+
+  .marquee::before,
+  .marquee::after {
+    width: 40px;
+  }
+}
+
+/* ---------------- ACCESSIBILITY ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrackLeft,
+  .marqueeTrackRight {
+    animation: none;
   }
 }
 

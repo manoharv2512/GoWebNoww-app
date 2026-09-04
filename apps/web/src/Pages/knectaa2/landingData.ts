@@ -2,9 +2,10 @@ export const services = [
   {
     icon: "🌐",
     tag: "डिजिटल पहचान",
-    title: "Digital Presence & Mini-Websites",
+    title: "Digital Presence & Websites",
     description:
       "Google pe search hote hi aapki dukaan sabse pehle dikhe — timing, location, products, sab ek chhoti si website mein.",
+    specialTag: "Best Seller"  
   },
   {
     icon: "💳",

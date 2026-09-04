@@ -21,13 +21,13 @@ export function ServicesSection() {
       {/* SERVICES */}
       <Box component="section" id="services" py={96}>
         <Container size="lg">
-          <Stack align="center" mb={56}>
+          <Stack align="left" mb={56}>
             <Text
               c="#0ea5a0"
               tt="uppercase"
               style={{ letterSpacing: "0.14em" }}
             >
-              Kya Milega
+              Hamari Services
             </Text>
 
             <Title order={2} ta="center">
