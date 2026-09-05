@@ -15,10 +15,13 @@ import ManoharVarma2 from "../Pages/PersonalCard/Light/ManoharVarma2";
 import DowntownSmoothie from "../Pages/Cafe/Burghar1/DowntownSmoothie";
 import LoyaltyProgram from "../components/LoyaltyProgram/LoyaltyProgram";
 import Knectaa2 from "../Pages/knectaa2";
+import Knectaa3 from "../Pages/knectaa3";
+import LoopVideoPage from "../Pages/EventOne";
 export const navItems = [{ label: "Home", path: "/" }];
 
 export const appRoutes = [
   { path: "/", element: <Knectaa2 /> },
+  { path: "/backup", element: <Knectaa3 /> },
   { path: "/bunzaa", element: <Bunzaa /> },
   { path: "/rukhmani", element: <Rukhmani /> },
   { path: "/kanchan-medicos", element: <KanchanMedicos /> },
@@ -34,4 +37,5 @@ export const appRoutes = [
   { path: "/downtown-smoothie", element: <DowntownSmoothie /> },
   { path: "/downtown-smoothie/lp", element: <LoyaltyProgram /> },
   { path: "/knectaa2", element: <HomePage /> },
+  { path: "/event1", element: <LoopVideoPage /> },
 ];
