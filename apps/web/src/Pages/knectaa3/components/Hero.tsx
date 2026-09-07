@@ -1,5 +1,5 @@
 import { Box, Flex } from "@mantine/core";
-import { IconBolt, IconBrandWhatsapp, IconCheck, IconChevronDown, IconCurrencyRupee, IconDots, IconDotsCircleHorizontal, IconPoint, IconStar, IconWifi } from "@tabler/icons-react";
+import { IconBolt, IconBrandWhatsapp, IconCheck, IconChevronDown, IconCurrencyRupee, IconPoint, IconStar, IconWifi } from "@tabler/icons-react";
 import { useEffect, useMemo, useState } from "react";
 type Props = { onStart: () => void };
 
@@ -52,7 +52,7 @@ export default function Hero({ onStart }: Props) {
 
   return (
     <section className="hero" id="home">
-      <div className="hero-reel" aria-hidden="true">
+      <div className="hero-reel">
         {columns.map((items, c) => (
           <div className="reel-col" key={c}>
             <div
@@ -73,8 +73,9 @@ export default function Hero({ onStart }: Props) {
       </div>
       <div className="hero-scrim" />
 
-      <div className="container hero-grid">
-        <Box ta="left">
+{/* Hero 1st - main Text */}
+      <div className="hero-grid">
+        <Box ta="left" className="hero-text">
           <Flex p={8} style={{border: "1px solid white", borderRadius: 8, width: "fit-content", }}>
             <IconPoint size={20} style={{ marginRight: 6, verticalAlign: "middle" }} />
           <span className="tag on-dark">Chhoti Dukaan Ho Ya Bada Brand</span>
@@ -101,7 +102,7 @@ export default function Hero({ onStart }: Props) {
 
         <div className="hero-visual">
           <div className="phone-cluster">
-            <div className="phone-mockup reveal">
+            <div className="phone-mockup">
               <div className="phone-frame">
                 <div className="phone-notch"/>
                 <div className="phone-screen" style={{ opacity: 1 }}>

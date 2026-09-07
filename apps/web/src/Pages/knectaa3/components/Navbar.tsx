@@ -35,6 +35,7 @@ export default function Navbar({ mobileOpen, onToggle, onStart }: Props) {
           <li><a href="#journey" onClick={() => closeAndScroll("journey")}>Package Journey</a></li>
           <li><a href="#kahaniya" onClick={() => closeAndScroll("kahaniya")}>Kahaniya</a></li>
           <li><a href="#pricing" onClick={() => closeAndScroll("pricing")}>Pricing</a></li>
+          <li><a href="#pricing" onClick={() => closeAndScroll("pricing")}>Languages</a></li>
           <li>
             <button className="nav-cta" onClick={() => { onStart(); if (mobileOpen) onToggle(); }}>
               Free Mein Shuru Karein
