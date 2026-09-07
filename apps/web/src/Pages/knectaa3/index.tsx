@@ -6,9 +6,11 @@ import MainSections from "./components/MainSections";
 import StoriesPricing from "./components/StoriesPricing";
 import FAQFooter from "./components/FAQFooter";
 import { IconX } from "@tabler/icons-react";
+import { useLanguage } from "../../localization";
 import "./style.css";
 
 export default function Knectaa3() {
+  const { strings } = useLanguage();
   const [preloader, setPreloader] = useState(true);
   const [modalOpen, setModalOpen] = useState(false);
   const [toast, setToast] = useState("");
@@ -46,7 +48,7 @@ export default function Knectaa3() {
     e.preventDefault();
     const cleanPhone = phone.replace(/\D/g, "");
     if (!name.trim() || !business.trim() || cleanPhone.length < 10 || !type) {
-      showToast("Sabhi fields bharna zaroori hai");
+      showToast(strings.invalidFields);
       return;
     }
 
@@ -81,7 +83,7 @@ export default function Knectaa3() {
 
   const subscribe = (email: string) => {
     if (!email || !email.includes("@")) {
-      showToast("Please enter a valid email");
+      showToast(strings.invalidEmail);
       return false;
     }
     try {
@@ -138,35 +140,35 @@ export default function Knectaa3() {
 
         <div className="modal-demo-content">
           <span className="tag" style={{ display: "block", textAlign: "center", marginBottom: 6 }}>
-            Free Demo
+            {strings.modalTag}
           </span>
-          <h3>Apni Dukaan Set Up Karein</h3>
+          <h3>{strings.modalTitle}</h3>
           <form onSubmit={submitDemo}>
             <TextInput
               value={name}
               onChange={e => setName(e.currentTarget.value)}
-              placeholder="Aapka naam"
+              placeholder={strings.namePlaceholder}
               required
               mb={12}
             />
             <TextInput
               value={business}
               onChange={e => setBusiness(e.currentTarget.value)}
-              placeholder="Business ka naam"
+              placeholder={strings.businessPlaceholder}
               required
               mb={12}
             />
             <TextInput
               value={phone}
               onChange={e => setPhone(e.currentTarget.value)}
-              placeholder="WhatsApp number"
+              placeholder={strings.phonePlaceholder}
               required
               mb={12}
             />
             <Select
               value={type}
               onChange={setType}
-              placeholder="Business ka type chunein"
+              placeholder={strings.typePlaceholder}
               data={[
                 "Restaurant / Café",
                 "Salon / Spa",
@@ -178,7 +180,7 @@ export default function Knectaa3() {
               mb={12}
             />
             <Button type="submit" fullWidth className="btn btn-primary mantine-reset">
-              Free Demo Lo
+              {strings.freeDemo}
             </Button>
           </form>
         </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ActionIcon } from "@mantine/core";
 import { IconBrandRust, IconXMark } from "@tabler/icons-react";
+import { languageLabels, useLanguage, type Language } from "../../../localization";
 
 type Props = {
   mobileOpen: boolean;
@@ -10,6 +11,8 @@ type Props = {
 
 export default function Navbar({ mobileOpen, onToggle, onStart }: Props) {
   const [scrolled, setScrolled] = useState(false);
+  const [languageOpen, setLanguageOpen] = useState(false);
+  const { language, strings, setLanguage } = useLanguage();
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 30);
@@ -20,7 +23,7 @@ export default function Navbar({ mobileOpen, onToggle, onStart }: Props) {
 
   const closeAndScroll = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    onToggle();
+    if (mobileOpen) onToggle();
   };
 
   return (
@@ -31,14 +34,42 @@ export default function Navbar({ mobileOpen, onToggle, onStart }: Props) {
         </a>
 
         <ul className={`nav-links ${mobileOpen ? "open" : ""}`}>
-          <li><a href="#milega" onClick={() => closeAndScroll("milega")}>Kya Milega</a></li>
-          <li><a href="#journey" onClick={() => closeAndScroll("journey")}>Package Journey</a></li>
-          <li><a href="#kahaniya" onClick={() => closeAndScroll("kahaniya")}>Kahaniya</a></li>
-          <li><a href="#pricing" onClick={() => closeAndScroll("pricing")}>Pricing</a></li>
-          <li><a href="#pricing" onClick={() => closeAndScroll("pricing")}>Languages</a></li>
+          <li><a href="#milega" onClick={() => closeAndScroll("milega")}>{strings.navBenefits}</a></li>
+          <li><a href="#journey" onClick={() => closeAndScroll("journey")}>{strings.navJourney}</a></li>
+          <li><a href="#kahaniya" onClick={() => closeAndScroll("kahaniya")}>{strings.navStories}</a></li>
+          <li><a href="#pricing" onClick={() => closeAndScroll("pricing")}>{strings.navPricing}</a></li>
+          <li className="language-menu">
+            <button
+              className="language-trigger"
+              type="button"
+              aria-expanded={languageOpen}
+              onClick={() => setLanguageOpen(open => !open)}
+            >
+              {strings.language}: {languageLabels[language]}
+            </button>
+            {languageOpen && (
+              <div className="language-options" role="menu" aria-label={strings.selectLanguage}>
+                {(Object.keys(languageLabels) as Language[]).map(code => (
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className={code === language ? "active" : ""}
+                    key={code}
+                    onClick={() => {
+                      setLanguage(code);
+                      setLanguageOpen(false);
+                      if (mobileOpen) onToggle();
+                    }}
+                  >
+                    {languageLabels[code]}
+                  </button>
+                ))}
+              </div>
+            )}
+          </li>
           <li>
             <button className="nav-cta" onClick={() => { onStart(); if (mobileOpen) onToggle(); }}>
-              Free Mein Shuru Karein
+              {strings.navStart}
             </button>
           </li>
         </ul>

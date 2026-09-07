@@ -1,6 +1,7 @@
 import { Box, Flex } from "@mantine/core";
 import { IconBolt, IconBrandWhatsapp, IconCheck, IconChevronDown, IconCurrencyRupee, IconPoint, IconStar, IconWifi } from "@tabler/icons-react";
 import { useEffect, useMemo, useState } from "react";
+import { useLanguage } from "../../../localization";
 type Props = { onStart: () => void };
 
 const businessTypes = [
@@ -31,6 +32,7 @@ const phoneStates = [
 
 export default function Hero({ onStart }: Props) {
   const [phoneIndex, setPhoneIndex] = useState(0);
+  const { strings } = useLanguage();
 
   useEffect(() => {
     const timer = window.setInterval(
@@ -78,24 +80,24 @@ export default function Hero({ onStart }: Props) {
         <Box ta="left" className="hero-text">
           <Flex p={8} style={{border: "1px solid white", borderRadius: 8, width: "fit-content", }}>
             <IconPoint size={20} style={{ marginRight: 6, verticalAlign: "middle" }} />
-          <span className="tag on-dark">Chhoti Dukaan Ho Ya Bada Brand</span>
+          <span className="tag on-dark">{strings.heroTag}</span>
           </Flex>
           <h1 className="hero-title">
-            <span className="line1">Ek Tap.</span>
-            <span className="line2">Poori Dukaan Digital.</span>
+            <span className="line1">{strings.heroLine1}</span>
+            <span className="line2">{strings.heroLine2}</span>
           </h1>
           <p className="sub">
-            Website, business card, UPI payment, digital khata aur Google reviews — sab kuch ek NFC tap ya QR scan ke peeche. Chhoti dukaan se leke high-end business tak, sabke liye.
+            {strings.heroDescription}
           </p>
           <div className="hero-ctas">
             <button className="btn btn-primary" onClick={onStart}>
-              <IconBolt/> Free Demo Lo
+              <IconBolt/> {strings.freeDemo}
             </button>
             <a
               href="https://wa.me/910000000000?text=Hi!%20Mujhe%20Knectaa%20ke%20baare%20mein%20jaanna%20hai."
               target="_blank" rel="noopener noreferrer" className="btn btn-ghost"
             >
-              <IconBrandWhatsapp/> WhatsApp Pe Baat Karein
+              <IconBrandWhatsapp/> {strings.whatsapp}
             </a>
           </div>
         </Box>
@@ -120,9 +122,9 @@ export default function Hero({ onStart }: Props) {
                 ))}
               </div>
             </div>
-            <div className="float-chip chip-1"><IconCurrencyRupee/> UPI Live</div>
-            <div className="float-chip chip-2"><IconStar/> 4.9★ Rating</div>
-            <div className="float-chip chip-3"><IconBrandWhatsapp/> Auto-Reply</div>
+            <div className="float-chip chip-1"><IconCurrencyRupee/> {strings.upiLive}</div>
+            <div className="float-chip chip-2"><IconStar/> {strings.rating}</div>
+            <div className="float-chip chip-3"><IconBrandWhatsapp/> {strings.autoReply}</div>
           </div>
         </div>
       </div>

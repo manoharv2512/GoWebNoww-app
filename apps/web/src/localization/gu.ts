@@ -1,0 +1,14 @@
+import en from "./en";
+
+const gu = {
+  ...en,
+  hello: "નમસ્તે", language: "ભાષા", selectLanguage: "ભાષા પસંદ કરો", welcome: "સ્વાગત છે",
+  navBenefits: "શું મળશે", navJourney: "પેકેજ સફર", navStories: "કથાઓ", navPricing: "કિંમત", navStart: "મફતમાં શરૂ કરો",
+  heroTag: "નાની દુકાન હોય કે મોટો બ્રાન્ડ", heroLine1: "એક ટૅપ.", heroLine2: "આખી દુકાન ડિજિટલ.", heroDescription: "વેબસાઇટ, બિઝનેસ કાર્ડ, UPI પેમેન્ટ, ડિજિટલ ખાતું અને Google રિવ્યૂ, બધું એક NFC ટૅપ અથવા QR સ્કેન પાછળ. દરેક બિઝનેસ માટે.", freeDemo: "મફત ડેમો લો", whatsapp: "WhatsApp પર વાત કરો", upiLive: "UPI લાઇવ", rating: "4.9 રેટિંગ", autoReply: "ઑટો-રિપ્લાય",
+  benefitsTag: "શું મળશે", benefitsTitle: "તમને આ બધું મળશે", benefitsDescription: "એક પ્લેટફોર્મ, પૂરો લાભ. આ રહી ઝલક.", howTag: "કેવી રીતે કામ કરે છે", howTitle: "ફક્ત 4 સ્ટેપમાં શરૂ કરો", step1Title: "તમારી કિટ મંગાવો", step1Description: "NFC કાર્ડ, સ્ટેન્ડી અથવા QR કોડ ઓર્ડર કરો. ડેશબોર્ડ એ જ દિવસે તૈયાર.", step2Title: "ગ્રાહક ટૅપ અથવા સ્કેન કરે", step2Description: "એક ટૅપમાં વેબસાઇટ, મેનૂ અથવા પેમેન્ટ પેજ ખુલશે.", step3Title: "ડેટા આપમેળે સેવ", step3Description: "દરેક ગ્રાહકનું નામ, નંબર અને જરૂરિયાત સીધી CRMમાં સેવ થશે.", step4Title: "અમે ફોલો-અપ કરીશું", step4Description: "WhatsApp રિમાઇન્ડર અને Google રિવ્યૂ રિક્વેસ્ટ આપમેળે જશે.",
+  journeyTag: "પેકેજ સફર", journeyTitle: "આખો ફ્લો એક નજરમાં", journeyDescription: "એક ટૅપ ગ્રાહકની સફર કેવી રીતે બદલે છે.", tapScan: "ટૅપ / સ્કેન", websiteLive: "વેબસાઇટ લાઇવ", upiPayment: "UPI પેમેન્ટ", reviewRequest: "રિવ્યૂ રિક્વેસ્ટ", whatsappFollowup: "WhatsApp ફોલો-અપ", repeatCustomer: "ગ્રાહક પાછો આવે",
+  storiesTag: "કથાઓ", storiesTitle: "નાની દુકાનથી મોટા બ્રાન્ડ સુધી", storiesDescription: "ખરા દુકાનદારો, તેમની વાતમાં.", storyHint: "રોકવા માટે હોવર કરો · ક્લિપ માટે ટૅપ કરો", pricingTag: "કિંમત", pricingTitle: "તમારો પ્લાન પસંદ કરો", pricingDescription: "આ અંદાજિત કિંમત છે. અંતિમ પેકેજ તમારા બિઝનેસ મુજબ હશે.", monthly: "માસિક", annual: "વાર્ષિક", save20: "20% બચત", mostPopular: "સૌથી લોકપ્રિય", billedAnnually: "વાર્ષિક બિલ", seeBenefits: "લાભ જુઓ", planBenefits: "ના લાભ", choosePlan: "પસંદ કરો", back: "પાછા",
+  faqTag: "પ્રશ્નો અને જવાબો", faqTitle: "પૂછતા પહેલાં", readyTitle: "ટૅપ કરવા તૈયાર?", readyDescription: "આજે જ તમારી દુકાનની ડિજિટલ ઓળખ બનાવો. મોટા ભાગના બિઝનેસ 24 કલાકમાં લાઇવ થાય છે.", footerDescription: "ભારતીય દુકાનો માટે ડિજિટલ હાજરી, પેમેન્ટ અને ઓટોમેશન, એક ટૅપ પાછળ.", platform: "પ્લેટફોર્મ", contact: "સંપર્ક", stayInLoop: "માહિતી મેળવતા રહો", updates: "પ્રોડક્ટ અપડેટ્સ અને બિઝનેસ ટિપ્સ.", emailPlaceholder: "તમારું ઈમેલ", subscribed: "તમારું નામ લિસ્ટમાં છે.", allRights: "તમામ હકો અનામત.", modalTag: "મફત ડેમો", modalTitle: "તમારી દુકાન સેટ અપ કરો", namePlaceholder: "તમારું નામ", businessPlaceholder: "બિઝનેસનું નામ", phonePlaceholder: "WhatsApp નંબર", typePlaceholder: "બિઝનેસનો પ્રકાર પસંદ કરો", invalidFields: "બધી માહિતી ભરો", invalidEmail: "યોગ્ય ઈમેલ દાખલ કરો"
+};
+
+export default gu;

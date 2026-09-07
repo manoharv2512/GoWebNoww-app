@@ -1,5 +1,6 @@
 import { IconBrandFacebook, IconBrandInstagram, IconBrandLinkedin, IconBrandTelegram, IconBrandWhatsapp, IconLocation, IconMail, IconPhone, IconPlus } from "@tabler/icons-react";
 import { useState } from "react";
+import { useLanguage } from "../../../localization";
 
 type Props = {
   onStart: () => void;
@@ -17,6 +18,7 @@ const faqs = [
 ];
 
 export default function FAQFooter({ onStart, newsletterDone, onSubscribe }: Props) {
+  const { strings } = useLanguage();
   const [open, setOpen] = useState<number | null>(null);
   const [email, setEmail] = useState("");
 
@@ -30,8 +32,8 @@ export default function FAQFooter({ onStart, newsletterDone, onSubscribe }: Prop
       <section className="section on-paper-dim" id="faq">
         <div className="container">
           <div className="section-head reveal">
-            <span className="tag">Sawaal Jawaab</span>
-            <h2>Poochne Se Pehle</h2>
+            <span className="tag">{strings.faqTag}</span>
+            <h2>{strings.faqTitle}</h2>
           </div>
           <div className="faq-wrap reveal">
             {faqs.map(([q,a], i) => (
@@ -48,12 +50,12 @@ export default function FAQFooter({ onStart, newsletterDone, onSubscribe }: Prop
 
       <section className="section on-indigo final-cta" id="get-started">
         <div className="container">
-          <h2>Tap Karne Ke Liye Ready?</h2>
-          <p>Aaj hi apni dukaan ki digital pehchaan banayein — zyadatar businesses 24 ghante mein live ho jaate hain.</p>
+          <h2>{strings.readyTitle}</h2>
+          <p>{strings.readyDescription}</p>
           <div className="hero-ctas" style={{ justifyContent:"center" }}>
-            <button className="btn btn-primary" onClick={onStart}><span>⚡</span> Free Demo Lo</button>
+            <button className="btn btn-primary" onClick={onStart}><span>⚡</span> {strings.freeDemo}</button>
             <a href="https://wa.me/910000000000?text=Hi!%20Mujhe%20Knectaa%20ke%20baare%20mein%20jaanna%20hai." target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-              <IconBrandWhatsapp/> WhatsApp Pe Baat Karein
+              <IconBrandWhatsapp/> {strings.whatsapp}
             </a>
           </div>
         </div>
@@ -64,7 +66,7 @@ export default function FAQFooter({ onStart, newsletterDone, onSubscribe }: Prop
           <div className="footer-grid">
             <div className="footer-brand">
               <h3 style={{ fontSize:"1.4rem", color:"#fff" }}>Knectaa</h3>
-              <p>Digital presence, payments aur automation — Indian dukaanon ke liye, ek tap ke peeche.</p>
+              <p>{strings.footerDescription}</p>
               <div className="footer-social">
                 <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><IconBrandInstagram/></a>
                 <a href="https://wa.me/910000000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><IconBrandWhatsapp/></a>
@@ -74,7 +76,7 @@ export default function FAQFooter({ onStart, newsletterDone, onSubscribe }: Prop
             </div>
 
             <div className="footer-col">
-              <h4>Platform</h4>
+              <h4>{strings.platform}</h4>
               <ul>
                 <li><a href="#milega">Kya Milega</a></li>
                 <li><a href="#journey">Package Journey</a></li>
@@ -84,7 +86,7 @@ export default function FAQFooter({ onStart, newsletterDone, onSubscribe }: Prop
             </div>
 
             <div className="footer-col">
-              <h4>Contact</h4>
+              <h4>{strings.contact}</h4>
               <ul>
                 <li><IconLocation/> [Your office address]</li>
                 <li><IconPhone/> +91 [your number]</li>
@@ -93,21 +95,21 @@ export default function FAQFooter({ onStart, newsletterDone, onSubscribe }: Prop
             </div>
 
             <div className="footer-col">
-              <h4>Stay In The Loop</h4>
-              <p style={{ fontSize:".85rem", opacity:.7 }}>Product updates &amp; SMB tips.</p>
+              <h4>{strings.stayInLoop}</h4>
+              <p style={{ fontSize:".85rem", opacity:.7 }}>{strings.updates}</p>
               {!newsletterDone ? (
                 <form className="newsletter-form" onSubmit={submit}>
-                  <input value={email} onChange={e => setEmail(e.currentTarget.value)} type="email" placeholder="Your email" required />
+                  <input value={email} onChange={e => setEmail(e.currentTarget.value)} type="email" placeholder={strings.emailPlaceholder} required />
                   <button type="submit" aria-label="Subscribe"><IconBrandTelegram/></button>
                 </form>
               ) : (
-                <p className="newsletter-success">✓ You're on the list.</p>
+                <p className="newsletter-success">✓ {strings.subscribed}</p>
               )}
             </div>
           </div>
 
           <div className="footer-bottom">
-            <span>© 2026 Knectaa. All rights reserved.</span>
+            <span>© 2026 Knectaa. {strings.allRights}</span>
             <span>Chhoti dukaan se high-end business tak.</span>
           </div>
         </div>

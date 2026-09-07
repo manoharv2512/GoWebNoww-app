@@ -1,5 +1,6 @@
 import { IconCheck, IconChevronLeft, IconChevronRight, IconPlayCard, IconRotate } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
+import { useLanguage } from "../../../localization";
 
 type Props = { onStart: () => void };
 
@@ -41,6 +42,7 @@ function VideoThumb({ story }: { story: typeof stories[number] }) {
 }
 
 export default function StoriesPricing({ onStart }: Props) {
+  const { strings } = useLanguage();
   const [rotation, setRotation] = useState(0);
   const [annual, setAnnual] = useState(false);
   const [flipped, setFlipped] = useState<Record<string, boolean>>({});
@@ -55,9 +57,9 @@ export default function StoriesPricing({ onStart }: Props) {
       <section className="section on-indigo" id="kahaniya">
         <div className="container">
           <div className="section-head reveal-3d">
-            <span className="tag on-dark">Kahaniya</span>
-            <h2 style={{ color:"#fff" }}>Chhoti Dukaan Se High-End Tak</h2>
-            <p style={{ color:"rgba(255,255,255,.7)" }}>Asli dukaandaar, apni zubaani.</p>
+            <span className="tag on-dark">{strings.storiesTag}</span>
+            <h2 style={{ color:"#fff" }}>{strings.storiesTitle}</h2>
+            <p style={{ color:"rgba(255,255,255,.7)" }}>{strings.storiesDescription}</p>
           </div>
         </div>
 
@@ -77,27 +79,27 @@ export default function StoriesPricing({ onStart }: Props) {
           <div className="orbit-scroll">
             {stories.map(s => <VideoThumb story={s} key={s[0]}/>)}
           </div>
-          <p className="kahaniya-hint">Hover to pause · tap ▶ for a sample clip</p>
+          <p className="kahaniya-hint">{strings.storyHint}</p>
         </div>
       </section>
 
       <section className="section on-paper" id="pricing">
         <div className="container">
           <div className="section-head reveal-3d">
-            <span className="tag">Pricing</span>
-            <h2>Apna Plan Chuno</h2>
-            <p>Yeh illustrative pricing hai — final package aapke business type ke hisaab se customise hota hai. Card flip karke poori list dekhein.</p>
+            <span className="tag">{strings.pricingTag}</span>
+            <h2>{strings.pricingTitle}</h2>
+            <p>{strings.pricingDescription}</p>
           </div>
 
           <div className="pricing-toggle">
-            <span>Monthly</span>
+            <span>{strings.monthly}</span>
             <button
               className={`toggle-switch ${annual ? "active" : ""}`}
               onClick={() => setAnnual(v => !v)}
               role="switch"
               aria-checked={annual}
             ><span className="toggle-knob"/></button>
-            <span>Annual <span className="save-tag">Save 20%</span></span>
+            <span>{strings.annual} <span className="save-tag">{strings.save20}</span></span>
           </div>
 
           <div className="pricing-grid">
@@ -108,22 +110,22 @@ export default function StoriesPricing({ onStart }: Props) {
                 <div className={`flip-card ${plan.featured ? "featured" : ""} reveal-3d`} key={plan.name}>
                   <div className={`flip-inner ${isFlipped ? "flipped" : ""}`}>
                     <div className="flip-front">
-                      {plan.featured && <span className="price-badge">Most Popular</span>}
+                      {plan.featured && <span className="price-badge">{strings.mostPopular}</span>}
                       <h3>{plan.name}</h3>
                       <p className="price-tagline">{plan.tagline}</p>
                       <div className="price-amount"><span className="price-num">₹{price.toLocaleString("en-IN")}</span><span className="price-period">/month</span></div>
-                      <p className="price-billed">{annual ? "billed annually" : "\u00A0"}</p>
+                      <p className="price-billed">{annual ? strings.billedAnnually : "\u00A0"}</p>
                       <button className="flip-trigger" onClick={() => setFlipped(f => ({...f, [plan.name]: true}))}>
-                        Dekhiye Kya Milega <IconRotate />
+                        {strings.seeBenefits} <IconRotate />
                       </button>
                     </div>
                     <div className="flip-back">
-                      <h4>{plan.name} Mein Kya Milega</h4>
+                      <h4>{plan.name} {strings.planBenefits}</h4>
                       <ul className="price-features">
                         {plan.features.map(f => <li key={f}><IconCheck /> {f}</li>)}
                       </ul>
-                      <button className={`btn ${plan.featured ? "btn-primary" : "btn-outline"} btn-block`} onClick={onStart}>{plan.name} Chunein</button>
-                      <button className="flip-trigger flip-back-btn" onClick={() => setFlipped(f => ({...f, [plan.name]: false}))}>← Wapas</button>
+                      <button className={`btn ${plan.featured ? "btn-primary" : "btn-outline"} btn-block`} onClick={onStart}>{plan.name} {strings.choosePlan}</button>
+                      <button className="flip-trigger flip-back-btn" onClick={() => setFlipped(f => ({...f, [plan.name]: false}))}>← {strings.back}</button>
                     </div>
                   </div>
                 </div>

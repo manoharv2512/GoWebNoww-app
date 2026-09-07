@@ -11,38 +11,25 @@ import {
   IconRefresh,
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "../../../localization";
 
 const milega1 = [
-  ["📈", "+150% Reviews", "Google Review Auto-Requests"],
-  ["💬", "Reply Kabhi Miss Nahi", "WhatsApp Automation"],
-  ["💳", "2 Second Payment", "UPI Tap-to-Pay"],
-  ["📓", "Udhaar? Sab Digital", "Khata Ledger"],
-  ["🌐", "24 Ghante Mein Live", "Apni Website"],
-  ["🔁", "Customer Wapas Aata Hai", "Auto Follow-ups"],
-  ["⭐", "4.9★ Rating Banaye", "Review Management"],
-  ["📊", "Har Lead Track Ho", "Smart CRM"]
+  ["📈", "reviews", "reviewRequests"], ["💬", "whatsappAutomation", "whatsappAutomation"], ["💳", "payment", "upiTap"], ["📓", "ledger", "ledger"], ["🌐", "website", "website"], ["🔁", "followUps", "followUps"], ["⭐", "rating", "reviewManagement"], ["📊", "smartCrm", "smartCrm"]
 ];
 const milega2 = [
-  ["🏪", "Chhoti Dukaan, Bada Presence", "Mini-Website"],
-  ["📲", "Ek Tap Mein Sab Kuch", "NFC Business Card"],
-  ["🎯", "Naye Customers Roz", "Lead Capture"],
-  ["💰", "Cash Nahi, Sirf Tap", "UPI Payments"],
-  ["📸", "Social Media Apne Aap", "Amplification"],
-  ["🏷️", "QR Scan, Order Ready", "Dynamic QR Codes"],
-  ["🤝", "500+ Dukaanein Judi", "Trusted Network"],
-  ["⚡", "Same Day Setup", "Fast Onboarding"]
+  ["🏪", "miniWebsite", "miniWebsite"], ["📲", "nfcCard", "nfcCard"], ["🎯", "leadCapture", "leadCapture"], ["💰", "upiPayments", "upiPayments"], ["📸", "amplification", "amplification"], ["🏷️", "qrCodes", "qrCodes"], ["🤝", "trustedNetwork", "trustedNetwork"], ["⚡", "fastOnboarding", "fastOnboarding"]
 ];
 
-function Marquee({ items, reverse = false }: { items: string[][]; reverse?: boolean }) {
+function Marquee({ items, strings, reverse = false }: { items: string[][]; strings: Record<string, string>; reverse?: boolean }) {
   const doubled = [...items, ...items];
   return (
     <div className="marquee-row">
       <div className={`marquee-track ${reverse ? "reverse" : ""}`}>
-        {doubled.map(([icon, title, desc], i) => (
-          <div className="milega-card" key={`${title}-${i}`}>
+        {doubled.map(([icon, titleKey, descKey], i) => (
+          <div className="milega-card" key={`${titleKey}-${i}`}>
             <div className="milega-brand"><span className="dot"/>KNECTAA</div>
             <div className="milega-icon">{icon}</div>
-            <h4>{title}</h4><p>{desc}</p>
+            <h4>{strings[titleKey]}</h4><p>{strings[descKey]}</p>
           </div>
         ))}
       </div>
@@ -51,25 +38,18 @@ function Marquee({ items, reverse = false }: { items: string[][]; reverse?: bool
 }
 
 const steps = [
-  [IconAlignBoxTopCenter, "Apna Kit Mangwao", "NFC card, standee ya QR code order karo — dashboard usi din ban jaata hai."],
-  [IconHandClick, "Customer Tap Ya Scan Kare", "Ek tap mein unke saamne aapki website, menu, ya payment page khul jaata hai."],
-  [IconDatabase, "Data Apne Aap Save", "Har customer ka naam, number aur zaroorat seedha aapke CRM mein chala jaata hai."],
-  [IconMessage2, "Follow-Up Hum Karenge", "WhatsApp reminder aur Google review request apne aap chala jaata hai — aapko yaad rakhne ki zaroorat nahi."]
+  [IconAlignBoxTopCenter, "step1Title", "step1Description"], [IconHandClick, "step2Title", "step2Description"], [IconDatabase, "step3Title", "step3Description"], [IconMessage2, "step4Title", "step4Description"]
 ];
 
 // Journey steps now use the already-imported Tabler icons instead of
 // FontAwesome icons that were never imported (this was causing a
 // "not defined" error at build/runtime).
 const journeySteps: [React.ElementType, string][] = [
-  [IconDeviceMobile, "Tap / Scan"],
-  [IconWorld, "Website Live"],
-  [IconCurrencyRupee, "UPI Payment"],
-  [IconStar, "Review Request"],
-  [IconBrandWhatsapp, "WhatsApp Follow-up"],
-  [IconRefresh, "Repeat Customer"]
+  [IconDeviceMobile, "tapScan"], [IconWorld, "websiteLive"], [IconCurrencyRupee, "upiPayment"], [IconStar, "reviewRequest"], [IconBrandWhatsapp, "whatsappFollowup"], [IconRefresh, "repeatCustomer"]
 ];
 
 export default function MainSections() {
+  const { strings } = useLanguage();
   const journeyRef = useRef<HTMLDivElement>(null);
   const [animateJourney, setAnimateJourney] = useState(false);
 
@@ -91,28 +71,28 @@ export default function MainSections() {
       <section className="section on-paper" id="milega">
         <div className="container">
           <div className="section-head reveal-3d">
-            <span className="tag">Kya Milega</span>
-            <h2>Aapko Milega Yeh Sab</h2>
-            <p>Ek platform, poora fayda. Yeh rahi jhalak.</p>
+            <span className="tag">{strings.benefitsTag}</span>
+            <h2>{strings.benefitsTitle}</h2>
+            <p>{strings.benefitsDescription}</p>
           </div>
         </div>
-        <Marquee items={milega1}/>
-        <Marquee items={milega2} reverse/>
+        <Marquee items={milega1} strings={strings}/>
+        <Marquee items={milega2} strings={strings} reverse/>
       </section>
 
       <section className="section on-paper-dim" id="kaise">
         <div className="container">
           <div className="section-head reveal-3d">
-            <span className="tag">Kaise Kaam Karta Hai</span>
-            <h2>Sirf 4 Steps Mein Shuru</h2>
+            <span className="tag">{strings.howTag}</span>
+            <h2>{strings.howTitle}</h2>
           </div>
           <div className="zigzag-wrap">
-            {steps.map(([Icon, title, desc], i) => (
+            {steps.map(([Icon, titleKey, descKey], i) => (
               <div
                 className={`zigzag-step reveal-3d ${
                   i % 2 ? "reverse" : ""
                 }`}
-                key={title as string}
+                key={titleKey as string}
               >
                 <div className="zigzag-visual">
                   <div className="zigzag-icon">
@@ -125,9 +105,9 @@ export default function MainSections() {
                     STEP 0{i + 1}
                   </span>
 
-                  <h4>{title as string}</h4>
+                  <h4>{strings[titleKey as string]}</h4>
 
-                  <p>{desc as string}</p>
+                  <p>{strings[descKey as string]}</p>
                 </div>
               </div>
             ))}
@@ -138,17 +118,17 @@ export default function MainSections() {
       <section className="section on-paper" id="journey">
         <div className="container">
           <div className="section-head reveal-3d">
-            <span className="tag">Package Journey</span>
-            <h2>Poora Flow, Ek Nazar Mein</h2>
-            <p>Ek tap poore customer journey mein kaise badalta hai — aur kaunsa plan kahan tak le jaata hai.</p>
+            <span className="tag">{strings.journeyTag}</span>
+            <h2>{strings.journeyTitle}</h2>
+            <p>{strings.journeyDescription}</p>
           </div>
 
           <div className="journey-flow reveal-3d" ref={journeyRef}>
             <div className={`journey-line ${animateJourney ? "animate" : ""}`}/>
-            {journeySteps.map(([Icon, label]) => (
-              <div className="journey-node" key={label}>
+            {journeySteps.map(([Icon, labelKey]) => (
+              <div className="journey-node" key={labelKey}>
                 <div className="journey-icon"><Icon size={28} stroke={1.8} /></div>
-                <span>{label}</span>
+                <span>{strings[labelKey]}</span>
               </div>
             ))}
           </div>
