@@ -15,6 +15,7 @@ import ManoharVarma2 from "../Pages/PersonalCard/Light/ManoharVarma2";
 import DowntownSmoothie from "../Pages/Cafe/Burghar1/DowntownSmoothie";
 import LoyaltyProgram from "../components/LoyaltyProgram/LoyaltyProgram";
 import Knectaa2 from "../Pages/knectaa2";
+import LoopVideoPage from "../Pages/EventOne";
 export const navItems = [{ label: "Home", path: "/" }];
 
 export const appRoutes = [
@@ -34,4 +35,5 @@ export const appRoutes = [
   { path: "/downtown-smoothie", element: <DowntownSmoothie /> },
   { path: "/downtown-smoothie/lp", element: <LoyaltyProgram /> },
   { path: "/knectaa2", element: <HomePage /> },
+  { path: "/event1", element: <LoopVideoPage /> },
 ];
