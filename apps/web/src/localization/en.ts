@@ -11,7 +11,8 @@ const en = {
   heroTag: "Whether a Small Shop or a Big Brand",
   heroLine1: "One Tap.",
   heroLine2: "Your Whole Shop Digital.",
-  heroDescription: "Website, business card, UPI payment, digital ledger and Google reviews, all behind one NFC tap or QR scan. For every business, from small shops to premium brands.",
+  heroDescription:
+    "With Knectaa, take your business digital — Website, business card, UPI payments, digital Khata, and Google Reviews — all behind a single NFC tap or QR scan. From small shops to high-end businesses, there’s something for everyone.",
   freeDemo: "Get Free Demo",
   whatsapp: "Talk on WhatsApp",
   upiLive: "UPI Live",
@@ -23,6 +24,7 @@ const en = {
   payment: "2 Second Payment",
   upiTap: "UPI Tap-to-Pay",
   ledger: "Digital Ledger",
+  digitalLoyalityCard: "Digital Loyality Card",
   website: "Your Website",
   followUps: "Auto Follow-ups",
   reviewManagement: "Review Management",
@@ -39,15 +41,24 @@ const en = {
   benefitsTitle: "You Get All This",
   benefitsDescription: "One platform, complete benefits. Here is a glimpse.",
   howTag: "How It Works",
-  howTitle: "Start in Just 4 Steps",
-  step1Title: "Order Your Kit",
-  step1Description: "Order an NFC card, standee or QR code. Your dashboard is ready the same day.",
-  step2Title: "Customer Taps or Scans",
-  step2Description: "Your website, menu or payment page opens with one tap.",
-  step3Title: "Data Saves Automatically",
-  step3Description: "Every customer's name, number and need goes straight into your CRM.",
-  step4Title: "We Follow Up",
-  step4Description: "WhatsApp reminders and Google review requests go out automatically.",
+  kaiseKamKartaHai: {
+    sectionTitle: "Get Started in Just 4 Steps",
+
+    step1Title: "Talk to Us",
+    step1Description:
+      "On a free demo call, we understand what your business needs.",
+
+    step2Title: "Get Set Up",
+    step2Description: "Your complete digital kit is ready within 48 hours.",
+
+    step3Title: "Tap & Go",
+    step3Description:
+      "Place the NFC card, standee, or QR at your shop — everything is ready to use.",
+
+    step4Title: "Grow Your Business",
+    step4Description:
+      "Get more customers, collect data, and let follow-ups happen automatically.",
+  },
   journeyTag: "Package Journey",
   journeyTitle: "The Complete Flow at a Glance",
   journeyDescription: "See how one tap transforms the customer journey.",
@@ -64,7 +75,8 @@ const en = {
   sampleClip: "Sample clip — real customer videos coming soon",
   pricingTag: "Pricing",
   pricingTitle: "Choose Your Plan",
-  pricingDescription: "Illustrative pricing. Your final package is customised for your business.",
+  pricingDescription:
+    "Illustrative pricing. Your final package is customised for your business.",
   monthly: "Monthly",
   annual: "Annual",
   save20: "Save 20%",
@@ -77,8 +89,10 @@ const en = {
   faqTag: "Questions & Answers",
   faqTitle: "Before You Ask",
   readyTitle: "Ready to Tap?",
-  readyDescription: "Build your shop's digital identity today. Most businesses go live within 24 hours.",
-  footerDescription: "Digital presence, payments and automation for Indian shops, behind one tap.",
+  readyDescription:
+    "Build your shop's digital identity today. Most businesses go live within 24 hours.",
+  footerDescription:
+    "Digital presence, payments and automation for Indian shops, behind one tap.",
   platform: "Platform",
   contact: "Contact",
   stayInLoop: "Stay In The Loop",
@@ -93,7 +107,7 @@ const en = {
   phonePlaceholder: "WhatsApp number",
   typePlaceholder: "Choose business type",
   invalidFields: "Please fill all fields",
-  invalidEmail: "Please enter a valid email"
+  invalidEmail: "Please enter a valid email",
 };
 
 export default en;

@@ -1,6 +1,7 @@
 import manohar from "../../assets/VisitingCard/ManoharVarma.jpg";
 import hrishikesh from "../../assets/VisitingCard/ChaitanyaHrishiGupta.jpeg";
 import rushikesh from "../../assets/VisitingCard/RishikeshDurugkar.jpeg";
+import ashwin from "../../assets/VisitingCard/AshwinDurugkar1.jpeg";
 
 export interface IPersonProfile {
   pre?: string;
@@ -73,4 +74,17 @@ export const hrishikeshGupta: IPersonProfile  = {
     "Team Leadership",
   ],
   profileImg: hrishikesh,
+};
+
+export const ashwinDurugkar: IPersonProfile = {
+  name: "Ashwin Durugkar",
+  location: "Nagpur, IN",
+  title: "Assistant Branch Manager",
+  company: "HDFC Life",
+  phone: "+918600333731",
+  email: "ashwindurugkar@gmail.com",
+  whatsapp: "918600333731",
+  linkedin: "",
+  instagram: "",
+  profileImg: ashwin,
 };

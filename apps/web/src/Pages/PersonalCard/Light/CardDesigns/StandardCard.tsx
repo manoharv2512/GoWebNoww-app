@@ -224,7 +224,7 @@ END:VCARD`;
           </Grid>
 
           {/* Social */}
-          <Group justify="center">
+          {contact.instagram && contact.linkedin &&(<Group justify="center">
             <Button
               component="a"
               href={contact.linkedin}
@@ -248,7 +248,7 @@ END:VCARD`;
             >
               Instagram
             </Button>
-          </Group>
+          </Group>)}
         </Stack>
       </Paper>
     </Box>

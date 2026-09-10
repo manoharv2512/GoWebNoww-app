@@ -31,11 +31,11 @@ export default function FAQFooter({ onStart, newsletterDone, onSubscribe }: Prop
     <>
       <section className="section on-paper-dim" id="faq">
         <div className="container">
-          <div className="section-head reveal">
+          <div className="section-head reveal-3d">
             <span className="tag">{strings.faqTag}</span>
             <h2>{strings.faqTitle}</h2>
           </div>
-          <div className="faq-wrap reveal">
+          <div className="faq-wrap reveal-3d">
             {faqs.map(([q,a], i) => (
               <div className={`faq-item ${open === i ? "open" : ""}`} key={q}>
                 <button className="faq-q" onClick={() => setOpen(open === i ? null : i)}>

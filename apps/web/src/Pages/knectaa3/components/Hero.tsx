@@ -131,10 +131,10 @@ export default function Hero({ onStart }: Props) {
 
       <div className="hero-stats">
         {[
-          ["500+", "Dukaanein Judi"],
-          ["2Cr+", "UPI Processed"],
+          ["100+", "Dukaanein Judi"],
+          ["48hrs", "Mein setup ready"],
           ["4.9★", "Average Rating"],
-          ["10K+", "Reviews Generated"]
+          ["5K+", "Reviews Generated"]
         ].map(([num, label]) => (
           <div className="hero-stat" key={label}>
             <span className="stat-num">{num}</span>

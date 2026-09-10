@@ -12,15 +12,18 @@ import {
 } from "@tabler/icons-react";
 import { useEffect, useRef, useState } from "react";
 import { useLanguage } from "../../../localization";
+import type { TranslationStrings } from "../../../localization";
 
-const milega1 = [
-  ["📈", "reviews", "reviewRequests"], ["💬", "whatsappAutomation", "whatsappAutomation"], ["💳", "payment", "upiTap"], ["📓", "ledger", "ledger"], ["🌐", "website", "website"], ["🔁", "followUps", "followUps"], ["⭐", "rating", "reviewManagement"], ["📊", "smartCrm", "smartCrm"]
+type TranslationStringKeys = Exclude<keyof TranslationStrings, 'kaiseKamKartaHai'>;
+
+const milega1: [string, TranslationStringKeys, TranslationStringKeys][] = [
+  ["📈", "reviews", "reviewRequests"], ["📲", "digitalLoyalityCard", "digitalLoyalityCard"], ["💬", "whatsappAutomation", "whatsappAutomation"], ["💳", "payment", "upiTap"], ["📓", "ledger", "ledger"], ["🌐", "website", "website"], ["🔁", "followUps", "followUps"], ["⭐", "rating", "reviewManagement"], ["📊", "smartCrm", "smartCrm"]
 ];
-const milega2 = [
-  ["🏪", "miniWebsite", "miniWebsite"], ["📲", "nfcCard", "nfcCard"], ["🎯", "leadCapture", "leadCapture"], ["💰", "upiPayments", "upiPayments"], ["📸", "amplification", "amplification"], ["🏷️", "qrCodes", "qrCodes"], ["🤝", "trustedNetwork", "trustedNetwork"], ["⚡", "fastOnboarding", "fastOnboarding"]
+const milega2: [string, TranslationStringKeys, TranslationStringKeys][] = [
+  ["🏪", "miniWebsite", "miniWebsite"], ["📲", "nfcCard", "nfcCard"], ["🎯", "leadCapture", "leadCapture"], ["💰", "upiPayments", "upiPayments"], ["📸", "amplification", "amplification"], ["📲", "digitalLoyalityCard", "digitalLoyalityCard"], ["🏷️", "qrCodes", "qrCodes"], ["🤝", "trustedNetwork", "trustedNetwork"], ["⚡", "fastOnboarding", "fastOnboarding"]
 ];
 
-function Marquee({ items, strings, reverse = false }: { items: string[][]; strings: Record<string, string>; reverse?: boolean }) {
+function Marquee({ items, strings, reverse = false }: { items: [string, TranslationStringKeys, TranslationStringKeys][]; strings: TranslationStrings; reverse?: boolean }) {
   const doubled = [...items, ...items];
   return (
     <div className="marquee-row">
@@ -37,14 +40,14 @@ function Marquee({ items, strings, reverse = false }: { items: string[][]; strin
   );
 }
 
-const steps = [
+const steps: [React.ElementType, keyof TranslationStrings["kaiseKamKartaHai"], keyof TranslationStrings["kaiseKamKartaHai"]][] = [
   [IconAlignBoxTopCenter, "step1Title", "step1Description"], [IconHandClick, "step2Title", "step2Description"], [IconDatabase, "step3Title", "step3Description"], [IconMessage2, "step4Title", "step4Description"]
 ];
 
 // Journey steps now use the already-imported Tabler icons instead of
 // FontAwesome icons that were never imported (this was causing a
 // "not defined" error at build/runtime).
-const journeySteps: [React.ElementType, string][] = [
+const journeySteps: [React.ElementType, TranslationStringKeys][] = [
   [IconDeviceMobile, "tapScan"], [IconWorld, "websiteLive"], [IconCurrencyRupee, "upiPayment"], [IconStar, "reviewRequest"], [IconBrandWhatsapp, "whatsappFollowup"], [IconRefresh, "repeatCustomer"]
 ];
 
@@ -84,7 +87,7 @@ export default function MainSections() {
         <div className="container">
           <div className="section-head reveal-3d">
             <span className="tag">{strings.howTag}</span>
-            <h2>{strings.howTitle}</h2>
+            <h2>{strings.kaiseKamKartaHai.sectionTitle}</h2>
           </div>
           <div className="zigzag-wrap">
             {steps.map(([Icon, titleKey, descKey], i) => (
@@ -105,9 +108,9 @@ export default function MainSections() {
                     STEP 0{i + 1}
                   </span>
 
-                  <h4>{strings[titleKey as string]}</h4>
+                  <h4>{strings.kaiseKamKartaHai[titleKey as keyof typeof strings.kaiseKamKartaHai]}</h4>
 
-                  <p>{strings[descKey as string]}</p>
+                  <p>{strings.kaiseKamKartaHai[descKey as keyof typeof strings.kaiseKamKartaHai]}</p>
                 </div>
               </div>
             ))}

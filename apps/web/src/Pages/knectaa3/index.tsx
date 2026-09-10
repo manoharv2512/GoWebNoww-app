@@ -1,13 +1,20 @@
 import { useEffect, useState } from "react";
-import { Modal, TextInput, Select, Button, ActionIcon } from "@mantine/core";
+import {
+  Modal,
+  TextInput,
+  Select,
+  Button,
+  Flex,
+} from "@mantine/core";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import MainSections from "./components/MainSections";
-import StoriesPricing from "./components/StoriesPricing";
+// import StoriesPricing from "./components/StoriesPricing";
 import FAQFooter from "./components/FAQFooter";
-import { IconX } from "@tabler/icons-react";
 import { useLanguage } from "../../localization";
 import "./style.css";
+import Stories from "./components/Stories";
+// import Pricing from "./components/Pricing";
 
 export default function Knectaa3() {
   const { strings } = useLanguage();
@@ -61,19 +68,19 @@ export default function Knectaa3() {
           phone: cleanPhone,
           type,
           source: "get-started-modal",
-          ts: Date.now()
-        })
+          ts: Date.now(),
+        }),
       );
     } catch {}
 
     setModalOpen(false);
     const waMsg = encodeURIComponent(
-      `Hi! Main ${business} (${type}) chalata/chalati hoon aur Knectaa ka free demo chahiye. Mera naam ${name} hai.`
+      `Hi! Main ${business} (${type}) chalata/chalati hoon aur Knectaa ka free demo chahiye. Mera naam ${name} hai.`,
     );
     window.open(
       `https://wa.me/910000000000?text=${waMsg}`,
       "_blank",
-      "noopener,noreferrer"
+      "noopener,noreferrer",
     );
     setName("");
     setBusiness("");
@@ -89,7 +96,7 @@ export default function Knectaa3() {
     try {
       localStorage.setItem(
         `lead:newsletter:${Date.now()}`,
-        JSON.stringify({ email, type: "newsletter", ts: Date.now() })
+        JSON.stringify({ email, type: "newsletter", ts: Date.now() }),
       );
     } catch {}
     setNewsletterDone(true);
@@ -100,13 +107,15 @@ export default function Knectaa3() {
     <>
       {preloader && (
         <div id="preloader">
-          <div className="stamp-mark"><span>KNECTAA</span></div>
+          <div className="stamp-mark">
+            <span>KNECTAA</span>
+          </div>
         </div>
       )}
 
       <Navbar
         mobileOpen={mobileNav}
-        onToggle={() => setMobileNav(v => !v)}
+        onToggle={() => setMobileNav((v) => !v)}
         onStart={() => setModalOpen(true)}
       />
 
@@ -114,7 +123,9 @@ export default function Knectaa3() {
 
       <MainSections />
 
-      <StoriesPricing onStart={() => setModalOpen(true)} />
+      {/* <StoriesPricing onStart={() => setModalOpen(true)} /> */}
+      <Stories />
+      {/* <Pricing onStart={() => setModalOpen(true)} /> */}
 
       <FAQFooter
         onStart={() => setModalOpen(true)}
@@ -126,41 +137,36 @@ export default function Knectaa3() {
         opened={modalOpen}
         onClose={() => setModalOpen(false)}
         centered
-        withCloseButton={false}
+        withCloseButton={true}
         overlayProps={{ backgroundOpacity: 0.65, blur: 5 }}
-        classNames={{ content: "knectaa-modal-content", body: "knectaa-modal-body" }}
+        size="lg"
+        title={<Flex ta="center">{strings.modalTitle}</Flex>}
       >
-        <ActionIcon
-          className="modal-close"
-          onClick={() => setModalOpen(false)}
-          aria-label="Close"
-        >
-          <IconX />
-        </ActionIcon>
-
         <div className="modal-demo-content">
-          <span className="tag" style={{ display: "block", textAlign: "center", marginBottom: 6 }}>
+          <span
+            className="tag"
+            style={{ display: "block", textAlign: "center", marginBottom: 6 }}
+          >
             {strings.modalTag}
           </span>
-          <h3>{strings.modalTitle}</h3>
           <form onSubmit={submitDemo}>
             <TextInput
               value={name}
-              onChange={e => setName(e.currentTarget.value)}
+              onChange={(e) => setName(e.currentTarget.value)}
               placeholder={strings.namePlaceholder}
               required
               mb={12}
             />
             <TextInput
               value={business}
-              onChange={e => setBusiness(e.currentTarget.value)}
+              onChange={(e) => setBusiness(e.currentTarget.value)}
               placeholder={strings.businessPlaceholder}
               required
               mb={12}
             />
             <TextInput
               value={phone}
-              onChange={e => setPhone(e.currentTarget.value)}
+              onChange={(e) => setPhone(e.currentTarget.value)}
               placeholder={strings.phonePlaceholder}
               required
               mb={12}
@@ -174,12 +180,12 @@ export default function Knectaa3() {
                 "Salon / Spa",
                 "Retail / Kirana Store",
                 "Services (repair, tailoring, etc.)",
-                "Other"
+                "Other",
               ]}
               required
               mb={12}
             />
-            <Button type="submit" fullWidth className="btn btn-primary mantine-reset">
+            <Button type="submit" fullWidth style={{ height: 44 }}>
               {strings.freeDemo}
             </Button>
           </form>
