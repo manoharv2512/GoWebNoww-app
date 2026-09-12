@@ -1494,6 +1494,7 @@ footer {
   grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
   gap: 40px;
   margin-bottom: 48px;
+  background-color: #c1272d;
 }
 @media (max-width: 860px) {
   .footer-grid {
@@ -1511,6 +1512,7 @@ footer {
   line-height: 1.7;
   margin: 14px 0 18px;
   max-width: 260px;
+  display: flex;  
 }
 .footer-social {
   display: flex;
