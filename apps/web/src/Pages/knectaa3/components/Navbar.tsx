@@ -37,7 +37,7 @@ export default function Navbar({ mobileOpen, onToggle, onStart }: Props) {
           <li><a href="#milega" onClick={() => closeAndScroll("milega")}>{strings.navBenefits}</a></li>
           <li><a href="#journey" onClick={() => closeAndScroll("journey")}>{strings.navJourney}</a></li>
           <li><a href="#kahaniya" onClick={() => closeAndScroll("kahaniya")}>{strings.navStories}</a></li>
-          <li><a href="#pricing" onClick={() => closeAndScroll("pricing")}>{strings.navPricing}</a></li>
+          {/* <li><a href="#pricing" onClick={() => closeAndScroll("pricing")}>{strings.navPricing}</a></li> */}
           <li className="language-menu">
             <button
               className="language-trigger"

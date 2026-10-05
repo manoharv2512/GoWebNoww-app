@@ -538,9 +538,9 @@ section[id] {
   z-index: 2;
   display: flex;
   justify-content: center;
-  gap: 52px;
+  gap: 38px;
   flex-wrap: wrap;
-  padding: 50px 24px 70px;
+  /* padding: 50px 24px 70px; */
   opacity: 0;
   animation: fadeIn 0.8s ease forwards 1.6s;
 }
@@ -891,6 +891,7 @@ section[id] {
   position: relative;
   max-width: 900px;
   margin: 0 auto;
+  gap: "20px";
 }
 .zigzag-wrap:before {
   content: "";
@@ -1494,7 +1495,6 @@ footer {
   grid-template-columns: 1.4fr 1fr 1fr 1.1fr;
   gap: 40px;
   margin-bottom: 48px;
-  background-color: #c1272d;
 }
 @media (max-width: 860px) {
   .footer-grid {
@@ -1516,6 +1516,7 @@ footer {
 }
 .footer-social {
   display: flex;
+  justify-content: space-around;
   gap: 12px;
 }
 .footer-social a {

@@ -93,7 +93,7 @@ export default function MainSections() {
             {steps.map(([Icon, titleKey, descKey], i) => (
               <div
                 className={`zigzag-step reveal-3d ${
-                  i % 2 ? "reverse" : ""
+                  i % 2 ? "" : "reverse"
                 }`}
                 key={titleKey as string}
               >

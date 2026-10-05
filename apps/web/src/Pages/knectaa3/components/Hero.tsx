@@ -94,13 +94,27 @@ export default function Hero({ onStart }: Props) {
               <IconBolt/> {strings.freeDemo}
             </button>
             <a
-              href="https://wa.me/910000000000?text=Hi!%20Mujhe%20Knectaa%20ke%20baare%20mein%20jaanna%20hai."
+              href="https://wa.me/919225193554?text=Hi!%20Mujhe%20Knectaa%20ke%20baare%20mein%20jaanna%20hai."
               target="_blank" rel="noopener noreferrer" className="btn btn-ghost"
             >
               <IconBrandWhatsapp/> {strings.whatsapp}
             </a>
           </div>
         </Box>
+
+        <div className="hero-stats">
+        {[
+          ["100+", "Dukaanein Judi"],
+          ["48hrs", "Mein setup ready"],
+          ["4.9★", "Average Rating"],
+          ["5K+", "Reviews Generated"]
+        ].map(([num, label]) => (
+          <div className="hero-stat" key={label}>
+            <span className="stat-num">{num}</span>
+            <span className="stat-label">{label}</span>
+          </div>
+        ))}
+      </div>
 
         <div className="hero-visual">
           <div className="phone-cluster">
@@ -129,7 +143,7 @@ export default function Hero({ onStart }: Props) {
         </div>
       </div>
 
-      <div className="hero-stats">
+      {/* <div className="hero-stats">
         {[
           ["100+", "Dukaanein Judi"],
           ["48hrs", "Mein setup ready"],
@@ -141,7 +155,7 @@ export default function Hero({ onStart }: Props) {
             <span className="stat-label">{label}</span>
           </div>
         ))}
-      </div>
+      </div> */}
 
       <a href="#milega" className="scroll-cue" aria-label="Scroll down">
         <IconChevronDown/>

@@ -11,7 +11,7 @@ import {
 } from "@tabler/icons-react";
 import { useState } from "react";
 import { useLanguage } from "../../../localization";
-import { Stack } from "@mantine/core";
+import { Flex, List, Stack } from "@mantine/core";
 
 type Props = {
   onStart: () => void;
@@ -117,7 +117,7 @@ export default function FAQFooter({
               </Stack>
               <div className="footer-social">
                 <a
-                  href="https://www.instagram.com/"
+                  href="https://www.instagram.com/knectaa?stkn=eWZpNmpnenNlaDRk"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
@@ -125,7 +125,7 @@ export default function FAQFooter({
                   <IconBrandInstagram />
                 </a>
                 <a
-                  href="https://wa.me/910000000000"
+                  href="https://wa.me/919225193354"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="WhatsApp"
@@ -156,9 +156,6 @@ export default function FAQFooter({
                   <a href="#journey">Package Journey</a>
                 </li>
                 <li>
-                  <a href="#pricing">Pricing</a>
-                </li>
-                <li>
                   <a href="#faq">FAQ</a>
                 </li>
               </ul>
@@ -166,17 +163,24 @@ export default function FAQFooter({
 
             <div className="footer-col">
               <h4>{strings.contact}</h4>
-              <ul>
-                <li>
-                  <IconLocation /> Nagpur, Maharashtra{" "}
-                </li>
-                <li>
-                  <IconPhone /> +91 9225193354
-                </li>
-                <li>
-                  <IconMail /> getinfoknectaa@gmail.com
-                </li>
-              </ul>
+              <List>
+                <List.Item>
+                  <Flex align={"center"}>
+                    <IconLocation />
+                    Nagpur, Maharashtra
+                  </Flex>
+                </List.Item>
+                <List.Item>
+                  <Flex align={"center"}>
+                    <IconPhone /> +91 9225193354
+                  </Flex>
+                </List.Item>
+                <List.Item>
+                  <Flex align={"center"}>
+                    <IconMail /> getinfoknectaa@gmail.com
+                  </Flex>
+                </List.Item>
+              </List>
             </div>
 
             <div className="footer-col">
